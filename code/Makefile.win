@@ -1,11 +1,11 @@
-# Project: Project2
+# Project: QuanLyNhaTro
 # Makefile created by Embarcadero Dev-C++ 6.3
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o
-LINKOBJ  = main.o
+OBJ      = main.o Person.o Client.o Room.o RoomManage.o ClientManage.o
+LINKOBJ  = main.o Person.o Client.o Room.o RoomManage.o ClientManage.o
 LIBS     = -L"D:/Dev-Cpp/TDM-GCC-64/lib" -L"D:/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"D:/Dev-Cpp/TDM-GCC-64/include" -I"D:/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
 CXXINCS  = -I"D:/Dev-Cpp/TDM-GCC-64/include" -I"D:/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"D:/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
@@ -26,3 +26,18 @@ $(BIN): $(OBJ)
 
 main.o: main.cpp
 	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+Person.o: Person.cpp
+	$(CPP) -c Person.cpp -o Person.o $(CXXFLAGS)
+
+Client.o: Client.cpp
+	$(CPP) -c Client.cpp -o Client.o $(CXXFLAGS)
+
+Room.o: Room.cpp
+	$(CPP) -c Room.cpp -o Room.o $(CXXFLAGS)
+
+RoomManage.o: RoomManage.cpp
+	$(CPP) -c RoomManage.cpp -o RoomManage.o $(CXXFLAGS)
+
+ClientManage.o: ClientManage.cpp
+	$(CPP) -c ClientManage.cpp -o ClientManage.o $(CXXFLAGS)

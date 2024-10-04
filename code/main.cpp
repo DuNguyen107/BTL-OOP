@@ -1,7 +1,27 @@
 #include <iostream>
+#include "RoomManage.h"
+#include "ClientManage.h"
 
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+int main() {
+    RoomManage roomManager;
+    ClientManage customerManager;
 
-int main(int argc, char** argv) {
-	return 0;
+    // Thêm phòng
+    roomManager.addRoom(Room(101, "Standard", false, 100));
+    roomManager.addRoom(Room(102, "Deluxe", true, 150));
+
+    // Hiển thị danh sách phòng
+    roomManager.displayRooms();
+
+    // Kiểm tra phòng trống
+    cout << "Tinh trang phong:" << endl;
+    roomManager.checkStateRoom();
+
+    // Thêm khách thuê
+    customerManager.addClient(Client("John Doe", "123456789", "0909090909","VietNam", 101));
+
+    // Hiển thị danh sách khách
+    customerManager.displayClients();
+
+    return 0;
 }
