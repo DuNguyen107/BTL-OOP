@@ -1,27 +1,15 @@
 #include <iostream>
-#include "RoomManage.h"
-#include "ClientManage.h"
+#include"Person.h"
+#include"Customer.h"
+#include"Employee.h"
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
-int main() {
-    RoomManage roomManager;
-    ClientManage customerManager;
-
-    // Thêm phòng
-    roomManager.addRoom(Room(101, "Standard", false, 100));
-    roomManager.addRoom(Room(102, "Deluxe", true, 150));
-
-    // Hiển thị danh sách phòng
-    roomManager.displayRooms();
-
-    // Kiểm tra phòng trống
-    cout << "Tinh trang phong:" << endl;
-    roomManager.checkStateRoom();
-
-    // Thêm khách thuê
-    customerManager.addClient(Client("John Doe", "123456789", "0909090909","VietNam", 101));
-
-    // Hiển thị danh sách khách
-    customerManager.displayClients();
-
-    return 0;
+int main(int argc, char** argv) {
+	Person p("Duy", "0987654321", "duyle@gmail.com", "Quang Ngai", 0, true);
+	Customer c("Duy", "0987654321", "duyle@gmail.com", "Quang Ngai", 123, true);
+	Employee e("Linh", "0987654321", "linhle@gmail.com", "Quang Ngai", 678, false, manager, 200000, "linh123");
+	p.Show(); cout << endl;
+	c.Show(); cout << endl;
+	e.Show(); cout << endl;
+	return 0;
 }

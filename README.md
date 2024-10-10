@@ -1,2 +1,1 @@
-# Boarding-House-Management
--Quản lý nhà trọ
+# Bài tập lớn OOP

@@ -1,23 +1,32 @@
+#include<iostream>
 #include<string>
 using namespace std;
-
+#pragma once
 class Person{
 	protected:
-		string name;
-		string idCard;
-		string phone;
+		string name, phone, email, address;
+		int id;
+		bool gender;
 	public:
-		Person();
-		Person(string name, string idCard, string phone);
-		//lay gia tri
-		string getName() const;
-		string getIdCard() const;
-		string getPhone() const;
-		//gan gia tri
-		void setName(string name);
-		void setIdCard(string idCard);
-		void setPhone(string phone);
-		
-		virtual void display_info() const;
-		virtual ~Person();
+		//constructor
+		Person(string = "", string = "", string = "", string = "", int = 0, bool = true);
+		~Person();
+		//getter
+		string getName();
+		string getPhone();
+		string getEmail();
+		string getAddress();
+		int getID();
+		bool getGender();
+		//setter
+		void setName(string);
+		void setPhone(string);
+		void setEmail(string);
+		void setAddress(string);
+		void setID(int);
+		void setGender(bool);
+		//method
+		bool operator!=(const Person&);
+        bool operator==(const Person&);
+		virtual void Show();
 };

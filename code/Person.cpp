@@ -1,36 +1,63 @@
 #include"Person.h"
-#include<iostream>
 
-Person::Person(){
-	name = "";
-	idCard = "";
-	phone = "";
-}
-Person::Person(string name, string idCard, string phone){
+Person::Person(string name, string phone, string email, string address, int id, bool gender){
 	this->name = name;
-	this->idCard = idCard;
 	this->phone = phone;
+	this->email = email;
+	this->address = address;
+	this->id = id;
+	this->gender = gender;
 }
-string Person::getName() const{
-	return name;
+Person::~Person(){
 }
-string Person::getIdCard() const{
-	return idCard;
+string Person::getName(){
+	return this->name;
 }
-string Person::getPhone() const{
-	return phone;
+string Person::getPhone(){
+	return this->phone;
+}
+string Person::getEmail(){
+	return this->email;
+}
+string Person::getAddress(){
+	return this->address;
+}
+int Person::getID(){
+	return this->id;
+}
+bool Person::getGender(){
+	return this->gender;
 }
 void Person::setName(string name){
 	this->name = name;
 }
-void Person::setIdCard(string idCard){
-	this->idCard = idCard;
-}
 void Person::setPhone(string phone){
 	this->phone = phone;
 }
-void Person::display_info() const{
-	cout << "Ten: " << name << ", CMND: " << idCard << ", SDT: " << phone << endl;
+void Person::setEmail(string email){
+	this->email = email;
 }
-Person::~Person(){
+void Person::setAddress(string address){
+	this->address = address;
+}
+void Person::setID(int id){
+	this->id = id;
+}
+void Person::setGender(bool gender){
+	this->gender = gender;
+}
+bool Person::operator != (const Person& p){
+	return (this->id != p.id);
+}
+bool Person::operator == (const Person& p){
+	return (this->id == p.id);
+}
+void Person::Show(){
+	cout << "Ho va Ten: " << this->name << endl;
+	cout << "So Dien Thoai: " << this->phone << endl;
+    cout << "Gioi tinh: ";
+    if(this->gender) cout << "Nam\n";
+    else cout << "Nu\n";
+    cout << "Email: " << this->email << endl;
+	cout << "Dia chi: " << this->address << endl;
 }
