@@ -1,20 +1,20 @@
-#include"list.h"
+#include"List.h"
 
 template<typename T>
 Node<T>::Node(){
-	this->next = NULL;
+	this->next = nullptr;
 }
 template<typename T>
 Node<T>::Node(T data){
 	this->data = data;
-	this->next = NULL;
+	this->next = nullptr;
 }
 template<typename T>
 Node<T>::Node(const Node<T>& other){
 	this->data = other.data;
-	this->next = NULL;
+	this->next = nullptr;
 }
-template<typename T>
+template<typename T>	
 Node<T>& Node<T>::operator = (const Node<T>& other){
 	if(this != &other){
 		this->data = other.data;
@@ -23,40 +23,40 @@ Node<T>& Node<T>::operator = (const Node<T>& other){
 }
 template<typename T>
 Node<T>::~Node(){
-	this->next = NULL;
+	this->next = nullptr;
 }
 /*-------------------------------------*/
 template <typename T>
-list<T>::list(){
-	this->head = NULL;
+List<T>::List(){
+	this->head = nullptr;
 }
 template <typename T>
-list<T>::list(const list<T>& other){//sao chep 1 DSLK khac
+List<T>::List(const List<T>& other){//sao chep 1 DSLK khac
 	this->head = nullptr;
-	Node<T>* otherNode = other.head; // duyet tu dau
-	while(otherNode != nullptr){
-		this->addTail(otherNode->data); // them vao cuoi
-		otherNode = otherNode->next;
+	Node<T>* p = other.head; // duyet tu dau
+	while(p != nullptr){
+		this->addTail(p->data); // them vao cuoi
+		p = p->next;
 	}
 }
 template <typename T>
-list<T>& list<T>::operator = (const list<T>& other){
+List<T>& List<T>::operator = (const List<T>& other){
 	if(this != &other){
 		while(this->head != nullptr){ // xoa danh sach hien tai
 			Node<T>* temp = this->head;
 			this->head = this->head->next;
 			delete temp;
 		}
-		Node<T>* otherNode = other.head;
-		while(otherNode != nullptr){ // gan lai gia tri cho danh sach hien tai
-			this->addTail(otherNode->data);
-			otherNode = otherNode->next;
+		Node<T>* p = other.head;
+		while(p != nullptr){ // gan lai gia tri cho danh sach hien tai
+			addTail(p->data);
+			p = p->next;
 		}
 	}
 	return *this;
 }
 template <typename T>
-list<T>::~list()
+List<T>::~List()
 {
     while (head != nullptr) {
         Node<T>* temp = head;
@@ -65,7 +65,7 @@ list<T>::~list()
     }
 }
 template <typename T>
-void list<T>::addHead(const T& addData){
+void List<T>::addHead(const T& addData){
 	Node<T>* newNode = new Node<T>(addData);
 	if(this->head == nullptr) // neu ds rong thi gan vao dau
 		this->head = newNode;
@@ -75,7 +75,7 @@ void list<T>::addHead(const T& addData){
 	}
 }
 template <typename T>
-void list<T>::addTail(const T& addData){
+void List<T>::addTail(const T& addData){
 	Node<T>* newNode = new Node<T>(addData);
 	if(this->head == nullptr) // rong
 		this->head = newNode;
@@ -88,7 +88,7 @@ void list<T>::addTail(const T& addData){
 	}
 }
 template <typename T>
-void list<T>::remove(const T& removeData){
+void List<T>::remove(const T& removeData){
 	Node<T>* pNext = this->head;
 	Node<T>* pPrev = nullptr; //giu node phia trc node can xoa
 	while(pNext != nullptr && pNext->data != removeData){
@@ -106,7 +106,7 @@ void list<T>::remove(const T& removeData){
 	}
 }
 template <typename T>
-void list<T>::display(){
+void List<T>::display(){
 	Node<T>* p = this->head;
 	while(p != nullptr){
 		cout << p->data << endl << endl;
@@ -114,14 +114,14 @@ void list<T>::display(){
 	}
 }
 template <typename T>
-Node<T>* list<T>::getHead() const{
+Node<T>* List<T>::getHead() const{
 	return this->head;
 }
 template <typename T>
-Node<T>* list<T>::find(const T& findData){
+Node<T>* List<T>::find(const T& findData){
 	Node<T>* p = this->head;
 	while(p != NULL){
-		if(p->data = findData){
+		if(p->data == findData){
 			return p;
 		}
 		p = p->next;
@@ -129,7 +129,7 @@ Node<T>* list<T>::find(const T& findData){
 	return nullptr;
 }
 template <typename T>
-Node<T>* list<T>::merge(Node<T>* left, Node<T>* right, bool type){
+Node<T>* List<T>::merge(Node<T>* left, Node<T>* right, bool type){
 	Node<T>* result = NULL;
 	if(left == NULL) return right;
 	if(right == NULL) return left;
@@ -154,7 +154,7 @@ Node<T>* list<T>::merge(Node<T>* left, Node<T>* right, bool type){
 	return result;
 }
 template <typename T>
-Node<T>* list<T>::findMiddle(Node<T>* head){
+Node<T>* List<T>::findMiddle(Node<T>* head){
 	if(head == NULL)
 		return NULL;
 	//ki thuat tim mid nho 2 con tro
@@ -168,7 +168,7 @@ Node<T>* list<T>::findMiddle(Node<T>* head){
 	return slow;
 }
 template <typename T>
-Node<T>* list<T>::mergeSortRec(Node<T>* head, bool type){
+Node<T>* List<T>::mergeSortRec(Node<T>* head, bool type){
 	//neu ko co hoac co 1 phan tu thi return
 	if(head == NULL || head->next == NULL) return head;
 	
@@ -182,7 +182,7 @@ Node<T>* list<T>::mergeSortRec(Node<T>* head, bool type){
 	return merge(head, nextToMiddle, type); // tra ve danh sach da sap xep
 }
 template <typename T>
-void list<T>::mergeSort(bool type){
+void List<T>::mergeSort(bool type){
 	head = mergeSortRec(head, type);
 }
 

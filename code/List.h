@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-
+#pragma once
 template <typename T>
 class Node{
 	public:
@@ -14,14 +14,14 @@ class Node{
 		~Node();
 };
 template <typename T>
-class list{
+class List{
 	private:
 		Node<T>* head;
 	public:
-		list();
-		list(const list&);
-		list& operator = (const list&);
-		~list();
+		List();
+		List(const List&);
+		List& operator = (const List&);
+		~List();
 		void addHead(const T&);
 		void addTail(const T&);
 		void remove(const T&);
@@ -34,3 +34,5 @@ class list{
 		Node<T>* findMiddle(Node<T>* head);
 		Node<T>* mergeSortRec(Node<T>* head, bool type);
 }; 
+
+
