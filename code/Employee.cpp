@@ -29,6 +29,18 @@ void Employee::setSalary(double salary){
 void Employee::setPassword(string password){
 	this->password = password;
 }
+ostream& operator<<(ostream& os, const Employee& emp){
+    Person *p = new Employee();
+    *p = emp;
+    os << "Ma Nhan vien: " << emp.id << "; ";
+    os << "Chuc vu: ";
+    if (emp.position == manager) os << "quan li; ";
+    if (emp.position == sales) os << "nhan vien; ";
+    p->Person::Show();
+    os << "; Luong: " << emp.salary << "; ";
+    delete p;
+    return os;
+}
 void Employee::Show(){
 	cout << "Ma Nhan Vien: " << this->id << endl;
 	cout << "Chuc vu: ";

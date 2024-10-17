@@ -22,6 +22,7 @@ class Employee: public Person{
 		void setSalary(double);
 		void setPassword(string);
 		//method
+		friend ostream& operator<<(ostream& os, const Employee& emp);
 		void Show();
 		bool changePassword();
 };

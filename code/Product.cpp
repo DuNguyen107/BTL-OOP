@@ -15,7 +15,7 @@ Product::Product(){
     this->brand = "";
     //serial duoc tu dong tao bang ham dung;
 }
-Product::Product(string ID, string name, unsigned int price, unsigned int importPrice, string CPU, int RAM, 
+Product::Product(string ID, string name, double price, double importPrice, string CPU, int RAM, 
                 string screen, int hardDisk, string GPU, string OS, string brand)
 { 
 	this->productID = ID;
@@ -122,13 +122,13 @@ string Product::getID() const
 {
     return this->productID;
 }
-unsigned int Product::getPrice(){
+double Product::getPrice(){
     return this->price;
 }
-unsigned int Product::getImportPrice(){
+double Product::getImportPrice(){
     return this->importPrice;
 }
-unsigned int Product::Profit(){
+double Product::Profit(){
     return (this->price - this->importPrice); 
 }
 string Product::getCPU(){
@@ -164,10 +164,10 @@ void Product::setName(string name){
 void Product::setID(string id){
     this->productID = id;
 }
-void Product::setImportPrice(unsigned int p){
+void Product::setImportPrice(double p){
     this->importPrice = p;
 }
-void Product::setPrice(unsigned int price){
+void Product::setPrice(double price){
     this->price = price;
 }
 void Product::setCPU(string cpu){

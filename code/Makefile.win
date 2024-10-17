@@ -4,15 +4,15 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o Customer.o Date.o Employee.o List.o Person.o Product.o Order.o
-LINKOBJ  = main.o Customer.o Date.o Employee.o List.o Person.o Product.o Order.o
+OBJ      = main.o Customer.o Date.o Employee.o List.o Person.o Product.o Order.o invoice.o CusManage.o EmpManage.o
+LINKOBJ  = main.o Customer.o Date.o Employee.o List.o Person.o Product.o Order.o invoice.o CusManage.o EmpManage.o
 LIBS     = -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib" -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
 CXXINCS  = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
 BIN      = QuanLy.exe
 CXXFLAGS = $(CXXINCS) 
 CFLAGS   = $(INCS) 
-DEL      = C:\Program Files (x86)\Embarcadero\Dev-Cpp\devcpp.exe INTERNAL_DEL
+DEL      = C:\Program Files (x86)\Embarcadero\Dev-Cpp\DevCpp.exe INTERNAL_DEL
 
 .PHONY: all all-before all-after clean clean-custom
 
@@ -47,3 +47,12 @@ Product.o: Product.cpp
 
 Order.o: Order.cpp
 	$(CPP) -c Order.cpp -o Order.o $(CXXFLAGS)
+
+invoice.o: invoice.cpp
+	$(CPP) -c invoice.cpp -o invoice.o $(CXXFLAGS)
+
+CusManage.o: CusManage.cpp
+	$(CPP) -c CusManage.cpp -o CusManage.o $(CXXFLAGS)
+
+EmpManage.o: EmpManage.cpp
+	$(CPP) -c EmpManage.cpp -o EmpManage.o $(CXXFLAGS)

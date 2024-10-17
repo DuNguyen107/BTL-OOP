@@ -11,9 +11,9 @@ class Product
         string name;
         int quantity;
         List<string> serial;
-        unsigned int price;
+        double price;
     private:    
-        unsigned int importPrice;
+        double importPrice;
         string CPU;
         int RAM;
         string screen;
@@ -23,7 +23,7 @@ class Product
         string brand;
     public:
         Product();
-        Product(string, string, unsigned int, unsigned int, string, int, string, int, string , string, string);
+        Product(string, string, double, double, string, int, string, int, string , string, string);
         Product(const Product& other);
         ~Product();
         Product& operator=(const Product& other);
@@ -33,9 +33,9 @@ class Product
         bool operator==(const Product&);
         string getName();
         string getID() const;
-        unsigned int getPrice();
-        unsigned int getImportPrice();
-        unsigned int Profit();
+        double getPrice();
+        double getImportPrice();
+        double Profit();
         string getCPU();
         int getRAM();
         string getScreen();
@@ -46,8 +46,8 @@ class Product
         string getBrand();
         void setName(string);
         void setID(string);
-        void setPrice(unsigned int);
-        void setImportPrice(unsigned int);
+        void setPrice(double);
+        void setImportPrice(double);
         void setCPU(string);
         void setRAM(int);
         void setScreen(string);

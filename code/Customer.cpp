@@ -14,3 +14,11 @@ void Customer::Show(){
 	cout << "***********" << endl;
 }
 
+ostream& operator<<(ostream& os, const Customer& cus){
+    Person *p = new Customer();
+    *p = cus;
+    cout << "Ma khach hang: " << cus.id << "; ";
+    p->Person::Show();
+    delete p;
+    return os;
+}
