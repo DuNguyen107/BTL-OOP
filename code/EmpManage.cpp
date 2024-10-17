@@ -4,13 +4,12 @@ EmpManage::EmpManage()
 { }
 EmpManage::~EmpManage()
 { }
-void EmpManage::readFile(string file)
-{
-    ifstream inputFile(file);
+void EmpManage::readFile(string file){
     int ID; bool gender;
     string temp, name, phone, email, address, pass;
     double salary;
     Position pos;
+    ifstream inputFile(file);
     if (inputFile.is_open()) 
     {
         string line;
@@ -41,8 +40,7 @@ void EmpManage::readFile(string file)
     }
 }
 
-void EmpManage::writeFile(string file)
-{
+void EmpManage::writeFile(string file){
     ofstream outputFile(file, ios::out | ios::trunc);
     if (outputFile.is_open()) 
     {

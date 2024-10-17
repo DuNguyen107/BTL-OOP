@@ -4,11 +4,10 @@ CusManage::CusManage()
 { }
 CusManage::~CusManage()
 { }
-void CusManage::readFile(string file)
-{
-    ifstream inputFile(file);
+void CusManage::readFile(string file){
     int ID; bool gender;
     string temp, name, phone, email, address;
+    ifstream inputFile(file);
     if (inputFile.is_open()) 
     {
         string line;
@@ -33,8 +32,7 @@ void CusManage::readFile(string file)
     }
 }
 
-void CusManage::writeFile(string file)
-{
+void CusManage::writeFile(string file){
     ofstream outputFile(file, ios::out | ios::trunc);
     if (outputFile.is_open()) 
     {

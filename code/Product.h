@@ -23,7 +23,7 @@ class Product
         string brand;
     public:
         Product();
-        Product(string, string, double, double, string, int, string, int, string , string, string);
+        Product(string ID, string name, double price, double importPrice, string CPU, int RAM, string screen, int hardDisk, string GPU , string OS, string brand);
         Product(const Product& other);
         ~Product();
         Product& operator=(const Product& other);
