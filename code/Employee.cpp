@@ -42,15 +42,18 @@ ostream& operator<<(ostream& os, const Employee& emp){
     return os;
 }
 void Employee::Show(){
-	cout << "Ma Nhan Vien: " << this->id << endl;
-	cout << "Chuc vu: ";
+//	cout << setw(20) << " " << "+-----------------"<< "-----------------+";
+//	cout << setw(20) << " " 
+	cout << "| Mã nhân viên:  |"<< this->id << endl;
+//	<< setw(10) << "|"; 
+//	cout << setw(20) << " " << "+----------------+"<< "+----------------+";
+	cout << "Chức vụ: ";
 	if(this->position == manager) 
-		cout << "Quan ly" << endl;
+		cout << "Quản lý" << endl;
 	else
-		cout << "Nhan vien" << endl;
+		cout << "Nhân viên" << endl;
 	Person::Show();
-	cout << "Luong: " << this->salary << endl;
-	cout << "**********\n";
+	cout << "Lương: " << this->salary << endl;
 }
 bool Employee::changePassword(){
 	string old_pass, new_pass;

@@ -53,11 +53,11 @@ bool Person::operator == (const Person& p){
 	return (this->id == p.id);
 }
 void Person::Show(){
-	cout << "Ho va Ten: " << this->name << endl;
-	cout << "So Dien Thoai: " << this->phone << endl;
-    cout << "Gioi tinh: ";
+	cout << "Họ và tên: " << this->name << endl;
+	cout << "Số điện thoại: " << this->phone << endl;
+    cout << "Giới tính: ";
     if(this->gender) cout << "Nam\n";
-    else cout << "Nu\n";
+    else cout << "Nữ\n";
     cout << "Email: " << this->email << endl;
-	cout << "Dia chi: " << this->address << endl;
+	cout << "Địa chỉ: " << this->address << endl;
 }
