@@ -2,6 +2,9 @@
 #include<string>
 #include<iomanip>
 using namespace std;
+
+
+using namespace std;
 #pragma once
 class Person{
 	protected:
@@ -31,3 +34,4 @@ class Person{
         bool operator==(const Person&);
 		virtual void Show();
 };
+

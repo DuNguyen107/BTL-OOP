@@ -72,41 +72,59 @@ Product& Product::operator=(const Product& other)
 }
 
 void Product::show(){
-    cout << "Ma san pham: " << this->productID << endl
-    << "Ten san pham: " << this->name << endl
-    << "Hang: " << this->brand << endl
-    << "Gia ban: " << this->price << endl
-    << "Thong so:" << endl
-    << "CPU: " << this->CPU << endl
-    << "RAM: " << this->RAM << "GB" << endl
-    << "Man hinh: " << this->screen << endl
-    << "O cung: " << this->hardDisk << "GB" << endl
-    << "GPU: " << this->GPU << endl
-    << "He dieu hanh: " << this->OS << endl
-    << "so luong con: " << this->quantity << " may";
+	cout << setw(50) << " " << string(60, '=') << endl;
+	cout << setw(50) << " " << "Thông tin chung:" << endl;
+    cout << left
+	<< setw(50) << " " << setw(25) << "  Mã sản phẩm: " << productID << "||"<< endl
+    << setw(50) << " " << setw(25) << "  Tên sản phẩm: " << name << endl
+    << setw(50) << " " << setw(24) << "  Thương hiệu: " << brand << endl
+    << setw(50) << " " << setw(22) << "  Giá bán: " << fixed << setprecision(0) <<  price << " VND" << endl;
+    cout << setw(50) << " " << "Thông số kỹ thuật:" << endl;
+    cout << left
+    << setw(50) << " " << setw(20) << "  CPU: " << CPU << endl
+    << setw(50) << " " << setw(20) << "  RAM: " << RAM << "GB" << endl
+    << setw(50) << " " << setw(22) << "  Màn hình: " << screen << endl
+    << setw(50) << " " << setw(24) << "  Ổ cứng: " << hardDisk << "GB" << endl
+    << setw(50) << " " << setw(20) << "  GPU: " << GPU << endl
+    << setw(50) << " " << setw(26) << "  Hệ điều hành: " << OS << endl;
+    cout << setw(50) << " " << setw(25) << "  Số lượng: " << quantity << " máy" << endl;
+    cout << setw(50) << " " << string(60, '=') << endl;
 }
 ostream& operator<<(ostream& os,const Product& p){
-    os << "Ma san pham: " << p.productID << endl
-    << "Ten san pham: " << p.name << endl
-    << "Hang: " << p.brand << endl
-    << "Gia ban: " << p.price << endl
-    << "Thong so:" << endl
-    << "CPU: " << p.CPU << endl
-    << "RAM: " << p.RAM << "GB" << endl
-    << "Man hinh: " << p.screen << endl
-    << "O cung: " << p.hardDisk << "GB" << endl
-    << "GPU: " << p.GPU << endl
-    << "He dieu hanh: " << p.OS << endl
-    << "so luong con: " << p.quantity << " may" << endl;
-    os << "So serial: ";
+    os << setw(50) << " " << string(60, '=') << endl;
+	os << setw(50) << " " << "Thông tin chung:" << endl;
+    os << left
+	<< setw(50) << " " << setw(25) << "  Mã sản phẩm: " << p.productID << endl
+    << setw(50) << " " << setw(25) << "  Tên sản phẩm: " << p.name << endl
+    << setw(50) << " " << setw(24) << "  Thương hiệu: " << p.brand << endl
+    << setw(50) << " " << setw(22) << "  Giá bán: " << fixed << setprecision(0) <<  p.price << " VND" << endl;
+    os << setw(50) << " " << "Thông số kỹ thuật:" << endl;
+    os << left
+    << setw(50) << " " << setw(20) << "  CPU: " << p.CPU << endl
+    << setw(50) << " " << setw(20) << "  RAM: " << p.RAM << "GB" << endl
+    << setw(50) << " " << setw(22) << "  Màn hình: " << p.screen << endl
+    << setw(50) << " " << setw(24) << "  Ổ cứng: " << p.hardDisk << "GB" << endl
+    << setw(50) << " " << setw(20) << "  GPU: " << p.GPU << endl
+    << setw(50) << " " << setw(26) << "  Hệ điều hành: " << p.OS << endl;
+    os << setw(50) << " " << setw(25) << "  Số lượng: " << p.quantity << " máy" << endl;
+    os << setw(50) << " " << setw(22) << "  Số serial: ";
     Node<string>* currentNode = p.serial.getHead();
+    int count = 0;
     while (currentNode != nullptr) 
     {
-        os << currentNode->data << ", ";
+        count++; 
+        if(count % 4 == 0){
+        	cout << endl;
+        	os << setw(70) << " ";
+		}
+		os << currentNode->data;
         currentNode = currentNode->next;
+        if (currentNode != nullptr) {
+            os << ", ";
+        }
     }
-    cout << "\n\t\t _______________________________";
-    os << endl;
+    cout << endl;
+    cout << setw(50) << " " << string(60, '=') << endl;
     return os;
 }
 bool Product::operator!=(const Product& p){
@@ -196,6 +214,18 @@ void Product::setBrand(string& newBrand)
 {
     this->brand = newBrand;
 }
+bool Product::isSerial(string& s)
+{
+    Node<string>* p = this->serial.getHead();
+    while (p != nullptr) {
+        if (p->data == s) {
+            return true;
+        }
+        p = p->next;
+    }
+    return false;
+}
+
 void Product::addSerial(string& newSerial)
 {
     if (!this->isSerial(newSerial)) 
@@ -222,17 +252,6 @@ bool Product::operator>(Product& p)
 bool Product::operator<(Product& p)
 {
     return this->getPrice() < p.getPrice();
-}
-bool Product::isSerial(string& s)
-{
-    Node<string>* p = this->serial.getHead();
-    while (p != nullptr) {
-        if (p->data == s) {
-            return true;
-        }
-        p = p->next;
-    }
-    return false;
 }
 
 

@@ -16,6 +16,6 @@ class ProdManage: public Manage<Product>{
 		void update(Product& prod);
 		void display();
 		void display(bool type); // true: tang dan, false: giam dan
-		void displayOption();
+		void displayOption(int option);
 		Node<Product>* find(string& ID);
 };

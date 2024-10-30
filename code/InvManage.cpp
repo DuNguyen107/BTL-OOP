@@ -28,7 +28,7 @@ List<Invoice> InvManage::find(int& day, int month, int year){
             tempList.addHead(tempNode->data);
         tempNode = tempNode->next;
     }
-    if ( tempList.getHead() == nullptr ) cout << "Khong tim thay!" << endl;
+    if ( tempList.getHead() == nullptr ) cout << "Không tìm thấy !!" << endl;
     return tempList;
 }
 List<Invoice> InvManage::find(int& month, int& year){
@@ -42,7 +42,7 @@ List<Invoice> InvManage::find(int& month, int& year){
             tempList.addHead(tempNode->data);
         tempNode = tempNode->next;
     }
-    if ( tempList.getHead() == nullptr ) cout << "Khong tim thay!" << endl;
+    if ( tempList.getHead() == nullptr ) cout << "Không tìm thấy !!" << endl;
     return tempList;
 }
 List<Invoice> InvManage::find(int& year){
@@ -55,7 +55,7 @@ List<Invoice> InvManage::find(int& year){
             tempList.addHead(tempNode->data);
         tempNode = tempNode->next;
     }
-    if ( tempList.getHead() == nullptr ) cout << "Khong tim thay!" << endl;
+    if ( tempList.getHead() == nullptr ) cout << "Không tìm thấy !!" << endl;
     return tempList;
 }
 List<Invoice> InvManage::find(Customer& cus){ // tim theo khach hang
@@ -69,7 +69,7 @@ List<Invoice> InvManage::find(Customer& cus){ // tim theo khach hang
             tempList.addHead(tempNode->data);
         tempNode = tempNode->next;
     }
-    if ( tempList.getHead() == nullptr ) cout << "khong tim thay lich su mua hang!" << endl;
+    if ( tempList.getHead() == nullptr ) cout << "Không tìm thấy lịch sử mua hàng !!" << endl;
     return tempList;
 }
 Node<Invoice>* InvManage::findID(int& ID){ // mỗi ID là duy nhất
@@ -89,10 +89,11 @@ void InvManage::statistic(List<Invoice> list){ // thống kê dựa trên danh s
         sales += tempNode->data.productSales();
         tempNode = tempNode->next;
     }
+    if(tempNode == nullptr) return;
     cout << "Thong ke: " << endl;
     cout << "Doanh thu: " << revenue << endl
     << "Loi nhuan: " << profit << endl
-    << "san pham ban duoc: " << sales << endl;
+    << "Sản phẩm bán được: " << sales << endl;
     delete tempNode;
 }
 void InvManage::printInvoice(int invID, CusManage cusM, EmpManage empM){
@@ -118,26 +119,26 @@ void InvManage::printInvoice(int invID, CusManage cusM, EmpManage empM){
 	outfile << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
 	outfile << "|" << setw(83) << right << "HOA DON BAN HANG" << setw(68) << right << "|" << endl;
     
-    outfile << "|Ma hoa don: " << setw(138) << left << inv.getInvID() << "|" << endl;
+    outfile << "|Mã hóa đơn: " << setw(138) << left << inv.getInvID() << "|" << endl;
     string date = to_string(inv.getDate().getDay()) + "/" + to_string(inv.getDate().getMonth()) + "/" + to_string(inv.getDate().getYear());
-    outfile << "|Ngay ban: " << setw(140) << date <<"|" << endl;
-    outfile << "|Ma khach hang: " << setw(135) << left << inv.getCusID() << "|" << endl;
-    outfile << "|Ten khach hang: " << setw(134) << left << cus.getName() << "|" << endl;
-    outfile << "|So dien thoai: " << setw(135) << left << cus.getPhone() << "|" << endl;
+    outfile << "|Ngày bán: " << setw(140) << date <<"|" << endl;
+    outfile << "|Mã khách hàng: " << setw(135) << left << inv.getCusID() << "|" << endl;
+    outfile << "|Tên khách hàng: " << setw(134) << left << cus.getName() << "|" << endl;
+    outfile << "|Số điện thoại: " << setw(135) << left << cus.getPhone() << "|" << endl;
     outfile << "|Email: " << setw(143) << left << cus.getEmail() << "|" << endl;
-    outfile << "|Dia chi: " << setw(141) << left << cus.getAddress() << "|" << endl;
-    outfile << "|Nhan vien ban: " << setw(135) << " " << "|"  << endl;
-    outfile << "|Ma nhan vien: " << setw(136) << left << emp.getID() << "|" << endl;
-    outfile << "|Ten nhan vien: " << setw(135) << left << emp.getName() << "|" << endl;
+    outfile << "|Địa chỉ: " << setw(141) << left << cus.getAddress() << "|" << endl;
+    outfile << "|Nhân viên bán: " << setw(135) << " " << "|"  << endl;
+    outfile << "|Mã nhân viên: " << setw(136) << left << emp.getID() << "|" << endl;
+    outfile << "|Tên nhân viên: " << setw(135) << left << emp.getName() << "|" << endl;
     outfile << "|" << setw(150) << " " << "|"  << endl;
     outfile << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
     outfile << "|" << setw(3) << left << "STT";
-    outfile << setw(18) << left << "|Ma san pham";
-    outfile << setw(51) << left << "|Ten san pham";
+    outfile << setw(18) << left << "|Mã sản phẩm";
+    outfile << setw(51) << left << "|Tên sản phẩm";
     outfile << setw(3) << left << "|SL";
-    outfile << setw(49) << left << "|So serial";
-    outfile << setw(13) << left << "|Don gia";
-    outfile << setw(13) << left << "|Thanh tien" << "|"<< endl;
+    outfile << setw(49) << left << "|Số serial";
+    outfile << setw(13) << left << "|Đơn giá";
+    outfile << setw(13) << left << "|Thành tiền" << "|"<< endl;
     outfile << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
     int i = 0;
     string serial = "";
@@ -158,15 +159,15 @@ void InvManage::printInvoice(int invID, CusManage cusM, EmpManage empM){
         outfile << "|" << setw(12) << left << Norder->data.getTotal() << "|"<< endl;
         outfile << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
     }
-    outfile << "|" << setw(138) << right << "Tong tien: " << setw(12) << left << inv.getTotal() << "|"<< endl;
-    outfile << "|" << "Thanh toan: " << setw(138) << left << inv.getPayment() << "|" << endl;
+    outfile << "|" << setw(138) << right << "Tổng tiền: " << setw(12) << left << inv.getTotal() << "|"<< endl;
+    outfile << "|" << "Thanh toán: " << setw(138) << left << inv.getPayment() << "|" << endl;
     outfile << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
     outfile.close();
     //in hoa don ra ma hinh
     system("cls");
     ifstream inFile(filePath);
     if (!inFile.is_open()) {
-        cerr << "Khong the mo file de doc" << endl;
+        cerr << "Không thể mở file để đọc !!" << endl;
         return;
     }
     string line;

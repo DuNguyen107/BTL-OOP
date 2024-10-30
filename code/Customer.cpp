@@ -9,15 +9,22 @@ Customer::Customer(string name, string phone, string email, string address, int 
 }
 Customer::~Customer(){}
 void Customer::Show(){
-	cout << "Ma khach hang: " << this->id << endl;
+	cout << endl;
+    cout << "                                                                       THÔNG TIN KHÁCH HÀNG\n";
+	cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+\n";
+	cout << "  |  Mã khách hàng  |  Họ và tên                   |  Số điện thoại       |   Giới tính    |  Email                       |  Địa chỉ                        |\n"; 
+	cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+\n";
+    cout << endl;
+    cout << "  |" << setw(2) << " " << this->id;
+//	cout << "Ma khach hang: " << this->id << endl;
 	Person::Show();
-	cout << "***********" << endl;
+//	cout << "***********" << endl;
 }
 
 ostream& operator<<(ostream& os, const Customer& cus){
     Person *p = new Customer();
     *p = cus;
-    cout << "Ma khach hang: " << cus.id << "; ";
+	cout << "  |" << setw(2) << " " << cus.id;
     p->Person::Show();
     delete p;
     return os;

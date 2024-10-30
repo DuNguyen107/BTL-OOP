@@ -109,7 +109,7 @@ template <typename T>
 void List<T>::display(){
 	Node<T>* p = this->head;
 	while(p != nullptr){
-		cout << p->data << endl << endl;
+		cout << p->data;
 		p = p->next;
 	}
 }

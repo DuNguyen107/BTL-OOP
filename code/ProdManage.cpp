@@ -77,28 +77,41 @@ void ProdManage::add(){
     string ID, name, CPU, screen, GPU, OS, brand;
 	double price, importPrice;
 	int RAM, hardDisk;
-    cout << "Nhap thong tin san pham:" << endl;
-    cout << "Ma san pham: "; cin >> ID; 
+	cout << setw(50) << " " << string(60, '=') << endl;
+    cout << setw(70) << " " << "NHẬP THÔNG TIN SẢN PHẨM" << endl;
+    cout << setw(50) << " " << string(60, '=') << endl;
+    cout << string(55, ' ') << "Mã sản phẩm: "; cin >> ID; 
+    cout << setw(50) << " " << string(60, '-') << endl;
 	prod.setID(ID); cin.ignore();
-    cout << "Ten san pham: "; getline(cin, name);
+    cout << string(55, ' ') << "Tên sản phẩm: "; getline(cin, name);
+    cout << setw(50) << " " << string(60, '-') << endl;
 	prod.setName(name);
-    cout << "Hang: "; getline(cin, brand);
+    cout << string(55, ' ') << "Thương hiệu: "; getline(cin, brand);
+    cout << setw(50) << " " << string(60, '-') << endl;
 	prod.setBrand(brand);
-    cout << "Gia ban: "; cin >> price;
+    cout << string(55, ' ') << "Giá bán: "; cin >> price;
+    cout << setw(50) << " " << string(60, '-') << endl;
 	prod.setPrice(price); cin.ignore();
-    cout << "Gia nhap: "; cin >> importPrice;
+    cout << string(55, ' ') << "Giá nhập: "; cin >> importPrice;
+    cout << setw(50) << " " << string(60, '-') << endl;
 	prod.setImportPrice(importPrice); cin.ignore();
-    cout << "CPU: "; getline(cin, CPU);
+    cout << string(55, ' ') << "CPU: "; getline(cin, CPU);
+    cout << setw(50) << " " << string(60, '-') << endl;
 	prod.setCPU(CPU);
-    cout << "Ram: "; cin >> RAM;
+    cout << string(55, ' ') << "RAM: "; cin >> RAM;
+    cout << setw(50) << " " << string(60, '-') << endl;
 	prod.setRAM(RAM); cin.ignore();
-    cout << "Man hinh: "; getline(cin, screen);
+    cout << string(55, ' ') << "Màn hính: "; getline(cin, screen);
+    cout << setw(50) << " " << string(60, '-') << endl;
 	prod.setScreen(screen);
-    cout << "O cung: "; cin >> hardDisk;
+    cout << string(55, ' ') << "Ổ cứng: "; cin >> hardDisk;
+    cout << setw(50) << " " << string(60, '-') << endl;
 	prod.setHardDisk(hardDisk); cin.ignore();
-    cout << "GPU: "; getline(cin, GPU); 
+    cout << string(55, ' ') << "GPU: "; getline(cin, GPU); 
+    cout << setw(50) << " " << string(60, '-') << endl;
 	prod.setGPU(GPU);
-    cout << "He dieu hanh: "; getline(cin, OS); 
+    cout << string(55, ' ') << "Hệ điều hành: "; getline(cin, OS); 
+    cout << setw(50) << " " << string(60, '-') << endl;
 	prod.setOS(OS);
     this->Prod.addHead(prod);
 }
@@ -109,104 +122,107 @@ void ProdManage::update(Product& prod){
 	string ID = prod.getID();
     Product& product = this->find(ID)->data;
     bool over = false;
-    int input, option = 1, MaxOption = 11;
+    int option;
     do{
         system("cls");
-        cout<<"Chon thong tin muon thay doi:"<< endl;
-            cout << (option == 1 ? "->":"  ") << "Ten san pham: " << product.getName() << endl;
-            cout << (option == 2 ? "->":"  ") << "Hang: " << product.getBrand() << endl;
-            cout << (option == 3 ? "->":"  ") << "Gia ban: " << product.getPrice() << endl;
-            cout << (option == 4 ? "->":"  ") << "Gia nhap: " << product.getImportPrice() << endl;
-            cout << (option == 5 ? "->":"  ") << "CPU: " << product.getCPU() << endl;
-            cout << (option == 6 ? "->":"  ") << "RAM: " << product.getRAM() << " GB" << endl;
-            cout << (option == 7 ? "->":"  ") << "Man hinh: " << product.getScreen() << endl;
-            cout << (option == 8 ? "->":"  ") << "O cung: " << product.getHardDisk() << " GB" << endl;
-            cout << (option == 9 ? "->":"  ") << "GPU: " << product.getGPU() << endl;
-            cout << (option == 10 ? "->":"  ") << "He Dieu Hanh: " << product.getOS() << endl;
-            cout << (option == 11 ? "->":"  ") << "Thoat! " << endl;
-            input = getch();
-
-            if (input == 80) //phim mui ten xuong
-            { 
-                if (option == MaxOption) option = 1; // quay tro lai dau danh sach
-                else option++;
-            }else if (input == 72) //phim mui ten len
-            {
-                if (option == 1) option = MaxOption; //chay vong xuong cuoi danh sach
-                else option--;
-            }
-
-        if(input == 13)  //phim enter
-        {
-            string _name;
-            unsigned int _price;
-            unsigned int _iprice;
-            string _CPU;
-            int _RAM = 0;
-            string _Screen;
-            int _Disk;
-            string _GPU;
-            string _OS;
-            string _brand;
-            switch (option)
-            {
-                case 1:
-                    cout << "Nhap ten san pham: ";
-                    getline(cin, _name);
-                    product.setName(_name);
-                    break;
-                case 2:
-                    cout << "Nhap hang: ";
-                    cin >> _brand;
-                    product.setBrand(_brand);
-                    break;    
-                case 3:
-                    cout << "Nhap gia ban : ";
-                    cin >> _price;
-                    product.setPrice(_price);
-                    break;
-                case 4:
-                    cout << "Nhap gia nhap: ";
-                    cin >> _iprice;
-                    product.setImportPrice(_iprice);
-                    break;
-                case 5:
-                    cout << "Cap nhat CPU: ";
-                    getline(cin,_CPU);
-                    product.setCPU(_CPU);
-                    break;
-                case 6:
-                    cout << "Cap nhat dung luong RAM (GB): ";
-                    cin >> _RAM;
-                    product.setRAM(_RAM);
-                    break; 
-                case 7:
-                    cout << "Cap nhat thong so man hinh: ";
-                    getline(cin,_Screen);
-                    product.setScreen(_Screen);
-                    break;                      
-                case 8:
-                    cout << "Cap nhat dung luong o cung (GB): ";
-                    cin >> _Disk;
-                    product.setHardDisk(_Disk);
-                    break;                      
-                case 9:
-                    cout << "Cap nhat GPU moi: ";
-                    getline(cin,_GPU);
-                    product.setGPU(_GPU);
-                    break;
-                case 10:
-                    cout << "Cap nhat He dieu hanh: ";
-                    getline(cin,_OS);
-                    product.setOS(_OS);
-                    break;                                                   
-                case 11:
-                    over = true;
-                    break;
-                default: 
-					cout << "Loi du lieu";
-            }
-        }
+        cout << setw(50) << " " << string(60, '=') << endl;
+        cout << setw(50) << " " << " 1. Tên sản phẩm - " << product.getName() << endl;
+        cout << setw(50) << " " << " 2. Thương hiệu - " << product.getBrand() << endl;
+        cout << setw(50) << " " << " 3. Giá bán - " << product.getPrice() << endl;
+        cout << setw(50) << " " << " 4. Giá nhập - " << product.getImportPrice() << endl;
+        cout << setw(50) << " " << " 5. CPU - " << product.getCPU() << endl;
+        cout << setw(50) << " " << " 6. RAM - " << product.getRAM() << " GB" << endl;
+        cout << setw(50) << " " << " 7. Màn hình - " << product.getScreen() << endl;
+        cout << setw(50) << " " << " 8. Ổ cứng - " << product.getHardDisk() << " GB" << endl;
+        cout << setw(50) << " " << " 9. GPU - " << product.getGPU() << endl;
+        cout << setw(50) << " " << "10. Hệ điều hành - " << product.getOS() << endl;
+        cout << setw(50) << " " << "11. Hủy" << endl;
+        cout << setw(50) << " " << string(60, '=') << endl;
+        
+		cout << setw(50) << " " << "Nhập chức năng muốn thay đổi: "; cin >> option; cin.ignore();
+		if(option < 1 || option > 11)
+			cout << setw(50) << " " << "Vui lòng nhập lại chức năng !! Chức năng chỉ từ 1 đến 11. \n"; 
+		switch (option){
+            case 1:{
+            	cout << setw(50) << " " << string(60, '-') << endl;
+                string _name;
+            	cout << setw(50) << " " << "Chỉnh sửa tên sản phẩm: ";
+                getline(cin, _name);
+                product.setName(_name);
+				break;
+			}
+            case 2:{
+            	cout << setw(50) << " " << string(60, '-') << endl;
+            	string _brand;
+                cout << setw(50) << " " << "Chỉnh sửa thương hiệu: ";
+                cin >> _brand;
+                product.setBrand(_brand);
+				break;
+			}   
+            case 3:{
+            	cout << setw(50) << " " << string(60, '-') << endl;
+	            double _price;
+	            cout << setw(50) << " " << "Chỉnh sửa giá bán : ";
+                cin >> _price;
+                product.setPrice(_price);
+				break;
+			}
+            case 4:{
+            	cout << setw(50) << " " << string(60, '-') << endl;
+                double _iprice;
+                cout << setw(50) << " " << "Chỉnh sửa giá nhập: ";
+                cin >> _iprice;
+                product.setImportPrice(_iprice);
+				break;
+			}
+            case 5:{
+                string _CPU;
+                cout << setw(50) << " " << "Chỉnh sửa CPU: ";
+                getline(cin,_CPU);
+                product.setCPU(_CPU);
+				break;
+			}
+            case 6:{
+                int _RAM = 0;
+                cout << setw(50) << " " << "Cập nhật dung lượng RAM (GB): ";
+                cin >> _RAM;
+                product.setRAM(_RAM);
+				break;
+			}
+            case 7:{
+                string _Screen;
+                cout << setw(50) << " " << "Cập nhật thông số màn hình: ";
+                getline(cin,_Screen);
+                product.setScreen(_Screen);
+				break;
+			}                     
+            case 8:{
+                int _Disk;
+                cout << setw(50) << " " << "Cập nhật dung lượng ổ cứng (GB): ";
+                cin >> _Disk;
+                product.setHardDisk(_Disk);
+				break;
+			}                     
+            case 9:{
+                string _GPU;
+                cout << setw(50) << " " << "Cập nhật GPU mới: ";
+                getline(cin,_GPU);
+                product.setGPU(_GPU);
+				break;
+			}
+            case 10:{
+                string _OS;
+                cout << setw(50) << " " << "Cập nhật hệ điều hành: ";
+                getline(cin,_OS);
+                product.setOS(_OS);
+				break;
+			}                                                   
+            case 11:
+                over = true;
+                break;
+            default: 
+				cout << setw(50) << " " << "Lỗi dữ liệu !!\n";
+        }            
     }while (over != true);
 }
 void ProdManage::display(){
@@ -217,21 +233,8 @@ void ProdManage::display(bool type){  // true: tang dan, false: giam dan
 	sortPrice.mergeSort(type);
 	sortPrice.display();
 } 
-void ProdManage::displayOption(){
-	int input;
-    int option = 1;
-    do{
-        system("cls");
-        cout << ((option == 1) ? "->" : "  ") << "Tat ca san pham" << endl;
-        cout << ((option == 2) ? "->" : "  ") << "Xem theo gia tang" << endl;
-        cout << ((option == 3) ? "->" : "  ") << "Xem theo gia giam" << endl;
-        cout << ((option == 4) ? "->" : "  ") << "Huy" << endl;
-        input = getch();
-        if (input == 72) option--;
-        else if (input == 80) option++;
-        if (option < 1) option = 4;
-        if (option > 4) option = 1;
-    }while(input != 13);
+void titleInfo();
+void ProdManage::displayOption(int option){
     switch (option){
         case 1: 
             this->display();
@@ -242,6 +245,8 @@ void ProdManage::displayOption(){
         case 3:
             this->display(false);
             break;
+        case 4:
+        	break;
     }
 }
 Node<Product>* ProdManage::find(string& ID){
