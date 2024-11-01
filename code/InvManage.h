@@ -28,7 +28,7 @@ class InvManage: public Manage<Invoice>{
 		void findtoShow(int& ID); // tìm ID va in thông tin của ID
 		int getNewID();
 		void updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM, EmpManage& empM);
-		void sell(int userID, CusManage& cusM, ProdManage& prodM, EmpManage& empM);
+		void sell(CusManage& cusM, ProdManage& prodM, EmpManage& empM);
 		void readFile(string file, string detail_file);
 		void writeFile(string file, string detail_file);
 };

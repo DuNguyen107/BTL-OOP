@@ -28,13 +28,7 @@ void textcolor (int x){
 	SetConsoleTextAttribute (mau,x);
 }
 
-void ToMau (int x, int y, char *a, int color)
-{
-	gotoxy(x, y);
-	textcolor(color);
-	cout << a;
-	textcolor(7);
-}
+
 void setConsoleFullScreen() {
     #ifdef _WIN32
     HWND consoleWindow = GetConsoleWindow();

@@ -113,7 +113,14 @@ void ProdManage::add(){
     cout << string(55, ' ') << "Hệ điều hành: "; getline(cin, OS); 
     cout << setw(50) << " " << string(60, '-') << endl;
 	prod.setOS(OS);
+	cout << setw(50) << " " << "THÊM SẢN PHẨM THÀNH CÔNG" << endl;
+	cout << setw(50) << " " << string(60, '=') << endl;
     this->Prod.addHead(prod);
+}
+Node<Product>* ProdManage::find(string& ID){
+	Product temp;
+    temp.setID(ID);
+    return this->Prod.find(temp);
 }
 void ProdManage::remove(Product& prod){
 	this->Prod.remove(prod);
@@ -233,9 +240,10 @@ void ProdManage::display(bool type){  // true: tang dan, false: giam dan
 	sortPrice.mergeSort(type);
 	sortPrice.display();
 } 
-void titleInfo();
 void ProdManage::displayOption(int option){
     switch (option){
+    	cout << setw(50) << " " << string(60, '=') << endl << endl;
+    	cout << setw(50) << " " << "DANH SÁCH SẢN PHẨM" << endl << endl;
         case 1: 
             this->display();
             break;
@@ -249,8 +257,4 @@ void ProdManage::displayOption(int option){
         	break;
     }
 }
-Node<Product>* ProdManage::find(string& ID){
-	Product temp;
-    temp.setID(ID);
-    return this->Prod.find(temp);
-}
+

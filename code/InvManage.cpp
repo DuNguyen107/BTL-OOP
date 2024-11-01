@@ -112,10 +112,6 @@ void InvManage::printInvoice(int invID, CusManage cusM, EmpManage empM){
     Employee emp = empM.find(empID)->data;
 
 	outfile << setfill('_') << setw(152) << "" << endl << setfill(' ') ;
-    outfile << "|" << setw(151) << right << "ITF Store|" << endl;
-    outfile << "|" << setw(151) << right << "Dia chi: Lien Chieu, Da Nang|" << endl;
-    outfile << "|" << setw(151) << right << "Website: ITFstore.dut|" << endl;
-    outfile << "|" << setw(151) << right << "So dien thoai: 0123456xxx|" << endl;
 	outfile << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
 	outfile << "|" << setw(83) << right << "HOA DON BAN HANG" << setw(68) << right << "|" << endl;
     
@@ -127,9 +123,6 @@ void InvManage::printInvoice(int invID, CusManage cusM, EmpManage empM){
     outfile << "|Số điện thoại: " << setw(135) << left << cus.getPhone() << "|" << endl;
     outfile << "|Email: " << setw(143) << left << cus.getEmail() << "|" << endl;
     outfile << "|Địa chỉ: " << setw(141) << left << cus.getAddress() << "|" << endl;
-    outfile << "|Nhân viên bán: " << setw(135) << " " << "|"  << endl;
-    outfile << "|Mã nhân viên: " << setw(136) << left << emp.getID() << "|" << endl;
-    outfile << "|Tên nhân viên: " << setw(135) << left << emp.getName() << "|" << endl;
     outfile << "|" << setw(150) << " " << "|"  << endl;
     outfile << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
     outfile << "|" << setw(3) << left << "STT";
@@ -182,10 +175,6 @@ void InvManage::printInvoice(Invoice& inv, CusManage cusM, EmpManage empM){
     int empID = inv.getEmpID(); 
     Employee emp = empM.find(empID)->data;
 	cout << setfill('_') << setw(152) << "" << endl << setfill(' ') ;
-    cout << "|" << setw(151) << right << "ITF Store|" << endl;
-    cout << "|" << setw(151) << right << "Dia chi: Lien Chieu, Da Nang|" << endl;
-    cout << "|" << setw(151) << right << "Website: ITFstore.dut|" << endl;
-    cout << "|" << setw(151) << right << "So dien thoai: 0123456xxx|" << endl;
 	cout << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
 	cout << "|" << setw(83) << right << "HOA DON BAN HANG" << setw(68) << right << "|" << endl;
     
@@ -197,9 +186,6 @@ void InvManage::printInvoice(Invoice& inv, CusManage cusM, EmpManage empM){
     cout << "|So dien thoai: " << setw(135) << left << cus.getPhone() << "|" << endl;
     cout << "|Email: " << setw(143) << left << cus.getEmail() << "|" << endl;
     cout << "|Dia chi: " << setw(141) << left << cus.getAddress() << "|" << endl;
-    cout << "|Nhan vien ban: " << setw(135) << " " << "|"  << endl;
-    cout << "|Ma nhan vien: " << setw(136) << left << emp.getID() << "|" << endl;
-    cout << "|Ten nhan vien: " << setw(135) << left << emp.getName() << "|" << endl;
     cout << "|" << setw(150) << " " << "|"  << endl;
     cout << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
     cout << "|" << setw(3) << left << "STT";
@@ -447,98 +433,27 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM, 
         }
     } while(input != '0');
 }
-void InvManage::sell(int userID, CusManage& cusM, ProdManage& prodM, EmpManage& empM){
+void InvManage::sell(CusManage& cusM, ProdManage& prodM, EmpManage& empM){
 	Invoice newInvoice;
     int cusID;
     int id = this->getNewID();
     newInvoice.setInvID(id);
-    newInvoice.setEmpID(userID);
-
     //lay thong tin khach hang
-    bool over = false;
-    int input, option = 1, next_option =1, MaxOption = 3;
-
     Customer newcus;
-    string cusphone, x = "x";
-    Node<Customer>* Ncus;
-    do
-    {
-        system("cls");
-        cout<<"Khach hang da mua hang truoc day chua:"<< endl;
-        cout << (option == 1 ? "->":"  ") << "Khach hang cu " << endl;
-        cout << (option == 2 ? "->":"  ") << "Khach hang moi " << endl;
-        cout << (option == 3 ? "->":"  ") << "Tro lai " << endl;
-        input = getch();
 
-        if (input == 80) //phim mui ten xuong
-        { 
-            if (option == MaxOption) option = 1; // quay tro lai dau danh sach
-            else option++;
-        }else if (input == 72) //phim mui ten len
-        {
-            if (option == 1) option = MaxOption; //chay vong xuong cuoi danh sach
-            else option--;
-        }
-        if(input == 13)  //phim enter
-            switch (option)
-            {
-                case 1:
-                    cout << "Nhap so dien thoai de tim kiem khach hang: ";
-                    cin >> cusphone;
-                    Ncus = cusM.find(x,cusphone);
-                    if(Ncus == nullptr)
-                    {
-                        cout << endl << "Khong tim thay khach hang nao co so dien thoai nay!" << endl << endl << endl;
-                        system("pause");
-                        break;
-                    }
-                    newcus = Ncus->data;
-                    do
-                    {
-                        system("cls");
-                        cout << newcus << endl;
-                        cout << "Xac nhan thong tin: " << endl;
-                        cout << (next_option == 1 ? "->":"  ") << "Xac nhan " << endl;
-                        cout << (next_option == 2 ? "->":"  ") << "Tro ve " << endl;
-                        input = getch();
-                        if (input == 72) next_option--;
-                        else if (input == 80) next_option++;
-                        if (next_option < 1) next_option = 2;
-                        if (next_option > 2) next_option = 1;
-                    } while(input != 13);
-                    switch (next_option)
-                    {
-                        case 1: cusID = newcus.getID();
-                                over = true;
-                                break;
-                        case 2: over = false; break;
-                    }
-                    break;
-                case 2:
-                    newcus = Customer(); //lam moi gia tri cua newcus
-                    newcus.setID(cusM.getNewID());
-                    cusM.add(newcus);
-                    cusID = newcus.getID();
-                    cusM.update(newcus);
-                    newcus = cusM.find(cusID)->data;
-                    if(newcus.getName() == "" || newcus.getPhone() == "") 
-                    {
-                        cusM.remove(newcus);
-                        over = false;
-                    }
-                    else over = true;
-                    break;
-                case 3:  
-                    return;  
-                default: cout << "Loi du lieu";
-            };
-    } while(over != true);
-    if (option != 3){
-        newInvoice.setCusID(cusID);
-        newInvoice.updateDate(); //cap nhat thoi gian cho hoa don
-        //Tuong tac voi gio hang
-        this->updateCart(newInvoice,prodM,cusM,empM);
+    newcus = Customer(); //lam moi gia tri cua newcus
+    newcus.setID(cusM.getNewID());
+    cusM.add(newcus);
+    cusID = newcus.getID();
+    cusM.update(newcus);
+    newcus = cusM.find(cusID)->data;
+    if(newcus.getName() == "" || newcus.getPhone() == ""){
+        cusM.remove(newcus);
     }
+    newInvoice.setCusID(cusID);
+    newInvoice.updateDate(); //cap nhat thoi gian cho hoa don
+        //Tuong tac voi gio hang
+    this->updateCart(newInvoice,prodM,cusM,empM);
 }
 void InvManage::readFile(string file, string detail_file){
 	ifstream inputFile(file);

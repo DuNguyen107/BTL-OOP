@@ -1,5 +1,5 @@
 #include"Customer.h"
-#include"List.h"
+#include"List.cpp"
 #include"Manage.h"
 #pragma once
 
