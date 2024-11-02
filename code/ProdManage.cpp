@@ -113,7 +113,7 @@ void ProdManage::add(){
     cout << string(55, ' ') << "Hệ điều hành: "; getline(cin, OS); 
     cout << setw(50) << " " << string(60, '-') << endl;
 	prod.setOS(OS);
-	cout << setw(50) << " " << "THÊM SẢN PHẨM THÀNH CÔNG" << endl;
+	cout << setw(70) << " " << "THÊM SẢN PHẨM THÀNH CÔNG" << endl;
 	cout << setw(50) << " " << string(60, '=') << endl;
     this->Prod.addHead(prod);
 }
@@ -146,7 +146,7 @@ void ProdManage::update(Product& prod){
         cout << setw(50) << " " << "11. Hủy" << endl;
         cout << setw(50) << " " << string(60, '=') << endl;
         
-		cout << setw(50) << " " << "Nhập chức năng muốn thay đổi: "; cin >> option; cin.ignore();
+		cout << setw(50) << " " << "Nhập chức năng (thông tin) muốn thay đổi: "; cin >> option; cin.ignore();
 		if(option < 1 || option > 11)
 			cout << setw(50) << " " << "Vui lòng nhập lại chức năng !! Chức năng chỉ từ 1 đến 11. \n"; 
 		switch (option){
@@ -229,7 +229,10 @@ void ProdManage::update(Product& prod){
                 break;
             default: 
 				cout << setw(50) << " " << "Lỗi dữ liệu !!\n";
-        }            
+        }
+        cout << setw(50) << " " << string(60, '-') << endl;
+        cout << setw(70) << " " << "CẬP NHẬT THÀNH CÔNG" << endl;
+        system("pause");
     }while (over != true);
 }
 void ProdManage::display(){

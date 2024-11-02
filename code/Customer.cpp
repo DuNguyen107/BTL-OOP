@@ -9,7 +9,7 @@ Customer::Customer(string name, string phone, string email, string address, int 
 }
 Customer::~Customer(){}
 void Customer::Show(){
-	cout << endl;
+	cout << endl << endl;
     cout << "                                                                       THÔNG TIN KHÁCH HÀNG\n";
 	cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+\n";
 	cout << "  |  Mã khách hàng  |  Họ và tên                   |  Số điện thoại       |   Giới tính    |  Email                       |  Địa chỉ                        |\n"; 

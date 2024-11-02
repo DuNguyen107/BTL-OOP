@@ -65,67 +65,26 @@ void CusManage::update(Customer& cus) {
 
     int ID = cus.getID();
     Customer& _customer = this->find(ID)->data;
-    int input;
-    int choice = 1;
-    int MaxChoice = 6;
-
-    do {
-        system("cls");
-        cout << "Nhap thong tin khach hang:" << endl;
-        cout << (choice == 1 ? "->" : "  ") << "Ten: " << _customer.getName() << endl;
-        cout << (choice == 2 ? "->" : "  ") << "SDT: " << _customer.getPhone() << endl;
-        cout << (choice == 3 ? "->" : "  ") << "Email: " << _customer.getEmail() << endl;
-        cout << (choice == 4 ? "->" : "  ") << "Gioi tinh: " << (_customer.getGender() ? "Nu" : "Nam") << endl;
-        cout << (choice == 5 ? "->" : "  ") << "Dia chi: " << _customer.getAddress() << endl;
-        cout << (choice == 6 ? "->" : "  ") << "Thoat" << endl;
-        input = getch();
-
-        if (input == 80) {
-            if (choice == MaxChoice) choice = 1;
-            else choice++;
-        } else if (input == 72) {
-            if (choice == 1) choice = MaxChoice;
-            else choice--;
-        }
-        string name, phone, mail, adress;
-        bool gender;
-
-        if (input == 13) {
-            switch (choice) {
-                case 1:
-                    cout << "Nhap ten moi: ";
-                    getline(cin, name);
-                    _customer.setName(name);
-                    break;
-                case 2:
-                    cout << "Nhap so dien thoai moi: ";
-                    getline(cin, phone);
-                    _customer.setPhone(phone);
-                    break;
-                case 3:
-                    cout << "Nhap email moi: ";
-                    getline(cin, mail);
-                    _customer.setEmail(mail);
-                    break;
-                case 4:
-                    cout << "Nhap gioi tinh (1: Nu, 0: Nam): ";
-                    cin >> gender;
-                    cin.ignore(); 
-                    _customer.setGender(gender);
-                    break;
-                 case 5:
-                    cout << "Nhap dia chi moi: ";
-                    getline(cin, adress);
-                    _customer.setAddress(adress);
-                    break;    
-                case 6:
-                    cout << "Da thoat khoi cap nhat" << endl;
-                    return;
-                default:
-                    cout << "Loi du lieu" << endl;
-            }
-        }
-    } while (input != '0');
+    string name, phone, mail, adress;
+    bool gender;
+    system("cls");
+    cout << endl;
+    cout << setw(50) << " " << string(60, '=') << endl;
+	cout << setw(60) << " " << "NHẬP THÔNG TIN KHÁCH MUA HÀNG" << endl;
+	cout << setw(50) << " " << string(60, '=') << endl;
+	cout << string(55, ' ') << "Tên: "; cin.ignore(); getline(cin, name); _customer.setName(name);
+    cout << setw(50) << " " << string(60, '-') << endl;
+    cout << string(55, ' ') << "Số điện thoại: "; getline(cin, phone); _customer.setPhone(phone);
+    cout << setw(50) << " " << string(60, '-') << endl;
+    cout << string(55, ' ') << "Email: "; getline(cin, mail); _customer.setEmail(mail);
+    cout << setw(50) << " " << string(60, '-') << endl;
+    cout << string(55, ' ') << "Giới tính ( 0:Nam - 1:Nữ ): ";cin >> gender; cin.ignore(); _customer.setGender(gender);
+    cout << setw(50) << " " << string(60, '-') << endl;
+    cout << string(55, ' ') << "Địa chỉ: "; getline(cin, adress); _customer.setAddress(adress);
+    cout << setw(50) << " " << string(60, '-') << endl;
+    cout << setw(60) << " " << "NHẬP THÀNH CÔNG THÔNG TIN KHÁCH HÀNG" << endl;
+	cout << setw(50) << " " << string(60, '=') << endl;
+	system("pause");
 }
 
 Node<Customer>* CusManage::find(int& ID)

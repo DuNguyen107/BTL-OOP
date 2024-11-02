@@ -8,10 +8,10 @@ void InvManage::add(const Invoice& inv){
 	this->Inv.addHead(inv);
 }
 void InvManage::remove(Invoice& inv){
-	cout << "\nKhong the xoa hoa don !" << endl;
+	cout << "\nKhông thể xóa hóa đơn !!" << endl;
 }
 void InvManage::update(Invoice& inv){
-	cout << "\nKhong the chinh sua hoa don !";
+	cout << "\nKhông thể chỉnh sửa hóa đơn !!";
 }
 void InvManage::display(){
 	this->Inv.display();
@@ -69,7 +69,7 @@ List<Invoice> InvManage::find(Customer& cus){ // tim theo khach hang
             tempList.addHead(tempNode->data);
         tempNode = tempNode->next;
     }
-    if ( tempList.getHead() == nullptr ) cout << "Không tìm thấy lịch sử mua hàng !!" << endl;
+    if ( tempList.getHead() == nullptr ) cout << "  Không tìm thấy lịch sử mua hàng !!" << endl;
     return tempList;
 }
 Node<Invoice>* InvManage::findID(int& ID){ // mỗi ID là duy nhất
@@ -90,30 +90,29 @@ void InvManage::statistic(List<Invoice> list){ // thống kê dựa trên danh s
         tempNode = tempNode->next;
     }
     if(tempNode == nullptr) return;
-    cout << "Thong ke: " << endl;
-    cout << "Doanh thu: " << revenue << endl
-    << "Loi nhuan: " << profit << endl
-    << "Sản phẩm bán được: " << sales << endl;
+    cout << "Thống kê " << endl;
+    cout << "Doanh thu: " << revenue << endl;
+    cout << "Lợi nhuận: " << profit << endl;
+    cout << "Sản phẩm bán được: " << sales << endl;
     delete tempNode;
 }
-void InvManage::printInvoice(int invID, CusManage cusM, EmpManage empM){
+void InvManage::printInvoice(int invID, CusManage cusM){
 	string filePath = "invoice/";
     filePath += "invoice_" + to_string(invID) + ".txt";
     ofstream outfile(filePath);
     if (!outfile.is_open()) {
-        cerr << "Loi mo file de ghi." << endl;
+        cerr << "Lỗi khi mở file !!" << endl;
         return;
     }
 
     Invoice inv = this->findID(invID)->data;
     int cusID = inv.getCusID();
     Customer cus = cusM.find(cusID)->data;
-    int empID = inv.getEmpID(); 
-    Employee emp = empM.find(empID)->data;
+    
 
 	outfile << setfill('_') << setw(152) << "" << endl << setfill(' ') ;
 	outfile << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
-	outfile << "|" << setw(83) << right << "HOA DON BAN HANG" << setw(68) << right << "|" << endl;
+	outfile << "|" << setw(83) << right << "HÓA ĐƠN BÁN HÀNG" << setw(68) << right << "|" << endl;
     
     outfile << "|Mã hóa đơn: " << setw(138) << left << inv.getInvID() << "|" << endl;
     string date = to_string(inv.getDate().getDay()) + "/" + to_string(inv.getDate().getMonth()) + "/" + to_string(inv.getDate().getYear());
@@ -169,38 +168,36 @@ void InvManage::printInvoice(int invID, CusManage cusM, EmpManage empM){
     }
     inFile.close();
 }
-void InvManage::printInvoice(Invoice& inv, CusManage cusM, EmpManage empM){
+void InvManage::printInvoice(Invoice& inv, CusManage cusM){
 	int cusID = inv.getCusID();
     Customer cus = cusM.find(cusID)->data;
-    int empID = inv.getEmpID(); 
-    Employee emp = empM.find(empID)->data;
-	cout << setfill('_') << setw(152) << "" << endl << setfill(' ') ;
-	cout << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
-	cout << "|" << setw(83) << right << "HOA DON BAN HANG" << setw(68) << right << "|" << endl;
+	cout << setw(8) << " " << setfill('_') << setw(152) << "" << endl << setfill(' ') ;
+	cout << setw(8) << " " << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
+	cout << setw(8) << " " << "|" << setw(83) << right << "HÓA ĐƠN BÁN HÀNG" << setw(73) << right << "|" << endl;
     
-    cout << "|Ma hoa don: " << setw(138) << left << inv.getInvID() << "|" << endl;
+    cout << setw(8) << " " << "|Mã hóa đơn: " << setw(138) << left << inv.getInvID() << "|" << endl;
     string date = to_string(inv.getDate().getDay()) + "/" + to_string(inv.getDate().getMonth()) + "/" + to_string(inv.getDate().getYear());
-    cout << "|Ngay ban: " << setw(140) << date <<"|" << endl;
-    cout << "|Ma khach hang: " << setw(135) << left << inv.getCusID() << "|" << endl;
-    cout << "|Ten khach hang: " << setw(134) << left << cus.getName() << "|" << endl;
-    cout << "|So dien thoai: " << setw(135) << left << cus.getPhone() << "|" << endl;
-    cout << "|Email: " << setw(143) << left << cus.getEmail() << "|" << endl;
-    cout << "|Dia chi: " << setw(141) << left << cus.getAddress() << "|" << endl;
-    cout << "|" << setw(150) << " " << "|"  << endl;
-    cout << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
-    cout << "|" << setw(3) << left << "STT";
-    cout << setw(18) << left << "|Ma san pham";
-    cout << setw(51) << left << "|Ten san pham";
+    cout << setw(8) << " " << "|Ngày bán: " << setw(140) << date <<"|" << endl;
+    cout << setw(8) << " " << "|Mã khách hàng: " << setw(135) << left << inv.getCusID() << "|" << endl;
+    cout << setw(8) << " " << "|Tên khách hàng: " << setw(134) << left << cus.getName() << "|" << endl;
+    cout << setw(8) << " " << "|Số điện thoại: " << setw(135) << left << cus.getPhone() << "|" << endl;
+    cout << setw(8) << " " << "|Email: " << setw(143) << left << cus.getEmail() << "|" << endl;
+    cout << setw(8) << " " << "|Địa chỉ: " << setw(141) << left << cus.getAddress() << "|" << endl;
+    cout << setw(8) << " " << "|" << setw(150) << " " << "|"  << endl;
+    cout << setw(8) << " " << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
+    cout << setw(8) << " " << "|" << setw(3) << left << "STT";
+    cout << setw(23) << left << "|Mã sản phẩm";
+    cout << setw(56) << left << "|Tên sản phẩm";
     cout << setw(3) << left << "|SL";
-    cout << setw(49) << left << "|So serial";
-    cout << setw(13) << left << "|Don gia";
-    cout << setw(13) << left << "|Thanh tien" << "|"<< endl;
-    cout << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
+    cout << setw(51) << left << "|Số serial";
+    cout << setw(16) << left << "|Đơn giá";
+    cout << setw(16) << left << "|Thành tiền" << "|"<< endl;
+    cout << setw(8) << " " << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
     int i = 0;
     string serial = "";
     for (Node<order>* Norder = inv.getOrder().getHead(); Norder != nullptr; Norder = Norder->next)
     {
-        cout << "|" << setw(3) << left << ++i;
+        cout << setw(8) << " " << "|" << setw(3) << left << ++i;
         cout << "|" << setw(17) << left << Norder->data.getID();
         cout << "|" << setw(50) << left << Norder->data.getName();
         cout << "|" << setw(2) << left << Norder->data.getQuantity();
@@ -211,13 +208,13 @@ void InvManage::printInvoice(Invoice& inv, CusManage cusM, EmpManage empM){
             serial += ",";
         }
         cout << "|"<< setw(48) << left << serial;
-        cout << "|" << setw(12) << left << Norder->data.getPrice();
-        cout << "|" << setw(12) << left << Norder->data.getTotal() << "|"<< endl;
-        cout << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
+        cout << "|" << setw(12) << left << fixed << setprecision(0) << Norder->data.getPrice();
+        cout << "|" << setw(12) << left << fixed << setprecision(0) << Norder->data.getTotal() << "|"<< endl;
+        cout << setw(8) << " " << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
     }
-    cout << "|" << setw(138) << right << "Tong tien: " << setw(12) << left << inv.getTotal() << "|"<< endl;
-    cout << "|" << "Thanh toan: " << setw(138) << left << "Chua thanh toan" << "|" << endl;
-    cout << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
+    cout << setw(8) << " " << "|" << setw(142) << right << "Tổng tiền: " << setw(9) << left << fixed << setprecision(0) <<  inv.getTotal() << "VNĐ" << "|"<< endl;
+    cout << setw(8) << " " << "|" << "Thanh toán: " << setw(140) << left << "Chưa thanh toán" << "|" << endl;
+    cout << setw(8) << " " << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
 }
 void InvManage::findtoShow(int& ID){ // tìm ID va in thông tin của ID
 	string filePath = "invoice/";
@@ -225,7 +222,7 @@ void InvManage::findtoShow(int& ID){ // tìm ID va in thông tin của ID
     system("cls");
     ifstream inFile(filePath);
     if (!inFile.is_open()) {
-        cerr << "Khong tim thay Hoa don!" << endl;
+        cerr << "Không tìm thấy hóa đơn !!" << endl;
         return;
     }
     string line;
@@ -240,198 +237,185 @@ int InvManage::getNewID(){
     return Ninv->data.getInvID() + 1;
 }
 void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM, EmpManage& empM){
-	int input;
-    int option = 1;
-    int MaxOption = 4;
+    int option;
+    bool over = false;
     List<order> cart = newInv.getOrder();
     do 
     {
-        system("cls");
-        cart.display();   
-        cout << endl << "Lua chon: " << endl; 
-            cout << (option == 1 ? "->":"  ") << "Them san pham " << endl;
-            cout << (option == 2 ? "->":"  ") << "Xoa san pham " << endl;
-            cout << (option == 3 ? "->":"  ") << "Xuat hoa don" << endl;
-            cout << (option == 4 ? "->":"  ") << "Huy" << endl;
-            input = getch();
-
-            if (input == 80) //phim mui ten xuong
-            { 
-                if (option == MaxOption) option = 1; // quay tro lai dau danh sach
-                else option++;
-            }else if (input == 72) //phim mui ten len
-            {
-                if (option == 1) option = MaxOption; //chay vong xuong cuoi danh sach
-                else option--;
-            }
+        do{
+        	system("cls");
+	        cart.display();   
+	        cout << endl;
+	        cout << setw(60) << " " << "Lựa chọn: " << endl; 
+	        cout << setw(60) << " " << "+--------------------------------------+" << endl;
+	        cout << setw(60) << " " << "|\t\t1. Thêm sản phẩm           |" << endl;
+			cout << setw(60) << " " << "|\t\t2. Xóa sản phẩm            |" << endl;
+			cout << setw(60) << " " << "|\t\t3. Xuất hóa đơn            |" << endl;
+			cout << setw(60) << " " << "|\t\t4. Hủy                     |" << endl;
+	        cout << setw(60) << " " << "+--------------------------------------+\n" << endl;
+			cout << setw(60) << " " << "| Mời bạn nhập chức năng | ";
+			cin >> option;	
+			if(option < 1 || option > 4){
+				cout << endl;
+			    cout << setw(60) << " " << "+----------------------------------------------------------+\n";
+				cout << setw(60) << " " << "| Vui lòng nhập lại chức năng !! Chức năng chỉ từ 1 đến 4. |\n"; 
+				cout << setw(60) << " " << "+----------------------------------------------------------+\n";
+				    	
+				cout << setw(60) << " " << "+---------------------------------+\n";
+				cout << setw(60) << " " << "| Nhấn phím bất kỳ để quay lại !! |\n"; 
+				cout << setw(60) << " " << "+---------------------------------+\n";
+				getch();
+			}
+		}while(option < 1 || option > 4);
         string prodID, pay;
         Node<Product>* Nprod;
         Node<order>* Norder;
         Node<string>* Nstring;
         order newOrder;
-        int newQuantity, i, next_option;
+        int newQuantity, i;
         bool isSerial;
         string newSerial;
-        if(input == 13)  //phim enter
-        {
-            switch (option)
-            {
-                case 1:
-                    cout << "Nhap vao ma san pham: ";
-                    cin >> prodID;
-                    Nprod = prodM.find(prodID);
-                    if(Nprod == nullptr)
-                    {
-                        cout << endl << "Khong tim thay san pham. Vui long nhap dung ma san pham! " << endl << endl;
-                        system("pause");
-                        break;
-                    }
-                    if(Nprod->data.getQuantity() < 1) 
-                    {
-                        cout << endl << "San pham nay da het hang. Vui long chon san pham khac! "<< endl << endl;
-                        system("pause");
-                        break;
-                    } 
-                    Norder = newInv.findOrder(prodID);
-                    //neu loai san pham chua co trong hoa don thi tao neworder
-                    if(Norder == nullptr)
-                    {   
-                        newOrder.setID(prodID);
-                        newOrder.setName(Nprod->data.getName());
-                        newOrder.setPrice(Nprod->data.getPrice());
-                    }
-                    cout << "Nhap so luong san pham can them: ";
-                    do
-                    {
-                        cin >> newQuantity;
-                        if(newQuantity > Nprod->data.getQuantity()) cout << endl << "Khong du san pham. Vui long nhap lai: ";
-                    } while (newQuantity > Nprod->data.getQuantity());
+        switch (option){
+            case 1:
+                cout << "Nhập vào mã sản phẩm: ";
+                cin >> prodID;
+                Nprod = prodM.find(prodID);
+                if(Nprod == nullptr){
+                    cout << endl << "Không tìm thấy sản phẩm. Vui lòng nhập đúng mã sản phẩm !! " << endl << endl;
+                    system("pause");
+                    break;
+                }
+                if(Nprod->data.getQuantity() < 1){
+                    cout << endl << "Sản phẩm này đã hết hàng. Vui lòng chọn sản phẩm khác !! "<< endl << endl;
+                    system("pause");
+                    break;
+                } 
+                Norder = newInv.findOrder(prodID);
+                //neu loai san pham chua co trong hoa don thi tao neworder
+                if(Norder == nullptr)
+                {   
+                    newOrder.setID(prodID);
+                    newOrder.setName(Nprod->data.getName());
+                    newOrder.setPrice(Nprod->data.getPrice());
+                }
+                do{
+                	cout << "Nhập số lượng sản phẩm cần thêm: ";
+                    cin >> newQuantity;
+                    if(newQuantity > Nprod->data.getQuantity()){
+                    	cout << endl << "Không đủ sản phẩm để thêm !!";
+					}
+                }while (newQuantity > Nprod->data.getQuantity());
                     
-                    for (int i = 1; i <= newQuantity ; i++)
-                    {
-                        cout << endl << "Nhap serial san pham thu: " << i << ": ";
-                        //kiem tra serial co ton tai trong database khong?
-                        do
-                        {
-                            cin >> newSerial;
-                            isSerial = Nprod->data.isSerial(newSerial);
-                            if(!isSerial) cout << "Serial nhap vao khong ton tai. " << "Nhap lai serial san pham thu: " << i << ": ";
-                        } while(!isSerial);
-                        //dua serial tu san pham ra gio hang
-                        Nprod->data.removeSerial(newSerial); 
-                        if(Norder == nullptr) 
-                        {
-                            newOrder.addSerial(newSerial);
-                            newOrder.updateTotal();
-                        }
-                        else
-                        {
-                            Norder->data.addSerial(newSerial);
-                            Norder->data.updateTotal();
-                        }
-                        cout << endl <<"Them thanh cong " << newSerial << endl;
-                        cout << "_____________________________________________________________" << endl;
+                for (int i = 1; i <= newQuantity ; i++){
+                    cout << endl << "Nhập serial sản phẩm thứ " << i << ": ";
+                    //kiem tra serial co ton tai trong database khong?
+                    do{
+                        cin >> newSerial;
+                        isSerial = Nprod->data.isSerial(newSerial);
+                        if(!isSerial) cout << "Serial không tồn tại. " << "\nNhập lại serial sản phẩm thứ " << i << ": ";
+                    }while(!isSerial);
+                    //dua serial tu san pham ra gio hang
+                    Nprod->data.removeSerial(newSerial); 
+                    if(Norder == nullptr){
+                        newOrder.addSerial(newSerial);
+                        newOrder.updateTotal();
                     }
-                    if(Norder == nullptr) newInv.addOrder(newOrder);
+                    else{
+                        Norder->data.addSerial(newSerial);
+                        Norder->data.updateTotal();
+                    }
+                    cout << endl <<"Thêm thành công " << newSerial << endl;
+                    cout << "_____________________________________________________________" << endl;
+                }
+                if(Norder == nullptr) newInv.addOrder(newOrder);
+                system("pause");
+                break;
+            case 2:
+                cout << "Nhập mã sản phẩm cần xóa: ";
+                cin >> prodID;
+                Norder = newInv.findOrder(prodID);
+                if(Norder == nullptr){
+                    cout << endl << "Không có sản phẩm này trong giỏ hàng";
+                    system("pause");
                     break;
-                case 2:
-                    cout << "Nhap ma san pham can xoa: ";
-                    cin >> prodID;
-                    Norder = newInv.findOrder(prodID);
-                    if(Norder == nullptr) 
-                    {
-                        cout << endl << "Khong co san pham nay trong gio hang ";
+                }
+                Nprod = prodM.find(prodID);
+                cout << endl << "Nhập 0 để xóa tất cả sản phẩm: "<< Norder->data.getName()
+                    << endl << "Hoặc nhập vào số serial của sản phẩm cần xóa: ";
+                cin >> newSerial;
+                if (newSerial == "0"){   
+                    Nstring = Norder->data.getSerial().getHead();
+                    while (Nstring != nullptr) {
+                        Nprod->data.addSerial(Nstring->data);
+                        Nstring = Nstring->next;
+                    }
+                    newInv.getOrder().remove(Norder->data);
+                }    
+                else 
+                    if(Norder->data.isSerial(newSerial)){
+                        Norder->data.removeSerial(newSerial);
+                        Nprod->data.addSerial(newSerial);
+                    }
+                    else{
+                        cout << endl << "Không có sản phẩm mang số serial " << newSerial << " trong giỏ hảng !!";
                         system("pause");
-                        break;
-                    }
-                    Nprod = prodM.find(prodID);
-                    cout << endl << "Nhap 0 de xoa tat ca san pham: "<< Norder->data.getName()
-                         << endl << "Hoac Nhap vao so serial cua san pham can xoa: ";
-                    cin >> newSerial;
-                    if (newSerial == "0") 
-                    {   
-                        Nstring = Norder->data.getSerial().getHead();
-                        while (Nstring != nullptr) {
-                            Nprod->data.addSerial(Nstring->data);
-                            Nstring = Nstring->next;
-                        }
-                        newInv.getOrder().remove(Norder->data);
-                    }    
-                    else 
-                        if(Norder->data.isSerial(newSerial))
-                        {
-                            Norder->data.removeSerial(newSerial);
-                            Nprod->data.addSerial(newSerial);
-                        }
-                        else
-                        {
-                            cout << endl << "Khong co san pham mang so serial " << newSerial << " trong gio hang!";
-                            system("pause");
-                        }   
-                        if(Norder->data.getQuantity() == 0) newInv.getOrder().remove(Norder->data);
-
-                    break;
-                case 3:
-                    system("cls");
-                    if(newInv.getOrder().getHead() == nullptr) 
-                    {
-                        cout << "Hoa Don Rong"; 
-                        cout << endl << endl << endl;
+                    }   
+                if(Norder->data.getQuantity() == 0) newInv.getOrder().remove(Norder->data);
+                break;
+            case 3:{
+            	int option;
+            	system("cls");
+                if(newInv.getOrder().getHead() == nullptr){
+                    cout << "Hóa Đơn Rỗng"; 
+                    cout << endl << endl << endl;
+                    system("pause");
+                }
+                else{
+                    newInv.updateTotal();
+                    this->printInvoice(newInv, cusM);
+                    cout << endl << endl << endl;
+                    system("pause");
+                    do{
+                    	system("cls");
+                        cout << "1. Xác nhận thanh toán" << endl;
+                        cout << "2. Trở về" << endl;
+                        cout << "Nhập chức năng: "; cin >> option;
+                        if(option < 1 || option > 2)
+                            cout << "Nhập lại" << endl;
+                    }while(option < 1 || option > 2);
+                    if(option == 1){
+                        cout << "Tổng giá trị đơn hàng là :" << newInv.getTotal() << endl << "Vui lòng chọn phương thức thanh toán: ";
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                        getline(cin, pay);
+                        newInv.setPayment(pay);
+                        newInv.complete();
+                        this->add(newInv);
+                        this->printInvoice(newInv.getInvID(),cusM);
                         system("pause");
+                        cout << endl << endl;
                     }
-                    else
-                    {
-                        newInv.updateTotal();
-                        this->printInvoice(newInv, cusM, empM);
-                        cout << endl << endl << endl;
-                        system("pause");
-                        next_option = 1;
-                        do{
-                            system("cls");
-                            cout << ((next_option == 1) ? "->" : "  ") << "Xac nhan thanh toan" << endl;
-                            cout << ((next_option == 2) ? "->" : "  ") << "Tro ve" << endl;
-                            input = getch();
-                            if (input == 72) next_option--;
-                            else if (input == 80) next_option++;
-                            if (next_option < 1) next_option = 2;
-                            if (next_option > 2) next_option = 1;
-                        }while(input != 13);
-                        if(next_option == 1)
-                        {
-                            cout << "Tong gia tri don hang la :" << newInv.getTotal() << endl << "Vui long chon phuong thuc thanh toan: ";
-                            cin.clear();
-                            cin.ignore(1000, '\n');
-                            getline(cin, pay);
-                            newInv.setPayment(pay);
-                            newInv.complete();
-                            this->add(newInv);
-                            this->printInvoice(newInv.getInvID(),cusM,empM);
-                            input = '0';
-                            system("pause");
-                            cout << endl << endl;
-                        }
-                    }
-                    break;
-                case 4:
-                    Norder = newInv.getOrder().getHead();
-                    while (Norder != nullptr)
-                    {
-                        prodID = Norder->data.getID();
-                        Nprod = prodM.find(prodID);
-                        Nstring = Norder->data.getSerial().getHead();
-                        while (Nstring != nullptr) {
-                            Nprod->data.addSerial(Nstring->data);
-                            Nstring = Nstring->next;
-                        }
-                        newInv.removeOrder(Norder->data.getID());
-                        Norder = newInv.getOrder().getHead();
-                    }
-                    input = '0';
-                    break;
-                default: cout << "Loi du lieu";
+                }
+				break;
+			}
+            case 4:
+//                Norder = newInv.getOrder().getHead();
+//                while (Norder != nullptr){
+//                    prodID = Norder->data.getID();
+//                    Nprod = prodM.find(prodID);
+//                    Nstring = Norder->data.getSerial().getHead();
+//                    while (Nstring != nullptr) {
+//                        Nprod->data.addSerial(Nstring->data);
+//                        Nstring = Nstring->next;
+//                    }
+//                    newInv.removeOrder(Norder->data.getID());
+//                    Norder = newInv.getOrder().getHead();
+//                }
+                over = true;
+                break;
+                default: cout << "Lỗi dữ liệu\n";
             }
-        }
-    } while(input != '0');
+    } while(!over);
 }
 void InvManage::sell(CusManage& cusM, ProdManage& prodM, EmpManage& empM){
 	Invoice newInvoice;
@@ -569,6 +553,6 @@ void InvManage::writeFile(string file, string detail_file){
         outputOrderDetail.close();       
     } else
     {
-        cerr << "Khong the ghi du lieu" << endl;
+        cerr << "Không thể ghi dữ liệu !!" << endl;
     }
 }

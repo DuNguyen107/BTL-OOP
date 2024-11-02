@@ -49,15 +49,15 @@ void Invoice::show(){
     this->listOfOrder.display();
 }
 ostream& operator << (ostream& os, const Invoice& p){
-	os << "Ma hoa don: " << p.invID << endl;
-    os << "Ma khach hang: " << p.cusID << endl;
-    os << "Ma nhan vien: " << p.empID << endl;
-    os << "Phuong thuc thanh toan: " << p.payment << endl;
-    os << "Tong tien: " << p.total << endl;
+	os << setw(70) << " " << "Mã hóa đơn: " << p.invID << endl;
+    os << setw(70) << " " << "Mã khách hàng: " << p.cusID << endl;
+    os << setw(70) << " " << "Mã nhân viên: " << p.empID << endl;
+    os << setw(70) << " " << "Phương thức thanh toán: " << p.payment << endl;
+    os << setw(70) << " " << "Tổng tiền: " << p.total << endl;
     Invoice *temp = new Invoice();
     *temp = p;
     temp->listOfOrder.display();
-    cout << "\t\t\t__________________________________________________" << endl;
+    cout << setw(50) << " " << string(60, '_') << endl;
     delete temp;
     return os;
 }
@@ -72,6 +72,7 @@ void Invoice::updateTotal(){
 	Node<order>* tempNode = this->listOfOrder.getHead();
 	while(tempNode != nullptr){
 		this->total += tempNode->data.getTotal();
+		tempNode = tempNode->next;
 	}
 }
 //getter
@@ -143,7 +144,7 @@ void Invoice::removeOrder(const string& ID){
 		if(p != nullptr){
 			listOfOrder.remove(p->data);
 		}else 
-			cout << "\nChua co san pham nay trong gio hang !";
+			cout << "\nChưa có sản phẩm này trong giỏ hàng !!";
 	}	
 }
 Node<order>* Invoice::findOrder(const string& ID){

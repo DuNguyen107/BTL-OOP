@@ -75,7 +75,7 @@ void Product::show(){
 	cout << setw(50) << " " << string(60, '=') << endl;
 	cout << setw(50) << " " << "Thông tin chung:" << endl;
     cout << left
-	<< setw(50) << " " << setw(25) << "  Mã sản phẩm: " << productID << "||"<< endl
+	<< setw(50) << " " << setw(25) << "  Mã sản phẩm: " << productID << endl
     << setw(50) << " " << setw(25) << "  Tên sản phẩm: " << name << endl
     << setw(50) << " " << setw(24) << "  Thương hiệu: " << brand << endl
     << setw(50) << " " << setw(22) << "  Giá bán: " << fixed << setprecision(0) <<  price << " VND" << endl;
