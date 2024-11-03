@@ -1,8 +1,5 @@
 #include"Order.h"
 order::order(){
-//	this->ID = "";
-//	this->name = "";
-//	this->price = 0;
 	this->total = 0;
 }
 order::order(const string& ID, const string& name, double price, double total){
@@ -34,12 +31,17 @@ double order::getTotal(){
 	return this->total;
 }
 ostream& operator << (ostream &os, const order& p){
-	os << "Ma San Pham: " << p.productID << "; Ten san Pham: " << p.name << endl << "Don gia: " << p.price << "; So Luong " << p.quantity << "; Tong Tien " << p.total << endl;
-    os << "So serial: ";
+	os << setw(70) << " " << "Mã sản phẩm: " << p.productID << endl;
+    os << setw(70) << " " << "Tên sản phẩm: " << p.name << endl;
+    os << setw(70) << " " << "Đơn giá: " << p.price << endl;
+    os << setw(70) << " " << "Số lượng sản phẩm: " << p.quantity << endl;
+    os << setw(70) << " " << "Tổng tiền: " << p.total << endl;
+    os << "Số serial sản phẩm: ";
     Node<string>* currentNode = p.serial.getHead();
     while (currentNode != nullptr) 
     {
-        os << currentNode->data << ", ";
+        os << currentNode->data;
+        if(currentNode != nullptr) os << ", ";
         currentNode = currentNode->next;
     }
     os << endl;

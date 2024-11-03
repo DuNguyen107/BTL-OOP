@@ -112,13 +112,15 @@ void MenuManage(){
 	                        cin >> y;
 	                        if(y < 2020 || y > 2024){
 	                        	cout << endl;
-					    		cout << setw(60) << " " << "+---------------------------------------+\n";
-						    	cout << setw(60) << " " << "| Không có thống kê của năm vừa nhập !! |\n"; 
-						    	cout << setw(60) << " " << "+---------------------------------------+\n";
+					    		cout << setw(60) << " " << "+----------------------------------------+\n";
+						    	cout << setw(60) << " " << "| Chỉ có thống kê từ năm 2020 đến nay !! |\n"; 
+						    	cout << setw(60) << " " << "+----------------------------------------+\n";
 	                        	system("pause");
 							}
 						}while(y < 2020 || y > 2024);
                         system("cls");
+                        cout << setw(50) << " " << string(60, '=') << endl;
+                        cout << setw(60) << " " << "THỐNG KÊ CỦA NĂM " << y << "" << endl;
                         invoiceManage.statistic(invoiceManage.find(y));
                         system("pause");
 						break;
@@ -135,13 +137,15 @@ void MenuManage(){
 							gotoxy(96,2); cin >> y;
 							if(m < 1 || m > 12 || y < 2020 || y > 2024){
 								cout << endl;
-					    		cout << setw(60) << " " << "+----------------------------------------------+\n";
-						    	cout << setw(60) << " " << "| Không có thống kê của tháng, năm vừa nhập !! |\n"; 
-						    	cout << setw(60) << " " << "+----------------------------------------------+\n";
+					    		cout << setw(60) << " " << "+----------------------------------------+\n";
+						    	cout << setw(60) << " " << "| Chỉ có thống kê từ năm 2020 đến nay !! |\n"; 
+						    	cout << setw(60) << " " << "+----------------------------------------+\n";
 	                        	system("pause");
 							}
 						}while(m < 1 || m > 12 || y < 2020 || y > 2024);
                         system("cls");
+                        cout << setw(50) << " " << string(60, '=') << endl;
+                        cout << setw(60) << " " << "THỐNG KÊ CỦA THÁNG " << m << " NĂM " << y << endl;
                     	invoiceManage.statistic(invoiceManage.find(m, y));
                         system("pause");
 						break;
@@ -159,13 +163,15 @@ void MenuManage(){
 							gotoxy(107,2); cin >> y;
 							if((d < 1 || d > 31 || m < 1 || m > 12 || y < 2020 || y > 2024) || (m==2 && (d==30 || d==31))){
 								cout << endl;
-					    		cout << setw(60) << " " << "+----------------------------------------------+\n";
-						    	cout << setw(60) << " " << "| Không có thống kê của tháng, năm vừa nhập !! |\n"; 
-						    	cout << setw(60) << " " << "+----------------------------------------------+\n";
+					    		cout << setw(60) << " " << "+----------------------------------------+\n";
+						    	cout << setw(60) << " " << "| Chỉ có thống kê từ năm 2020 đến nay !! |\n"; 
+						    	cout << setw(60) << " " << "+----------------------------------------+\n";
 	                        	system("pause");
 							}
 						}while((d < 1 || d > 31 || m < 1 || m > 12 || y < 2020 || y > 2024) || (m==2 && (d==30 || d==31)));
                         system("cls");
+                        cout << setw(50) << " " << string(60, '=') << endl;
+                        cout << setw(60) << " " << "THỐNG KÊ CỦA NGÀY " << d << " THÁNG " << m << " NĂM " << y << endl;
                         invoiceManage.statistic(invoiceManage.find(d, m, y));
                         system("pause");
 						break;
@@ -415,7 +421,11 @@ void MenuManage(){
 	                            if(fcus!= nullptr){
 	                                fcus->data.Show();
 	                                cout << endl << "  Lịch sử mua hàng: " << endl << endl;
-	                                invoiceManage.find(fcus->data).display();
+	                                if(invoiceManage.find(fcus->data) == nullptr){
+	                                	cout << setw(60) << " " << "Không có lịch sử mua hàng\n";
+									}
+	                                else
+										invoiceManage.find(fcus->data)->display();
 	                            }
 	                            else{
 	                            	cout << endl;
@@ -445,7 +455,11 @@ void MenuManage(){
 	                            	system("cls");
 	                                fcus->data.Show();
 	                                cout << endl << "  Lịch sử mua hàng: " << endl << endl;
-	                                invoiceManage.find(fcus->data).display();
+	                                if(invoiceManage.find(fcus->data) == nullptr){
+	                                	cout << setw(60) << " " << "Không có lịch sử mua hàng\n";
+									}
+	                                else
+										invoiceManage.find(fcus->data)->display();
 	                            }
 	                            else{
 	                                cout << endl << endl;
@@ -468,7 +482,33 @@ void MenuManage(){
                 break;
 			}
 			case 4:{
-				invoiceManage.sell(customerManage, productManage, employeeManage);
+				int option;
+                do{
+                    system("cls");
+                    cout << setw(60) << " " << "+-------------------------------------------+" << endl;
+                    cout << setw(60) << " " << "|\t\t1. Nhập thông tin khách         |" << endl;
+				    cout << setw(60) << " " << "|\t\t2. Quay lại                     |" << endl;
+				    cout << setw(60) << " " << "+-------------------------------------------+\n" << endl;
+				    cout << setw(60) << " " << "+------------------------+----+\n";
+			    	cout << setw(60) << " " << "| Mời bạn nhập chức năng |    |\n"; 
+			    	cout << setw(60) << " " << "+------------------------+----+\n";
+			    	gotoxy(88,7);
+			    	cin >> option;
+                    if(option < 1 || option > 3){
+			    		cout << endl;
+			    		cout << setw(60) << " " << "+----------------------------------------------------------+\n";
+				    	cout << setw(60) << " " << "| Vui lòng nhập lại chức năng !! Chức năng chỉ từ 1 đến 2. |\n"; 
+				    	cout << setw(60) << " " << "+----------------------------------------------------------+\n";
+				    	
+				    	cout << setw(60) << " " << "+---------------------------------+\n";
+				    	cout << setw(60) << " " << "| Nhấn phím bất kỳ để quay lại !! |\n"; 
+				    	cout << setw(60) << " " << "+---------------------------------+\n";
+				    	gotoxy(97,13);
+				    	getch();
+					}
+                }while(option < 1 || option > 2);
+                if(option == 1)
+					invoiceManage.sell(customerManage, productManage, employeeManage);
 				break;
 			}
 			case 5:{
@@ -476,7 +516,7 @@ void MenuManage(){
                 do{
                     system("cls");
                     cout << setw(60) << " " << "+-------------------------------------------+" << endl;
-                    cout << setw(60) << " " << "|\t\t1. Tìm theo mã sản phẩm         |" << endl;
+                    cout << setw(60) << " " << "|\t\t1. Tìm theo mã hóa đơn          |" << endl;
 				    cout << setw(60) << " " << "|\t\t2. Tìm theo năm                 |" << endl;
 				    cout << setw(60) << " " << "|\t\t3. Tìm theo tháng               |" << endl;
 				    cout << setw(60) << " " << "|\t\t4. Tìm theo ngày                |" << endl;
@@ -508,48 +548,54 @@ void MenuManage(){
 				    	cout << setw(60) << " " << "|    Nhập mã hóa đơn     |         |\n"; 
 				    	cout << setw(60) << " " << "+------------------------+---------+\n";
 				    	gotoxy(88,13);
-				    	cin >> id;
-//                        cout << "_________________________________________________________________________________" << endl;
+				    	cin >> id; cout << endl;
                         invoiceManage.findtoShow(id);
                         system("pause");
 						break;
 					}
                     case 2:{
                     	int y;
+                    	cout << endl;
                     	cout << setw(60) << " " << "+-----------------------------+-------+\n";
 				    	cout << setw(60) << " " << "|    Nhập năm cần tìm kiếm    |       |\n"; 
 				    	cout << setw(60) << " " << "+-----------------------------+-------+\n";
-				    	gotoxy(92,13);
-				    	cin >> y;
-				    	cout << endl;
-                        invoiceManage.find(y).display();
+				    	gotoxy(93,13);
+				    	cin >> y; cout << endl;
+				    	if(invoiceManage.find(y) == nullptr)
+				    		cout << "Không tìm thấy hóa đơn hoặc dữ liệu không hợp lệ" << endl;
+                        else
+							invoiceManage.find(y)->display();
                         system("pause");
 						break;
 					}
                     case 3:{
                     	int m,y;
-                    	system("cls");
                     	cout << endl;
                     	cout << setw(60) << " " << "+---------------------------+----+------+\n";
 				    	cout << setw(60) << " " << "| Nhập lần lượt tháng, năm  |    |      |\n"; 
 				    	cout << setw(60) << " " << "+---------------------------+----+------+\n" << endl;
-				    	gotoxy(91,3); cin >> m;
-						gotoxy(96,3); cin >> y;
-                        invoiceManage.find(m, y).display();
+				    	gotoxy(91,13); cin >> m;
+						gotoxy(96,13); cin >> y; cout << endl;
+						if(invoiceManage.find(m, y) == nullptr)
+				    		cout << "Không tìm thấy hóa đơn hoặc dữ liệu không hợp lệ" << endl;
+                        else
+							invoiceManage.find(m, y)->display();
                         system("pause");
 						break;
 					}
                     case 4:{
                     	int d,m,y;
-                    	system("cls");
                     	cout << endl;
                     	cout << setw(60) << " " << "+---------------------------------+----+----+------+\n";
 				    	cout << setw(60) << " " << "| Nhập lần lượt ngày, tháng, năm  |    |    |      |\n"; 
 				    	cout << setw(60) << " " << "+---------------------------------+----+----+------+\n" << endl;
-				    	gotoxy(57,3); cin >> d;
-						gotoxy(102,3); cin >> m; 
-						gotoxy(107,3); cin >> y;
-                        invoiceManage.find(d, m, y).display();
+				    	gotoxy(57,13); cin >> d;
+						gotoxy(102,13); cin >> m; 
+						gotoxy(107,13); cin >> y; cout << endl;
+						if(invoiceManage.find(d,m,y) == nullptr)
+				    		cout << "Không tìm thấy hóa đơn hoặc dữ liệu không hợp lệ" << endl;
+                        else 
+							invoiceManage.find(d, m, y)->display();
                         system("pause");
 						break;
 					}

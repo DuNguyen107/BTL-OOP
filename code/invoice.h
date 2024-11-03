@@ -6,7 +6,6 @@
 class Invoice{
 	private:
 		int cusID;
-		int empID;
 		int invID;
 		double total;
 		string payment;
@@ -15,7 +14,7 @@ class Invoice{
 		bool status; //trang thai thanh toan
 	public:
 		Invoice();
-		Invoice(int cusID,int empID,int invID,double total,string payment,const Date& date);
+		Invoice(int cusID,int invID,double total,string payment,const Date& date);
 		Invoice(const Invoice& p);
 		~Invoice();
 		Invoice& operator = (const Invoice& p);

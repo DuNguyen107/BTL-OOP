@@ -17,12 +17,12 @@ class InvManage: public Manage<Invoice>{
 		void remove(Invoice& inv);
 		void update(Invoice& inv);
 		void display();
-		List<Invoice> find(int& day, int month, int year);
-		List<Invoice> find(int& month, int& year);
-		List<Invoice> find(int& year);
-		List<Invoice> find(Customer& cus); // tim theo khach hang
+		List<Invoice>* find(int& day, int month, int year);
+		List<Invoice>* find(int& month, int& year);
+		List<Invoice>* find(int& year);
+		List<Invoice>* find(Customer& cus); // tim theo khach hang
 		Node<Invoice>* findID(int& ID); // mỗi ID là duy nhất
-		void statistic(List<Invoice> list); // thống kê dựa trên danh sách hóa đơn
+		void statistic(List<Invoice>* list); // thống kê dựa trên danh sách hóa đơn
 		void printInvoice(int invID, CusManage cusM);
 		void printInvoice(Invoice& inv, CusManage cusM);
 		void findtoShow(int& ID); // tìm ID va in thông tin của ID

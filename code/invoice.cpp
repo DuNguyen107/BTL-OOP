@@ -2,15 +2,13 @@
 
 Invoice::Invoice(){
 	invID = 0;
-	empID = 0;
 	cusID = 0;
 	total = 0;
 	payment = "";
 	status = false;
 }
-Invoice::Invoice(int cusID,int empID,int invID,double total,string payment,const Date& date){
+Invoice::Invoice(int invID, int cusID, double total,string payment,const Date& date){
 	this->invID = invID;
-	this->empID = empID;
 	this->cusID = cusID;
 	this->total = total;
 	this->payment = payment;
@@ -18,7 +16,6 @@ Invoice::Invoice(int cusID,int empID,int invID,double total,string payment,const
 }
 Invoice::Invoice(const Invoice& p){
 	this->invID = p.invID;
-	this->empID = p.empID;
 	this->cusID = p.cusID;
 	this->total = p.total;
 	this->payment = p.payment;
@@ -30,7 +27,6 @@ Invoice::~Invoice(){}
 Invoice& Invoice::operator = (const Invoice& p){
 	if(this != &p){
 		this->invID = p.invID;
-		this->empID = p.empID;
 		this->cusID = p.cusID;
 		this->total = p.total;
 		this->payment = p.payment;
@@ -41,17 +37,15 @@ Invoice& Invoice::operator = (const Invoice& p){
 	return *this;
 }
 void Invoice::show(){
-	cout << "Ma hoa don: " << this->invID << endl;
-    cout << "Ma khach hang: " << this->cusID << endl;
-    cout << "Ma nhan vien: " << this->empID << endl;
-    cout << "Phuong thuc thanh toan: " << this->payment << endl;
-    cout << "Tong tien: " << this->total << endl;
+	cout << "Mã hóa đơn: " << this->invID << endl;
+    cout << "Mã khách hàng: " << this->cusID << endl;
+    cout << "Phương thức thanh toán: " << this->payment << endl;
+    cout << "Tổng tiền: " << this->total << endl;
     this->listOfOrder.display();
 }
 ostream& operator << (ostream& os, const Invoice& p){
 	os << setw(70) << " " << "Mã hóa đơn: " << p.invID << endl;
     os << setw(70) << " " << "Mã khách hàng: " << p.cusID << endl;
-    os << setw(70) << " " << "Mã nhân viên: " << p.empID << endl;
     os << setw(70) << " " << "Phương thức thanh toán: " << p.payment << endl;
     os << setw(70) << " " << "Tổng tiền: " << p.total << endl;
     Invoice *temp = new Invoice();
@@ -78,9 +72,6 @@ void Invoice::updateTotal(){
 //getter
 int Invoice::getCusID(){
 	return this->cusID;
-}
-int Invoice::getEmpID(){
-	return this->empID;
 }
 int Invoice::getInvID(){
 	return this->invID;
@@ -118,10 +109,7 @@ void Invoice::setCusID(int& cusID){
 	if(status == false) 
 		this->cusID = cusID;
 }
-void Invoice::setEmpID(int& empID){
-	if(status == false) 
-		this->empID = empID;
-}
+
 void Invoice::setInvID(int& invID){
 	if(status == false) 
 		this->invID = invID;
