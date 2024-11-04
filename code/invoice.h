@@ -25,7 +25,6 @@ class Invoice{
 		void updateTotal();
 		//getter
 		int getCusID();
-		int getEmpID();
 		int getInvID();
 		double getTotal();
 		double getProfit();
@@ -34,7 +33,6 @@ class Invoice{
 		string getPayment();
 		//setter
 		void setCusID(int& cusID);
-		void setEmpID(int& empID);
 		void setInvID(int& invID);
 		void setPayment(string& payment);
 		//method

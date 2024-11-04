@@ -37,21 +37,21 @@ Invoice& Invoice::operator = (const Invoice& p){
 	return *this;
 }
 void Invoice::show(){
-	cout << "Mã hóa đơn: " << this->invID << endl;
     cout << "Mã khách hàng: " << this->cusID << endl;
     cout << "Phương thức thanh toán: " << this->payment << endl;
     cout << "Tổng tiền: " << this->total << endl;
     this->listOfOrder.display();
 }
 ostream& operator << (ostream& os, const Invoice& p){
+	cout << setw(60) << " " << string(60, '*') << endl;
 	os << setw(70) << " " << "Mã hóa đơn: " << p.invID << endl;
     os << setw(70) << " " << "Mã khách hàng: " << p.cusID << endl;
     os << setw(70) << " " << "Phương thức thanh toán: " << p.payment << endl;
-    os << setw(70) << " " << "Tổng tiền: " << p.total << endl;
+    os << setw(70) << " " << "Tổng tiền: " << fixed << setprecision(0) << p.total << " VNĐ" << endl;
+    cout << setw(60) << " " << string(60, '*') << endl;
     Invoice *temp = new Invoice();
     *temp = p;
     temp->listOfOrder.display();
-    cout << setw(50) << " " << string(60, '_') << endl;
     delete temp;
     return os;
 }

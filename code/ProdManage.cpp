@@ -79,7 +79,7 @@ void ProdManage::add(){
 	int RAM, hardDisk;
 	cout << setw(50) << " " << string(60, '=') << endl;
     cout << setw(70) << " " << "NHẬP THÔNG TIN SẢN PHẨM" << endl;
-    cout << setw(50) << " " << string(60, '=') << endl;
+    cout << setw(50) << " " << string(60, '-') << endl;
     cout << string(55, ' ') << "Mã sản phẩm: "; cin >> ID; 
     cout << setw(50) << " " << string(60, '-') << endl;
 	prod.setID(ID); cin.ignore();
@@ -230,9 +230,6 @@ void ProdManage::update(Product& prod){
             default: 
 				cout << setw(50) << " " << "Lỗi dữ liệu !!\n";
         }
-        cout << setw(50) << " " << string(60, '-') << endl;
-        cout << setw(70) << " " << "CẬP NHẬT THÀNH CÔNG" << endl;
-        system("pause");
     }while (over != true);
 }
 void ProdManage::display(){

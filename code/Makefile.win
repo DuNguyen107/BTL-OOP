@@ -4,15 +4,15 @@
 CPP      = g++.exe -D__DEBUG__
 CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
-OBJ      = main.o Customer.o Date.o Employee.o List.o Person.o Product.o Order.o invoice.o CusManage.o EmpManage.o ProdManage.o InvManage.o Database.o
-LINKOBJ  = main.o Customer.o Date.o Employee.o List.o Person.o Product.o Order.o invoice.o CusManage.o EmpManage.o ProdManage.o InvManage.o Database.o
+OBJ      = main.o Customer.o Date.o List.o Person.o Product.o Order.o invoice.o CusManage.o ProdManage.o InvManage.o Database.o
+LINKOBJ  = main.o Customer.o Date.o List.o Person.o Product.o Order.o invoice.o CusManage.o ProdManage.o InvManage.o Database.o
 LIBS     = -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib" -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc -g3
 INCS     = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
 CXXINCS  = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
 BIN      = QuanLy.exe
 CXXFLAGS = $(CXXINCS) -g3
 CFLAGS   = $(INCS) -g3
-DEL      = C:\Program Files (x86)\Embarcadero\Dev-Cpp\devcpp.exe INTERNAL_DEL
+DEL      = C:\Program Files (x86)\Embarcadero\Dev-Cpp\DevCpp.exe INTERNAL_DEL
 
 .PHONY: all all-before all-after clean clean-custom
 
@@ -33,9 +33,6 @@ Customer.o: Customer.cpp
 Date.o: Date.cpp
 	$(CPP) -c Date.cpp -o Date.o $(CXXFLAGS)
 
-Employee.o: Employee.cpp
-	$(CPP) -c Employee.cpp -o Employee.o $(CXXFLAGS)
-
 List.o: List.cpp
 	$(CPP) -c List.cpp -o List.o $(CXXFLAGS)
 
@@ -53,9 +50,6 @@ invoice.o: invoice.cpp
 
 CusManage.o: CusManage.cpp
 	$(CPP) -c CusManage.cpp -o CusManage.o $(CXXFLAGS)
-
-EmpManage.o: EmpManage.cpp
-	$(CPP) -c EmpManage.cpp -o EmpManage.o $(CXXFLAGS)
 
 ProdManage.o: ProdManage.cpp
 	$(CPP) -c ProdManage.cpp -o ProdManage.o $(CXXFLAGS)

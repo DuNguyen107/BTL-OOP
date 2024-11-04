@@ -33,17 +33,26 @@ double order::getTotal(){
 ostream& operator << (ostream &os, const order& p){
 	os << setw(70) << " " << "Mã sản phẩm: " << p.productID << endl;
     os << setw(70) << " " << "Tên sản phẩm: " << p.name << endl;
-    os << setw(70) << " " << "Đơn giá: " << p.price << endl;
+    os << setw(70) << " " << "Đơn giá: " << fixed << setprecision(0) << p.price << " VNĐ" << endl;
     os << setw(70) << " " << "Số lượng sản phẩm: " << p.quantity << endl;
-    os << setw(70) << " " << "Tổng tiền: " << p.total << endl;
-    os << "Số serial sản phẩm: ";
+    os << setw(70) << " " << "Tổng tiền: " << fixed << setprecision(0) << p.total << " VND" << endl;
+    os << setw(70) << " " << "Số serial sản phẩm: ";
     Node<string>* currentNode = p.serial.getHead();
+    int count = 0;
     while (currentNode != nullptr) 
     {
+    	count++;
+    	if(count % 3 == 0){
+    		cout << endl;
+    		cout << setw(90) << " ";
+		}
         os << currentNode->data;
-        if(currentNode != nullptr) os << ", ";
+        if(currentNode != nullptr);
         currentNode = currentNode->next;
+        if(currentNode != nullptr) os << ", ";
     }
+    os << endl;
+    os << setw(60) << " " << string(60, '-') << endl;
     os << endl;
     return os;
 }

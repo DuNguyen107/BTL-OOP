@@ -1,5 +1,4 @@
 #include "ProdManage.h"
-#include "EmpManage.h"
 #include "CusManage.h"
 #include "InvManage.h"
 
@@ -8,7 +7,6 @@ class Database
 {
 	private:
 	    ProdManage productM;
-	    EmpManage employeeM;
 	    CusManage customerM;
 	    InvManage invoiceM;
 	    static Database instance;
@@ -20,7 +18,6 @@ class Database
     public:
 	    static Database& DB_Instance();
 	    ProdManage& getProdManage();
-	    EmpManage& getEmpManage();
 	    CusManage& getCusManage();
 	    InvManage& getInvManage();
 	    static void readData();

@@ -62,26 +62,63 @@ void CusManage::display(){
     this->Cus.display();
 }
 void CusManage::update(Customer& cus) {
-
     int ID = cus.getID();
     Customer& _customer = this->find(ID)->data;
     string name, phone, mail, adress;
-    bool gender;
+    int gender;
+    bool check;
     system("cls");
     cout << endl;
     cout << setw(50) << " " << string(60, '=') << endl;
 	cout << setw(60) << " " << "NHẬP THÔNG TIN KHÁCH MUA HÀNG" << endl;
 	cout << setw(50) << " " << string(60, '=') << endl;
 	cout << string(55, ' ') << "Tên: "; cin.ignore(); getline(cin, name); _customer.setName(name);
+	//
+	do{
+		check = true;
+    	cout << setw(50) << " " << string(60, '-') << endl;
+    	cout << string(55, ' ') << "Số điện thoại: "; getline(cin, phone); 
+		string s = phone.substr(0,2);
+		if(phone.length() != 10 || (s != "03" && s != "05" && s != "07" && s != "08" && s != "09") ){
+			check = false;
+		}
+		for(int i=0; i<phone.length(); i++){
+			if(phone[i] == ' ' || !isdigit(phone[i])){
+				check = false;
+			}
+		}
+		if(!check) cout << setw(60) << " " << "Nhập sai định dạng !!" << endl;
+	}while(!check);
+	_customer.setPhone(phone);
+    //
+    do{
+    	check = true;
+    	cout << setw(50) << " " << string(60, '-') << endl;
+    	cout << string(55, ' ') << "Email: "; getline(cin, mail);
+    	if(mail.length() < 11 || (mail[0] == '@' || mail[mail.length()-1] == '@')){
+			check = false;
+		}
+		for(int i=0; i<mail.length(); i++){
+			if(mail[i] == ' '){
+				check = false;
+			}
+		}
+		if(!check) cout << setw(60) << " " << "Nhập sai định dạng !!" << endl;
+	}while(!check);
+	_customer.setEmail(mail);
+    //
+    do{
+    	cout << setw(50) << " " << string(60, '-') << endl;
+    	cout << string(55, ' ') << "Giới tính ( 0:Nam - 1:Nữ ): ";cin >> gender; cin.ignore(); 
+		if(gender != 0 && gender != 1){
+			cout << setw(60) << " " << "Nhập sai định dạng !!" << endl;
+		}
+	}while(gender != 0 && gender != 1);
+	_customer.setGender(gender);
     cout << setw(50) << " " << string(60, '-') << endl;
-    cout << string(55, ' ') << "Số điện thoại: "; getline(cin, phone); _customer.setPhone(phone);
-    cout << setw(50) << " " << string(60, '-') << endl;
-    cout << string(55, ' ') << "Email: "; getline(cin, mail); _customer.setEmail(mail);
-    cout << setw(50) << " " << string(60, '-') << endl;
-    cout << string(55, ' ') << "Giới tính ( 0:Nam - 1:Nữ ): ";cin >> gender; cin.ignore(); _customer.setGender(gender);
-    cout << setw(50) << " " << string(60, '-') << endl;
+
     cout << string(55, ' ') << "Địa chỉ: "; getline(cin, adress); _customer.setAddress(adress);
-    cout << setw(50) << " " << string(60, '-') << endl;
+    cout << setw(50) << " " << string(60, '=') << endl;
     cout << setw(60) << " " << "NHẬP THÀNH CÔNG THÔNG TIN KHÁCH HÀNG" << endl;
 	cout << setw(50) << " " << string(60, '=') << endl;
 	system("pause");

@@ -12,8 +12,13 @@ void gotoxy(int x, int y){
 	SetConsoleCursorPosition (hConsoleOutput, Cursor_an_Pos);
 }
 
-// Xóa màn hình giúp đỡ lag
+void textcolor (int x){
+	HANDLE mau;
+	mau=GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute (mau,x);
+}
 
+// Xóa màn hình giúp đỡ lag
 void XoaManHinh(){
 	HANDLE hout;
 	COORD Position;
@@ -22,13 +27,6 @@ void XoaManHinh(){
 	Position.Y = 0;
 	SetConsoleCursorPosition (hout, Position);
 }
-void textcolor (int x){
-	HANDLE mau;
-	mau=GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute (mau,x);
-}
-
-
 void setConsoleFullScreen() {
     #ifdef _WIN32
     HWND consoleWindow = GetConsoleWindow();

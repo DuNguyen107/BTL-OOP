@@ -68,7 +68,7 @@ List<Invoice>* InvManage::find(int& year){
     return tempList;
 }
 List<Invoice>* InvManage::find(Customer& cus){ // tim theo khach hang
-	List<Invoice>* tempList;
+	List<Invoice>* tempList = new List<Invoice>();
     Node<Invoice>* tempNode;
     int cusID = cus.getID();
     tempNode = this->Inv.getHead();
@@ -90,18 +90,18 @@ Node<Invoice>* InvManage::findID(int& ID){ // mỗi ID là duy nhất
     return this->Inv.find(tempInv);
 }
 void InvManage::statistic(List<Invoice>* list){ // thống kê dựa trên danh sách hóa đơn
-	Node<Invoice>* tempNode;
-    tempNode = list->getHead();
-    int revenue = 0; //doanh thu
+	if(list == nullptr) return;
+	int revenue = 0; //doanh thu
     int profit = 0; //loi nhuan
     int sales = 0; //so luong san pham ban duoc 
+	Node<Invoice>* tempNode;
+    tempNode = list->getHead();
     while (tempNode != nullptr){
         revenue += tempNode->data.getTotal();
         profit += tempNode->data.getProfit();
         sales += tempNode->data.productSales();
         tempNode = tempNode->next;
     }
-//    if(tempNode == nullptr) return;
 	cout << setw(50) << " " << string(60, '=') << endl;
     cout << left << setw(60) << " " << "Doanh thu: " << revenue << "VND" <<endl;
     cout << setw(50) << " " << string(60, '=') << endl;
@@ -123,35 +123,33 @@ void InvManage::printInvoice(int invID, CusManage cusM){
     Invoice inv = this->findID(invID)->data;
     int cusID = inv.getCusID();
     Customer cus = cusM.find(cusID)->data;
-    
 
-	outfile << setfill('_') << setw(152) << "" << endl << setfill(' ') ;
-	outfile << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
-	outfile << "|" << setw(83) << right << "HÓA ĐƠN BÁN HÀNG" << setw(68) << right << "|" << endl;
-    
-    outfile << "|Mã hóa đơn: " << setw(138) << left << inv.getInvID() << "|" << endl;
+	outfile << setw(8) << " " << setfill('_') << setw(152) << "" << endl << setfill(' ');
+	outfile << setw(8) << " " << setfill('*') << setw(152) << "" << endl << setfill(' ');
+	outfile << setw(8) << " " << "|" << setw(83) << right << "HÓA ĐƠN BÁN HÀNG" << setw(73) << right << "|" << endl;
+ 
+    outfile << setw(8) << " " << "|Mã hóa đơn: " << setw(138) << left << inv.getInvID() << "|" << endl;
     string date = to_string(inv.getDate().getDay()) + "/" + to_string(inv.getDate().getMonth()) + "/" + to_string(inv.getDate().getYear());
-    outfile << "|Ngày bán: " << setw(140) << date <<"|" << endl;
-    outfile << "|Mã khách hàng: " << setw(135) << left << inv.getCusID() << "|" << endl;
-    outfile << "|Tên khách hàng: " << setw(134) << left << cus.getName() << "|" << endl;
-    outfile << "|Số điện thoại: " << setw(135) << left << cus.getPhone() << "|" << endl;
-    outfile << "|Email: " << setw(143) << left << cus.getEmail() << "|" << endl;
-    outfile << "|Địa chỉ: " << setw(141) << left << cus.getAddress() << "|" << endl;
-    outfile << "|" << setw(150) << " " << "|"  << endl;
-    outfile << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
-    outfile << "|" << setw(3) << left << "STT";
-    outfile << setw(18) << left << "|Mã sản phẩm";
-    outfile << setw(51) << left << "|Tên sản phẩm";
+	outfile << setw(8) << " " << "|Ngày bán: " << setw(140) << date <<"|" << endl;
+    outfile << setw(8) << " " << "|Mã khách hàng: " << setw(135) << left << inv.getCusID() << "|" << endl;
+    outfile << setw(8) << " " << "|Tên khách hàng: " << setw(134) << left << cus.getName() << "|" << endl;
+    outfile << setw(8) << " " << "|Số điện thoại: " << setw(135) << left << cus.getPhone() << "|" << endl;
+    outfile << setw(8) << " " << "|Email: " << setw(143) << left << cus.getEmail() << "|" << endl;
+    outfile << setw(8) << " " << "|Địa chỉ: " << setw(141) << left << cus.getAddress() << "|" << endl;
+    outfile << setw(8) << " " << "|" << setw(150) << " " << "|"  << endl;
+    outfile << setw(8) << " " << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
+    outfile << setw(8) << " " << "|" << setw(3) << left << "STT";
+    outfile << setw(23) << left << "|Mã sản phẩm";
+    outfile << setw(56) << left << "|Tên sản phẩm";
     outfile << setw(3) << left << "|SL";
-    outfile << setw(49) << left << "|Số serial";
-    outfile << setw(13) << left << "|Đơn giá";
-    outfile << setw(13) << left << "|Thành tiền" << "|"<< endl;
-    outfile << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
+    outfile << setw(51) << left << "|Số serial";
+    outfile << setw(16) << left << "|Đơn giá";
+    outfile << setw(16) << left << "|Thành tiền" << "|"<< endl;
+    outfile << setw(8) << " " << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
     int i = 0;
     string serial = "";
-    for (Node<order>* Norder = inv.getOrder().getHead(); Norder != nullptr; Norder = Norder->next)
-    {
-        outfile << "|" << setw(3) << left << ++i;
+    for (Node<order>* Norder = inv.getOrder().getHead(); Norder != nullptr; Norder = Norder->next){
+        outfile << setw(8) << " " << "|" << setw(3) << left << ++i;
         outfile << "|" << setw(17) << left << Norder->data.getID();
         outfile << "|" << setw(50) << left << Norder->data.getName();
         outfile << "|" << setw(2) << left << Norder->data.getQuantity();
@@ -162,13 +160,13 @@ void InvManage::printInvoice(int invID, CusManage cusM){
             serial += ",";
         }
         outfile << "|"<< setw(48) << left << serial;
-        outfile << "|" << setw(12) << left << Norder->data.getPrice();
-        outfile << "|" << setw(12) << left << Norder->data.getTotal() << "|"<< endl;
-        outfile << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
+        outfile << "|" << setw(12) << left << fixed << setprecision(0) << Norder->data.getPrice();
+        outfile << "|" << setw(12) << left << fixed << setprecision(0) << Norder->data.getTotal() << "|"<< endl;
+        outfile << setw(8) << " " << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
     }
-    outfile << "|" << setw(138) << right << "Tổng tiền: " << setw(12) << left << inv.getTotal() << "|"<< endl;
-    outfile << "|" << "Thanh toán: " << setw(138) << left << inv.getPayment() << "|" << endl;
-    outfile << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
+    outfile << setw(8) << " " << "|" << setw(142) << right << "Tổng tiền: " << setw(12) << left << inv.getTotal() << "|"<< endl;
+    outfile << setw(8) << " " << "|" << "Thanh toán: " << setw(138) << left << inv.getPayment() << "|" << endl;
+    outfile << setw(8) << " " << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
     outfile.close();
     //in hoa don ra ma hinh
     ifstream inFile(filePath);
@@ -228,7 +226,7 @@ void InvManage::printInvoice(Invoice& inv, CusManage cusM){
     }
     cout << setw(8) << " " << "|" << setw(142) << right << "Tổng tiền: " << setw(9) << left << fixed << setprecision(0) <<  inv.getTotal() << "VNĐ" << "|"<< endl;
     cout << setw(8) << " " << "|" << "Thanh toán: " << setw(140) << left << "Chưa thanh toán" << "|" << endl;
-    cout << setw(8) << " " << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
+    cout << setw(8) << " " << setfill('*') << setw(152) << "" << endl << setfill(' ');
 }
 void InvManage::findtoShow(int& ID){ // tìm ID va in thông tin của ID
 	string filePath = "invoice/";
@@ -249,7 +247,7 @@ int InvManage::getNewID(){
     if(Ninv == nullptr) return 100000;
     return Ninv->data.getInvID() + 1;
 }
-void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM, EmpManage& empM){
+void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM){
     int option;
     bool over = false;
     List<order> cart = newInv.getOrder();
@@ -259,7 +257,8 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM, 
         	system("cls");
 	        cart.display();   
 	        cout << endl;
-	        cout << setw(60) << " " << "Giỏ hàng: " << endl; 
+	        cout << setw(60) << " " << "+------------+" << endl;
+	        cout << setw(60) << " " << "|  Giỏ hàng  | " << endl; 
 	        cout << setw(60) << " " << "+--------------------------------------------+" << endl;
 	        cout << setw(60) << " " << "|\t\t1. Thêm sản phẩm           	 |" << endl;
 			cout << setw(60) << " " << "|\t\t2. Xóa sản phẩm            	 |" << endl;
@@ -286,7 +285,7 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM, 
         Node<string>* Nstring;
         order newOrder;
         int newQuantity, i;
-        bool isSerial;
+        bool isSerial, check;
         string newSerial;
         switch (option){
             case 1:
@@ -314,16 +313,21 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM, 
                     newOrder.setPrice(Nprod->data.getPrice());
                 }
                 do{
+                	cout << endl;
                 	cout << setw(60) << " "  << "Nhập số lượng sản phẩm cần bán: ";
                     cin >> newQuantity;
                     if(newQuantity > Nprod->data.getQuantity()){
                     	cout << endl ;
-						cout << setw(60) << " " << "Không đủ sản phẩm để bán !!";
+						cout << setw(60) << " " << "Không đủ sản phẩm để bán !!" << endl;
 					}
                 }while (newQuantity > Nprod->data.getQuantity());
-                    
+				if(newQuantity <= 0){
+					cout << setw(60) << " " << "Đã hủy nhập số lượng !!" << endl;
+					system("pause");
+					break;
+				}
                 for (int i = 1; i <= newQuantity ; i++){
-//                    cout << endl;
+                    cout << endl;
 					cout << setw(60) << " " << "Nhập serial sản phẩm thứ " << i << ": ";
                     //kiem tra serial co ton tai trong database khong?
                     do{
@@ -373,7 +377,9 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM, 
                         Nstring = Nstring->next;
                     }
                     newInv.getOrder().remove(Norder->data);
+                    cout << endl;
                     cout << setw(60) << " " << "XÓA THÀNH CÔNG" << endl;
+                    system("pause");
                 }    
                 else{
                     if(Norder->data.isSerial(newSerial)){
@@ -394,7 +400,7 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM, 
             case 3:{
             	int option;
                 if(newInv.getOrder().getHead() == nullptr){
-                    cout << setw(60) << " " << "HÓA ĐƠN RỖNG"; 
+                    cout << setw(70) << " " << "HÓA ĐƠN RỖNG"; 
                     cout << endl;
                     system("pause");
                 }
@@ -404,8 +410,11 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM, 
                     cout << endl << endl << endl;
                     do{
                     	system("cls");
-                        cout << setw(60) << " " << "1. Xác nhận thanh toán" << endl;
-                        cout << setw(60) << " " << "2. Trở về" << endl;
+                    	cout << endl;
+                    	cout << setw(60) << " " << "+-------------------------------------------+" << endl;
+                        cout << setw(60) << " " << "|\t\t1. Xác nhận thanh toán          |" << endl;
+                        cout << setw(60) << " " << "|\t\t2. Trở về                       |" << endl;
+                        cout << setw(60) << " " << "+-------------------------------------------+" << endl;
                         cout << setw(60) << " " << ">> Nhập chức năng << "; cin >> option;
                         cout << endl;
                         if(option < 1 || option > 2)
@@ -416,25 +425,26 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM, 
 						cout << setw(60) << " " << "Phương thức thanh toán" << endl;
 						int next_option;
 						do{
-							cout << setw(60) << " " << string(20, '-') << endl;
-							cout << setw(60) << " " << "1. Tiền mặt\n";
-							cout << setw(60) << " " << "2. Chuyển khoản\n";
-							cout << setw(60) << " " << "3. Hủy thanh toán\n";
-							cout << setw(60) << " " << string(20, '-') << endl;
+							cout << setw(60) << " " << "+" << string(25, '-') << endl;
+							cout << setw(60) << " " << "|\t1. Tiền mặt          |\n";
+							cout << setw(60) << " " << "|\t2. Chuyển khoản      |\n";
+							cout << setw(60) << " " << "|\t3. Hủy thanh toán    |\n";
+							cout << setw(60) << " " << "+" << string(25, '-') << endl;
 							cout << setw(60) << " " << ">> Chọn phương thức thanh toán << ";
 							cin >> next_option;
-							if(next_option < 1 || next_option > 2){
+							if(next_option < 1 || next_option > 3){
 								cout << setw(60) << " "   << "Vui lòng nhập đúng chức năng !! \n";
 								system("pause");
 							}
-						}while(next_option < 1 || next_option > 2);
+						}while(next_option < 1 || next_option > 3);
+						if(next_option == 3) break;
 						if(next_option == 1) pay = "tien mat";
 						else pay = "chuyen khoan";
                         newInv.setPayment(pay);
                         newInv.complete();
                         this->add(newInv);
                         system("cls");
-                        cout << setw(60) << " "   << "THANH TOÁN THÀNH CÔNG" << endl;
+                        cout << setw(70) << " "   << "THANH TOÁN THÀNH CÔNG" << endl;
                         this->printInvoice(newInv.getInvID(),cusM);
                         cout << endl << endl;
                         system("pause");
@@ -449,7 +459,7 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM, 
             }
     } while(!over);
 }
-void InvManage::sell(CusManage& cusM, ProdManage& prodM, EmpManage& empM){
+void InvManage::sell(CusManage& cusM, ProdManage& prodM){
 	Invoice newInvoice;
     int cusID;
     int id = this->getNewID();
@@ -469,7 +479,7 @@ void InvManage::sell(CusManage& cusM, ProdManage& prodM, EmpManage& empM){
     newInvoice.setCusID(cusID);
     newInvoice.updateDate(); //cap nhat thoi gian cho hoa don
         //Tuong tac voi gio hang
-    this->updateCart(newInvoice,prodM,cusM,empM);
+    this->updateCart(newInvoice,prodM,cusM);
 }
 void InvManage::readFile(string file, string detail_file){
 	ifstream inputFile(file);

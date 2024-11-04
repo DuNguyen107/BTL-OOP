@@ -2,7 +2,6 @@
 #include"List.h"
 #include"Manage.h"
 #include"CusManage.h"
-#include"EmpManage.h"
 #include"ProdManage.h"
 #include<iomanip>
 #pragma once
@@ -27,8 +26,8 @@ class InvManage: public Manage<Invoice>{
 		void printInvoice(Invoice& inv, CusManage cusM);
 		void findtoShow(int& ID); // tìm ID va in thông tin của ID
 		int getNewID();
-		void updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM, EmpManage& empM);
-		void sell(CusManage& cusM, ProdManage& prodM, EmpManage& empM);
+		void updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM);
+		void sell(CusManage& cusM, ProdManage& prodM);
 		void readFile(string file, string detail_file);
 		void writeFile(string file, string detail_file);
 };
