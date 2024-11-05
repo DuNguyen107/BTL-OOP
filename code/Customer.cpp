@@ -15,14 +15,14 @@ void Customer::Show(){
 	cout << "  |  Mã khách hàng  |  Họ và tên                   |  Số điện thoại       |   Giới tính    |  Email                       |  Địa chỉ                        |\n"; 
 	cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+\n";
 //    cout << endl;
-    cout << "  |" << setw(2) << " " << this->id;
+    cout << "  |" << setw(4) << " " << this->id;
 	Person::Show();
 }
 
 ostream& operator<<(ostream& os, const Customer& cus){
     Person *p = new Customer();
     *p = cus;
-	cout << "  |" << setw(2) << " " << cus.id;
+	cout << "  |" << setw(4) << " " << cus.id;
     p->Person::Show();
     delete p;
     return os;

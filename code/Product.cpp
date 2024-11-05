@@ -34,7 +34,7 @@ Product::Product(string ID, string name, double price, double importPrice, strin
 }
 Product::Product(const Product& other){ 
 	this->productID = other.productID;
-	name = other.name;
+	this->name = other.name;
 	this->quantity = other.quantity;
     this->serial = other.serial;
 	this->price = other.price;

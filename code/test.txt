@@ -1,0 +1,25 @@
+-product:
+305|Laptop MSI Modern 14 B11MO-658VN|MSI|1.899e+07|1.799e+07|Intel i7 1165G7|8|14" Full HD (1920 x 1080)|512|Intel Iris Xe|Windows 10 Home|1|L301,
+306|Laptop Acer Nitro 5 AN515-57-53F8|Acer|2.599e+07|2.499e+07|Intel i5 11400H|16|15.6" Full HD (1920 x 1080) 144Hz|512|RTX 3050 4GB|Windows 11 Home|3|M301,M302,M303,
+307|Laptop Asus ZenBook UX425EA|Asus|2.099e+07|1.95e+07|Intel i5 1135G7|8|14" Full HD (1920 x 1080)|512|Intel Iris Xe|Windows 10 Home|1|N301,
+308|Laptop Dell XPS 13 9310|Dell|3.499e+07|3.3e+07|Intel i7 1165G7|16|13.4" Full HD (1920 x 1200) Touch|512|Intel Iris Xe|Windows 11 Home|2|O301,O302,
+309|Laptop Lenovo Yoga Slim 7 Carbon 13ITL5|Lenovo|2.699e+07|2.599e+07|Intel i5 1135G7|8|13.3" 2K (2560 x 1600)|512|Intel Iris Xe|Windows 11 Home|1|P301,
+310|Laptop HP Envy 13-ba0045TU|HP|2.499e+07|2.3e+07|Intel i7 10510U|16|13.3" Full HD (1920 x 1080)|512|Intel UHD Graphics|Windows 10 Home|1|Q301,
+311|Laptop Asus ROG Zephyrus G14 GA401QC|Asus|3.099e+07|2.999e+07|Ryzen 9 5900HS|16|14" Full HD (1920 x 1080) 144Hz|512|RTX 3050 4GB|Windows 11 Home|2|R301,R302,
+312|Laptop Acer Swift 3 SF314-511-55QE|Acer|1.099e+07|1.05e+07|Intel i5 1135G7|8|14" Full HD (1920 x 1080)|256|Intel Iris Xe|Windows 10 Home|1|S301,
+313|Laptop Dell Latitude 7420|Dell|2.499e+07|2.3e+07|Intel i7 1185G7|16|14" Full HD (1920 x 1080)|512|Intel Iris Xe|Windows 10 Pro|1|T301,
+314|Laptop HP Omen 15-ek0078TX|HP|4.499e+07|4.2e+07|Intel i7 10750H|16|15.6" Full HD (1920 x 1080) 144Hz|512|RTX 2070 Super Max-Q 8GB|Windows 10 Home|2|U301,U302,
+
+-customer:
+107|Pham Minh Khoa|0912345678|khoa123@gmail.com|Nam|Da Lat|
+108|Le Thi Thanh Huyen|0932123456|huyen.ltt@gmail.com|Nu|Can Tho|
+109|Tran Van Binh|0965432123|binhtran@gmail.com|Nam|Vinh Long|
+110|Vo Thi Bich Ngoc|0943232323|ngoc.vo@gmail.com|Nu|Tien Giang|
+111|Nguyen Hoang Phuc|0909876543|hoangphuc@gmail.com|Nam|Ben Tre|
+112|Doan Thi Thu Ha|0934112233|thuha.d@gmail.com|Nu|Hai Phong|
+113|Le Quoc Bao|0981234321|quocbao@gmail.com|Nam|Hue|
+114|Tran Thi Cam Tu|0978234556|camtutran@gmail.com|Nu|Quang Tri|
+115|Nguyen Van Khoa|0923344556|khoanguyen@gmail.com|Nam|Da Lat|
+116|Pham Thi Thanh Ha|0945656565|thanhha@gmail.com|Nu|Phu Yen|
+
+-

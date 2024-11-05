@@ -8,10 +8,12 @@ void InvManage::add(const Invoice& inv){
 	this->Inv.addHead(inv);
 }
 void InvManage::remove(Invoice& inv){
-	cout << "\nKhông thể xóa hóa đơn !!" << endl;
+	cout << endl << endl;
+	cout << setw(60) << " " << "Không thể xóa hóa đơn !!" << endl;
 }
 void InvManage::update(Invoice& inv){
-	cout << "\nKhông thể chỉnh sửa hóa đơn !!";
+	cout << endl << endl;
+	cout << setw(60) << " " << "Không thể chỉnh sửa hóa đơn !!" << endl;
 }
 void InvManage::display(){
 	this->Inv.display();
@@ -103,9 +105,9 @@ void InvManage::statistic(List<Invoice>* list){ // thống kê dựa trên danh 
         tempNode = tempNode->next;
     }
 	cout << setw(50) << " " << string(60, '=') << endl;
-    cout << left << setw(60) << " " << "Doanh thu: " << revenue << "VND" <<endl;
+    cout << left << setw(60) << " " << "Doanh thu: " << revenue << " VND" <<endl;
     cout << setw(50) << " " << string(60, '=') << endl;
-    cout << left << setw(60) << " " << "Lợi nhuận: " << profit << "VND" << endl;
+    cout << left << setw(60) << " " << "Lợi nhuận: " << profit << " VND" << endl;
     cout << setw(50) << " " << string(60, '=') << endl;
     cout << left << setw(60) << " " << "Sản phẩm bán được: " << sales << endl;
     cout << setw(50) << " " << string(60, '=') << endl;
@@ -124,8 +126,7 @@ void InvManage::printInvoice(int invID, CusManage cusM){
     int cusID = inv.getCusID();
     Customer cus = cusM.find(cusID)->data;
 
-	outfile << setw(8) << " " << setfill('_') << setw(152) << "" << endl << setfill(' ');
-	outfile << setw(8) << " " << setfill('*') << setw(152) << "" << endl << setfill(' ');
+	outfile << setw(8) << " " << setfill('-') << setw(152) << "" << endl << setfill(' ');
 	outfile << setw(8) << " " << "|" << setw(83) << right << "HÓA ĐƠN BÁN HÀNG" << setw(73) << right << "|" << endl;
  
     outfile << setw(8) << " " << "|Mã hóa đơn: " << setw(138) << left << inv.getInvID() << "|" << endl;
@@ -164,9 +165,9 @@ void InvManage::printInvoice(int invID, CusManage cusM){
         outfile << "|" << setw(12) << left << fixed << setprecision(0) << Norder->data.getTotal() << "|"<< endl;
         outfile << setw(8) << " " << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
     }
-    outfile << setw(8) << " " << "|" << setw(142) << right << "Tổng tiền: " << setw(12) << left << inv.getTotal() << "|"<< endl;
+    outfile << setw(8) << " " << "|" << setw(142) << right << "Tổng tiền: " << setw(8) << left << inv.getTotal() << " VNĐ" << "|"<< endl;
     outfile << setw(8) << " " << "|" << "Thanh toán: " << setw(138) << left << inv.getPayment() << "|" << endl;
-    outfile << setw(8) << " " << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
+    outfile << setw(8) << " " << setfill('-') << setw(152) << "" << endl << setfill(' ') ;
     outfile.close();
     //in hoa don ra ma hinh
     ifstream inFile(filePath);
@@ -183,8 +184,7 @@ void InvManage::printInvoice(int invID, CusManage cusM){
 void InvManage::printInvoice(Invoice& inv, CusManage cusM){
 	int cusID = inv.getCusID();
     Customer cus = cusM.find(cusID)->data;
-	cout << setw(8) << " " << setfill('_') << setw(152) << "" << endl << setfill(' ') ;
-	cout << setw(8) << " " << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
+	cout << setw(8) << " " << setfill('-') << setw(152) << "" << endl << setfill(' ') ;
 	cout << setw(8) << " " << "|" << setw(83) << right << "HÓA ĐƠN BÁN HÀNG" << setw(73) << right << "|" << endl;
     
     cout << setw(8) << " " << "|Mã hóa đơn: " << setw(138) << left << inv.getInvID() << "|" << endl;
@@ -226,7 +226,7 @@ void InvManage::printInvoice(Invoice& inv, CusManage cusM){
     }
     cout << setw(8) << " " << "|" << setw(142) << right << "Tổng tiền: " << setw(9) << left << fixed << setprecision(0) <<  inv.getTotal() << "VNĐ" << "|"<< endl;
     cout << setw(8) << " " << "|" << "Thanh toán: " << setw(140) << left << "Chưa thanh toán" << "|" << endl;
-    cout << setw(8) << " " << setfill('*') << setw(152) << "" << endl << setfill(' ');
+    cout << setw(8) << " " << setfill('-') << setw(152) << "" << endl << setfill(' ');
 }
 void InvManage::findtoShow(int& ID){ // tìm ID va in thông tin của ID
 	string filePath = "invoice/";
@@ -244,7 +244,7 @@ void InvManage::findtoShow(int& ID){ // tìm ID va in thông tin của ID
 }
 int InvManage::getNewID(){
 	Node<Invoice>* Ninv = this->Inv.getHead();
-    if(Ninv == nullptr) return 100000;
+    if(Ninv == nullptr) return 200;
     return Ninv->data.getInvID() + 1;
 }
 void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM){
@@ -320,12 +320,11 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM){
                     	cout << endl ;
 						cout << setw(60) << " " << "Không đủ sản phẩm để bán !!" << endl;
 					}
-                }while (newQuantity > Nprod->data.getQuantity());
-				if(newQuantity <= 0){
-					cout << setw(60) << " " << "Đã hủy nhập số lượng !!" << endl;
-					system("pause");
-					break;
-				}
+					if(newQuantity <= 0){
+						cout << endl;
+						cout << setw(60) << " " << "Vui lòng nhập đúng số lượng !!" << endl;
+					}
+                }while (newQuantity > Nprod->data.getQuantity() || newQuantity <= 0);
                 for (int i = 1; i <= newQuantity ; i++){
                     cout << endl;
 					cout << setw(60) << " " << "Nhập serial sản phẩm thứ " << i << ": ";
@@ -421,7 +420,7 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM){
                             cout << setw(60) << " " << "Vui lòng nhập đúng chức năng !!" << endl;
                     }while(option < 1 || option > 2);
                     if(option == 1){
-                        cout << setw(60) << " " << "Tổng giá trị đơn hàng là: " << fixed << setprecision(0) << newInv.getTotal() << endl ;
+                        cout << setw(60) << " " << "Tổng giá trị đơn hàng là: " << fixed << setprecision(0) << newInv.getTotal() << " VNĐ" << endl ;
 						cout << setw(60) << " " << "Phương thức thanh toán" << endl;
 						int next_option;
 						do{
@@ -444,7 +443,7 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM){
                         newInv.complete();
                         this->add(newInv);
                         system("cls");
-                        cout << setw(70) << " "   << "THANH TOÁN THÀNH CÔNG" << endl;
+                        cout << endl << setw(70) << " "   << "THANH TOÁN THÀNH CÔNG" << endl;
                         this->printInvoice(newInv.getInvID(),cusM);
                         cout << endl << endl;
                         system("pause");

@@ -72,7 +72,21 @@ void CusManage::update(Customer& cus) {
     cout << setw(50) << " " << string(60, '=') << endl;
 	cout << setw(60) << " " << "NHẬP THÔNG TIN KHÁCH MUA HÀNG" << endl;
 	cout << setw(50) << " " << string(60, '=') << endl;
-	cout << string(55, ' ') << "Tên: "; cin.ignore(); getline(cin, name); _customer.setName(name);
+	cin.ignore(); 
+	do{
+		check = true;
+		cout << string(55, ' ') << "Tên: "; getline(cin, name); 
+		for(int i=0; i<name.size(); i++){
+			if((!isalpha(name[i]) && name[i] != ' ') || name[0] == ' '){
+				check = false;
+			}
+		}
+		if(!check){
+			cout << setw(60) << " " << "Nhập sai định dạng !!" << endl;
+			cout << setw(50) << " " << string(60, '-') << endl;
+		}
+	}while(!check);
+	_customer.setName(name);
 	//
 	do{
 		check = true;
@@ -98,6 +112,10 @@ void CusManage::update(Customer& cus) {
     	if(mail.length() < 11 || (mail[0] == '@' || mail[mail.length()-1] == '@')){
 			check = false;
 		}
+		if(mail.length() > 10){
+	    	string s = mail.substr(mail.size()-10,10);
+	    	if(s != "@gmail.com") check = false;
+		}
 		for(int i=0; i<mail.length(); i++){
 			if(mail[i] == ' '){
 				check = false;
@@ -117,7 +135,20 @@ void CusManage::update(Customer& cus) {
 	_customer.setGender(gender);
     cout << setw(50) << " " << string(60, '-') << endl;
 
-    cout << string(55, ' ') << "Địa chỉ: "; getline(cin, adress); _customer.setAddress(adress);
+	do{
+		check = true;
+    	cout << string(55, ' ') << "Địa chỉ: "; getline(cin, adress); 
+		for(int i=0; i<adress.size(); i++){
+			if((!isalpha(adress[i]) && adress[i] != ' ') || adress[0] == ' '){
+				check = false;
+			}
+		}
+		if(!check){
+			cout << setw(60) << " " << "Nhập sai định dạng !!" << endl;
+			cout << setw(50) << " " << string(60, '-') << endl;
+		}
+	}while(!check);
+	_customer.setAddress(adress);
     cout << setw(50) << " " << string(60, '=') << endl;
     cout << setw(60) << " " << "NHẬP THÀNH CÔNG THÔNG TIN KHÁCH HÀNG" << endl;
 	cout << setw(50) << " " << string(60, '=') << endl;
@@ -148,6 +179,6 @@ Node<Customer>* CusManage::find(string& name, string& phone)
 int CusManage::getNewID()
 {
     Node<Customer>* Ncus = this->Cus.getHead();
-    if(Ncus == nullptr) return 10000;
+    if(Ncus == nullptr) return 100;
     return Ncus->data.getID() + 1;
 }

@@ -44,18 +44,18 @@ void ProdManage::writeFile(string file){
 	if (outputFile.is_open()){
         for (Node<Product>* current = this->Prod.getHead(); current != nullptr; current = current->next) {
             Product currentProd = current->data;
-            outputFile << currentProd.getID() << "|";
-            outputFile << currentProd.getName() << "|";
-            outputFile << currentProd.getBrand() << "|";
-            outputFile << currentProd.getPrice() << "|";
-            outputFile << currentProd.getImportPrice() << "|";
-            outputFile << currentProd.getCPU() << "|";
-            outputFile << currentProd.getRAM() << "|";
-            outputFile << currentProd.getScreen() << "|";
-            outputFile << currentProd.getHardDisk() << "|";
-            outputFile << currentProd.getGPU() << "|";
-            outputFile << currentProd.getOS() << "|";
-            outputFile << currentProd.getQuantity() << "|";
+            outputFile << currentProd.getID() << "|"
+            << currentProd.getName() << "|"
+            << currentProd.getBrand() << "|"
+            << currentProd.getPrice() << "|"
+            << currentProd.getImportPrice() << "|"
+            << currentProd.getCPU() << "|"
+            << currentProd.getRAM() << "|"
+            << currentProd.getScreen() << "|"
+            << currentProd.getHardDisk() << "|"
+            << currentProd.getGPU() << "|"
+            << currentProd.getOS() << "|"
+            << currentProd.getQuantity() << "|";
 
             Node<string>* serials = current->data.getSerial().getHead();
             while (serials != nullptr) {
@@ -242,8 +242,6 @@ void ProdManage::display(bool type){  // true: tang dan, false: giam dan
 } 
 void ProdManage::displayOption(int option){
     switch (option){
-    	cout << setw(50) << " " << string(60, '=') << endl << endl;
-    	cout << setw(50) << " " << "DANH SÁCH SẢN PHẨM" << endl << endl;
         case 1: 
             this->display();
             break;
