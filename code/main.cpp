@@ -224,15 +224,15 @@ void MenuManage(){
 				do{
 					do{
 	                    system("cls");
-	                    cout << setw(60) << " " << "+-------------------------------------------+" << endl;
-	                    cout << setw(60) << " " << "|\t\t1. Danh sách sản phẩm           |" << endl;
-					    cout << setw(60) << " " << "|\t\t2. Tìm sản phẩm                 |" << endl;
-					    cout << setw(60) << " " << "|\t\t3. Thêm mẫu sản phẩm mới        |" << endl;
-					    cout << setw(60) << " " << "|\t\t4. Cập nhật sản phẩm            |" << endl;
-					    cout << setw(60) << " " << "|\t\t5. Xóa sản phẩm	                |" << endl;
-					    cout << setw(60) << " " << "|\t\t6. Thêm số lượng laptop         |" << endl;
-					    cout << setw(60) << " " << "|\t\t7. Quay lại  	                |" << endl;
-	                    cout << setw(60) << " " << "+-------------------------------------------+\n" << endl;
+	                    cout << setw(60) << " " << "+-------------------------------------------------+" << endl;
+	                    cout << setw(60) << " " << "|\t\t1. Danh sách sản phẩm                 |" << endl;
+					    cout << setw(60) << " " << "|\t\t2. Xem thông tin chi tiết sản phẩm    |" << endl;
+					    cout << setw(60) << " " << "|\t\t3. Thêm mẫu sản phẩm mới              |" << endl;
+					    cout << setw(60) << " " << "|\t\t4. Cập nhật sản phẩm                  |" << endl;
+					    cout << setw(60) << " " << "|\t\t5. Xóa sản phẩm	                      |" << endl;
+					    cout << setw(60) << " " << "|\t\t6. Thêm số lượng laptop               |" << endl;
+					    cout << setw(60) << " " << "|\t\t7. Quay lại  	                      |" << endl;
+	                    cout << setw(60) << " " << "+-------------------------------------------------+\n" << endl;
 	                    cout << setw(60) << " " << "+------------------------+----+\n";
 				    	cout << setw(60) << " " << "| Mời bạn nhập chức năng |    |\n"; 
 				    	cout << setw(60) << " " << "+------------------------+----+\n";
@@ -261,8 +261,8 @@ void MenuManage(){
 							    	system("cls");
 							        cout << setw(60) << " " << "+-------------------------------------------+" << endl;
 							        cout << setw(60) << " " << "|\t\t1. Xem tất cả sản phẩm          |" << endl;
-									cout << setw(60) << " " << "|\t\t2. Xem theo giá tăng dần        |" << endl;
-									cout << setw(60) << " " << "|\t\t3. Xem theo giá giảm dần        |" << endl;
+									cout << setw(60) << " " << "|\t\t2. Xem theo giá giảm dần        |" << endl;
+									cout << setw(60) << " " << "|\t\t3. Xem theo số lượng tăng dần   |" << endl;
 									cout << setw(60) << " " << "|\t\t4. Quay lại                     |" << endl;
 							        cout << setw(60) << " " << "+-------------------------------------------+\n" << endl;
 							        cout << setw(60) << " " << "+------------------------+----+\n";
@@ -288,6 +288,10 @@ void MenuManage(){
 								if(option != 4){
 									cout << setw(50) << " " << string(60, '=') << endl << endl;
 		    						cout << setw(70) << " " << "DANH SÁCH SẢN PHẨM" << endl << endl;
+		    						cout << setw(50) << " " << string(60, '=') << endl;
+									cout << "  +-------------+-------------------------------------+-------------+---------+-------+--------------------------------------+----------+----------------+----------+\n";
+									cout << "  | Mã sản phẩm |  Tên sản phẩm                       | Thương hiệu | Giá bán |  RAM  |      Màn hình                        |  Ổ cứng  |  Hệ điều hành  | Số lượng |\n"; 
+									cout << "  +-------------+-------------------------------------+-------------+---------+-------+--------------------------------------+----------+----------------+----------+\n";;
 								    productManage.displayOption(option);
 								    system("pause");
 								}else over = false;
@@ -296,25 +300,37 @@ void MenuManage(){
 						}
 	                    case 2:{
 	                    	string id;
-	                    	cout << endl;
-	                    	cout << setw(60) << " " << "+------------------------+-----------+\n";
-					    	cout << setw(60) << " " << "|    Nhập ID sản phẩm    |           |\n"; 
-					    	cout << setw(60) << " " << "+------------------------+-----------+\n" << endl;
-					    	gotoxy(88,15);
-	                        cin >> id; Sleep(500);
-	                        if(productManage.find(id) == nullptr) {
-	                        	cout << endl;
-	                        	textcolor(228);
-	                        	cout << setw(60) << " " << "+------------------------------+\n";
-						    	cout << setw(60) << " " << "|  Không tìm thấy sản phẩm !!  |\n"; 
-						    	cout << setw(60) << " " << "+------------------------------+\n" << endl;
-						    	textcolor(224);
-							}
-	                        else {
-	                        	system("cls");
-	                        	productManage.find(id)->data.show();
-							}
-	                        system("pause");
+	                    	do{
+	                    		system("cls");
+		                    	cout << endl << setw(70) << " " << "DANH SÁCH SẢN PHẨM" << endl;
+								cout << "  +-------------+-------------------------------------+-------------+---------+-------+--------------------------------------+----------+----------------+----------+\n";
+								cout << "  | Mã sản phẩm |  Tên sản phẩm                       | Thương hiệu | Giá bán |  RAM  |      Màn hình                        |  Ổ cứng  |  Hệ điều hành  | Số lượng |\n"; 
+								cout << "  +-------------+-------------------------------------+-------------+---------+-------+--------------------------------------+----------+----------------+----------+\n";;
+								productManage.displayOption(option);
+								cout << endl;
+								cout << setw(30) << " " << "- Nhấn ESC để quay lại\n" << endl;
+								cout << setw(30) << " " << "- Nhấn Enter để nhập\n" << endl;
+								char t = getch();
+								if(t == 27){
+									break;
+								}else if (t == 13){
+									cout << setw(60) << " " << ">> Nhập ID sản phẩm cần xem: ";
+									cin >> id;
+								}
+								if(productManage.find(id) == nullptr) {
+		                        	cout << endl;
+		                        	textcolor(228);
+		                        	cout << setw(60) << " " << "+------------------------------+\n";
+							    	cout << setw(60) << " " << "|  Không tìm thấy sản phẩm !!  |\n"; 
+							    	cout << setw(60) << " " << "+------------------------------+\n" << endl;
+							    	textcolor(224);
+								}
+		                        else {
+		                        	system("cls");
+		                        	productManage.find(id)->data.show();
+								}
+		                        system("pause");
+							}while(1);
 							break;
 						}
 	                    case 3:

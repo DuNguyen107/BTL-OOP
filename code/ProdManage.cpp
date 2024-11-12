@@ -236,25 +236,20 @@ void ProdManage::display(){
 	this->Prod.display();
 }
 void ProdManage::display(bool type){  // true: tang dan, false: giam dan
-	List<Product> sortPrice = this->Prod;
-	sortPrice.mergeSort(type);
-	sortPrice.display();
+	List<Product> sort = this->Prod;
+	sort.mergeSort(type);
+	sort.display();
 } 
 void ProdManage::displayOption(int option){
     switch (option){
         case 1: 
-	        cout << endl << endl;
-		    cout << "                                                                       THÔNG TIN SẢN PHẨM\n";
-			cout << "  +-------------+--------------------------------+-------------+--------------+-------+-------+--------------------------+----------+----------------+------------+\n";
-			cout << "  | Mã sản phẩm |  Tên sản phẩm                  | Thương hiệu |   Giá bán    |  CPU  |  RAM  |        Màn hình          |  Ổ cứng  |  Hệ điều hành  |  Số lượng  |\n"; 
-			cout << "  +-------------+--------------------------------+-------------+--------------+-------+-------+--------------------------+----------+----------------+------------+\n";
             this->display();
             break;
         case 2:
-            this->display(true);
+            this->display(false);
             break;
         case 3:
-            this->display(false);
+            this->display(true);
             break;
         case 4:
         	break;
