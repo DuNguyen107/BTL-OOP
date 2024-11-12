@@ -47,8 +47,8 @@ void ProdManage::writeFile(string file){
             outputFile << currentProd.getID() << "|"
             << currentProd.getName() << "|"
             << currentProd.getBrand() << "|"
-            << currentProd.getPrice() << "|"
-            << currentProd.getImportPrice() << "|"
+            << fixed << setprecision(0) << currentProd.getPrice() << "|"
+            << fixed << setprecision(0) << currentProd.getImportPrice() << "|"
             << currentProd.getCPU() << "|"
             << currentProd.getRAM() << "|"
             << currentProd.getScreen() << "|"
@@ -66,7 +66,7 @@ void ProdManage::writeFile(string file){
         }
         outputFile.close();
     } else {
-        cerr << "Khong the ghi du lieu" << endl;
+        cerr << "Không thể ghi dữ liệu" << endl;
     }
 }
 void ProdManage::add(const Product& prod){
@@ -243,6 +243,11 @@ void ProdManage::display(bool type){  // true: tang dan, false: giam dan
 void ProdManage::displayOption(int option){
     switch (option){
         case 1: 
+	        cout << endl << endl;
+		    cout << "                                                                       THÔNG TIN SẢN PHẨM\n";
+			cout << "  +-------------+--------------------------------+-------------+--------------+-------+-------+--------------------------+----------+----------------+------------+\n";
+			cout << "  | Mã sản phẩm |  Tên sản phẩm                  | Thương hiệu |   Giá bán    |  CPU  |  RAM  |        Màn hình          |  Ổ cứng  |  Hệ điều hành  |  Số lượng  |\n"; 
+			cout << "  +-------------+--------------------------------+-------------+--------------+-------+-------+--------------------------+----------+----------------+------------+\n";
             this->display();
             break;
         case 2:

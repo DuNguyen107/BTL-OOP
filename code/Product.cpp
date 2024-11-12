@@ -16,8 +16,7 @@ Product::Product(){
     //serial duoc tu dong tao bang ham dung;
 }
 Product::Product(string ID, string name, double price, double importPrice, string CPU, int RAM, 
-                string screen, int hardDisk, string GPU, string OS, string brand)
-{ 
+                string screen, int hardDisk, string GPU, string OS, string brand){ 
 	this->productID = ID;
 	this->name = name;
 	this->price = price;
@@ -72,6 +71,8 @@ Product& Product::operator=(const Product& other)
 }
 
 void Product::show(){
+	cout << setw(50) << " " << string(60, '=') << endl << endl;
+	cout << setw(70) << " " << "THÔNG TIN CHI TIẾT" << endl << endl;
 	cout << setw(50) << " " << string(60, '=') << endl;
 	cout << setw(50) << " " << "Thông tin chung:" << endl;
     cout << left

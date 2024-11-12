@@ -52,6 +52,7 @@ void MenuManage(){
     	cout << setw(40) << " " << setw(20) << " " << "+------------------------+----+\n";
     	gotoxy(88,21);
     	cin >> option;
+    	Sleep(500);
     	if(option < 1 || option > 6){
     		cout << endl;
     		textcolor(228);
@@ -82,7 +83,7 @@ void MenuManage(){
 				    	cout << setw(60) << " " << "| Mời bạn nhập chức năng |    |\n"; 
 				    	cout << setw(60) << " " << "+------------------------+----+\n";
 				    	gotoxy(88,9);
-				    	cin >> option;
+				    	cin >> option; Sleep(500);
 	                    if(option < 1 || option > 4){
 				    		cout << endl;
 				    		textcolor(228);
@@ -107,7 +108,7 @@ void MenuManage(){
 						    	cout << setw(60) << " " << "| Nhập năm cần thống kê  |      |\n"; 
 						    	cout << setw(60) << " " << "+------------------------+------+\n" << endl;
 						    	gotoxy(88,2);
-		                        cin >> y;
+		                        cin >> y; Sleep(500);
 		                        if(y < 2020 || y > 2024){
 		                        	cout << endl;
 		                        	textcolor(228);
@@ -144,7 +145,7 @@ void MenuManage(){
 						    	cout << setw(60) << " " << "| Nhập lần lượt tháng, năm  |    |      |\n"; 
 						    	cout << setw(60) << " " << "+---------------------------+----+------+\n" << endl;
 						    	gotoxy(91,2); cin >> m;
-								gotoxy(96,2); cin >> y;
+								gotoxy(96,2); cin >> y; Sleep(500);
 								if(m < 1 || m > 12 || y < 2020 || y > 2024){
 									cout << endl;
 									textcolor(228);
@@ -182,7 +183,7 @@ void MenuManage(){
 						    	cout << setw(60) << " " << "+---------------------------------+----+----+------+\n" << endl;
 						    	gotoxy(97,2); cin >> d;
 								gotoxy(102,2); cin >> m; 
-								gotoxy(107,2); cin >> y;
+								gotoxy(107,2); cin >> y; Sleep(500);
 								if((d < 1 || d > 31 || m < 1 || m > 12 || y < 2020 || y > 2024) || (m==2 && (d==30 || d==31))){
 									cout << endl;
 									textcolor(228);
@@ -236,7 +237,7 @@ void MenuManage(){
 				    	cout << setw(60) << " " << "| Mời bạn nhập chức năng |    |\n"; 
 				    	cout << setw(60) << " " << "+------------------------+----+\n";
 				    	gotoxy(88,12);
-				    	cin >> option;
+				    	cin >> option; Sleep(500);
 	                    if(option < 1 || option > 7){
 				    		cout << endl;
 				    		textcolor(228);
@@ -268,7 +269,7 @@ void MenuManage(){
 									cout << setw(60) << " " << "| Mời bạn nhập chức năng |    |\n"; 
 									cout << setw(60) << " " << "+------------------------+----+\n";
 									gotoxy(88,9);
-									cin >> option;
+									cin >> option; Sleep(500);
 							        if(option < 1 || option > 4){
 										cout << endl;
 										textcolor(228);
@@ -288,6 +289,7 @@ void MenuManage(){
 									cout << setw(50) << " " << string(60, '=') << endl << endl;
 		    						cout << setw(70) << " " << "DANH SÁCH SẢN PHẨM" << endl << endl;
 								    productManage.displayOption(option);
+								    system("pause");
 								}else over = false;
 							}while(over);
 							break;
@@ -299,7 +301,7 @@ void MenuManage(){
 					    	cout << setw(60) << " " << "|    Nhập ID sản phẩm    |           |\n"; 
 					    	cout << setw(60) << " " << "+------------------------+-----------+\n" << endl;
 					    	gotoxy(88,15);
-	                        cin >> id;
+	                        cin >> id; Sleep(500);
 	                        if(productManage.find(id) == nullptr) {
 	                        	cout << endl;
 	                        	textcolor(228);
@@ -327,7 +329,7 @@ void MenuManage(){
 					    	cout << setw(60) << " " << "| Nhập ID sản phẩm cần cập nhật |           |\n"; 
 					    	cout << setw(60) << " " << "+-------------------------------+-----------+\n" << endl;
 					    	gotoxy(95,15);
-	                        cin >> id;
+	                        cin >> id; Sleep(500);
 	                        if(productManage.find(id) == nullptr) {
 	                        	cout << endl;
 	                        	textcolor(228);
@@ -356,7 +358,7 @@ void MenuManage(){
 					    	cout << setw(60) << " " << "|    Nhập ID sản phẩm cần xóa   |           |\n"; 
 					    	cout << setw(60) << " " << "+-------------------------------+-----------+\n" << endl;
 					    	gotoxy(95,15);
-	                        cin >> id;
+	                        cin >> id; Sleep(500);
 	                        if(productManage.find(id) == nullptr) {
 	                        	cout << endl;
 	                        	textcolor(228);
@@ -385,7 +387,7 @@ void MenuManage(){
 					    	cout << setw(60) << " " << "|    Nhập mã sản phẩm cần thêm  |           |\n"; 
 					    	cout << setw(60) << " " << "+-------------------------------+-----------+\n" << endl;
 	                        gotoxy(95,15);
-	                        cin >> id;
+	                        cin >> id; Sleep(500);
 	                        Node<Product>* prod = productManage.find(id);
 	                        if (prod == nullptr){
 	                        	cout << endl;
@@ -436,18 +438,23 @@ void MenuManage(){
 				int option;
 				bool over = true;
 				do{
+					system("cls");
+		            cout << endl;
+		            cout << "                                                                       THÔNG TIN KHÁCH HÀNG\n";
+				    cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+\n";
+				    cout << "  |  Mã khách hàng  |  Họ và tên                   |  Số điện thoại       |   Giới tính    |  Email                       |  Địa chỉ                        |\n"; 
+					cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+";
+		            cout << endl;
+					customerManage.display(); 
 					do{
-	                    system("cls");
-	                    cout << setw(60) << " " << "+-------------------------------------------+" << endl;
-	                    cout << setw(60) << " " << "|\t\t1. Danh sách khách hàng         |" << endl;
-					    cout << setw(60) << " " << "|\t\t2. Tìm khách hàng               |" << endl;
+						cout << endl;
+						cout << setw(60) << " " << "+-------------------------------------------+" << endl;
+	                    cout << setw(60) << " " << "|\t\t1. Cập nhật khách hàng          |" << endl;
+					    cout << setw(60) << " " << "|\t\t2. Tìm lịch sử mua hàng         |" << endl;
 					    cout << setw(60) << " " << "|\t\t3. Quay lại                     |" << endl;
 					    cout << setw(60) << " " << "+-------------------------------------------+\n" << endl;
-					    cout << setw(60) << " " << "+------------------------+----+\n";
-				    	cout << setw(60) << " " << "| Mời bạn nhập chức năng |    |\n"; 
-				    	cout << setw(60) << " " << "+------------------------+----+\n";
-				    	gotoxy(88,8);
-				    	cin >> option;
+				    	cout << setw(60) << " " << ">> Mời bạn nhập chức năng >> "; 
+				    	cin >> option; Sleep(500);
 	                    if(option < 1 || option > 3){
 				    		cout << endl;
 				    		textcolor(228);
@@ -463,122 +470,37 @@ void MenuManage(){
 					    	getch();
 						}
 	                }while(option < 1 || option > 3);
-	                switch (option){
-	                    case 1:
-	                    	system("cls");
-	                    	cout << endl;
-	                    	cout << "                                                                       THÔNG TIN KHÁCH HÀNG\n";
-			    			cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+\n";
-			    			cout << "  |  Mã khách hàng  |  Họ và tên                   |  Số điện thoại       |   Giới tính    |  Email                       |  Địa chỉ                        |\n"; 
-							cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+";
-	                        cout << endl;
-							customerManage.display(); 
-	                        system("pause");
-	                        break;
-	                    case 2:{
-	                    	int option;
-	                        do {
-	                        	bool over = true;
-	                        	do{
-	                        		system("cls");
-	                        		cout << setw(60) << " " << "+-------------------------------------------+" << endl;
-				                    cout << setw(60) << " " << "|\t  1. Tìm theo mã khách hàng             |" << endl;
-								    cout << setw(60) << " " << "|\t  2. Tìm theo tên và số điện thoại      |" << endl;
-								    cout << setw(60) << " " << "|\t  3. Quay lại                           |" << endl;
-								    cout << setw(60) << " " << "+-------------------------------------------+\n" << endl;
-								    cout << setw(60) << " " << "+------------------------+----+\n";
-							    	cout << setw(60) << " " << "| Mời bạn nhập chức năng |    |\n"; 
-							    	cout << setw(60) << " " << "+------------------------+----+\n";
-							    	gotoxy(88,8);
-							    	cin >> option;
-							    	if (option == 1) {
-			                            system("cls");
-			                            int id;
-			                            cout << setw(60) << " " << "+------------------------+--------+\n";
-								    	cout << setw(60) << " " << "|   Nhập mã khách hàng   |        |\n"; 
-								    	cout << setw(60) << " " << "+------------------------+--------+\n";
-								    	gotoxy(88,2);
-								    	cin >> id;
-			                            Node<Customer>* fcus = customerManage.find(id);
-			                            if(fcus!= nullptr){
-			                                fcus->data.Show();
-			                                textcolor(229);
-			                                cout << endl << "  LỊCH SỦ MUA HÀNG: " << endl << endl;
-			                                textcolor(224);
-			                                if(invoiceManage.find(fcus->data) == nullptr){
-									    		textcolor(228);
-									    		cout << setw(60) << " " << "+---------------------------+\n";
-										    	cout << setw(60) << " " << "| Không có lịch sử mua hàng |\n"; 
-										    	cout << setw(60) << " " << "+---------------------------+\n";
-										    	textcolor(224);
-											}
-	//		                                else
-	//											invoiceManage.find(fcus->data)->display();
-			                            }
-			                            else{
-			                            	cout << endl;
-			                            	textcolor(228);
-									    	cout << setw(60) << " " << "+------------------------------------+\n";
-									    	cout << setw(60) << " " << "|  Không tìm thấy mã khách hàng này  |\n";
-									    	cout << setw(60) << " " << "+------------------------------------+\n";
-			                            	textcolor(224);
-			                            }
-			                            system("pause");
-			                        }
-			                        else if (option == 2){
-			                            system("cls");
-			                            string name, phone;
-			                            cin.ignore();
-			                            cout << setw(60) << " " << "+--------------------------+--------------------------------+\n";
-								    	cout << setw(60) << " " << "|    Nhập tên khách hàng   |                                |\n"; 
-								    	cout << setw(60) << " " << "+--------------------------+--------------------------------+\n";
-								    	gotoxy(90,2);
-										getline(cin, name);
-										cout << endl;
-										cout << setw(60) << " " << "+--------------------------+-------------+\n";
-								    	cout << setw(60) << " " << "|    Nhập số điện thoại    |             |\n"; 
-								    	cout << setw(60) << " " << "+--------------------------+-------------+\n";
-								    	gotoxy(90,5);
-										cin >> phone;
-			                            Node<Customer>* fcus = customerManage.find(name, phone);
-			                            if(fcus!= nullptr){
-			                            	system("cls");
-			                                fcus->data.Show();
-			                                cout << endl << "  LỊCH SỬ MUA HÀNG: " << endl ;
-			                                if(invoiceManage.find(fcus->data) == nullptr){
-			                                	textcolor(228);
-									    		cout << setw(60) << " " << "+---------------------------+\n";
-										    	cout << setw(60) << " " << "| Không có lịch sử mua hàng |\n"; 
-										    	cout << setw(60) << " " << "+---------------------------+\n";
-										    	textcolor(224);
-											}
-			                                else
-												invoiceManage.find(fcus->data)->display();
-			                            }
-			                            else{
-			                                cout << endl << endl;
-			                                textcolor(228);
-			                            	cout << setw(60) << " " << "+---------------------------------+\n";
-									    	cout << setw(60) << " " << "|  Không tìm thấy khách hàng này! |\n"; 
-									    	cout << setw(60) << " " << "+---------------------------------+\n";
-									    	textcolor(224);
-			                            }
-			                            system("pause");
-			                        }else if(option == 3){
-			                        	over = false;
-			                        	break;
-									}
-		                            if(option < 1 || option > 3){
-							    		cout << endl;
-							    		textcolor(228);
-							    		cout << setw(60) << " " << "+----------------------------------------------------------+\n";
-								    	cout << setw(60) << " " << "| Vui lòng nhập lại chức năng !! Chức năng chỉ từ 1 đến 3. |\n"; 
-								    	cout << setw(60) << " " << "+----------------------------------------------------------+\n";
-								    	textcolor(224);
-								    	system("pause");
-									}
-								}while(over);
-	                        } while (option < 1 || option > 3);
+	                switch(option){
+	                	case 1:
+	                	case 2:{
+	                		int id;
+			                cout << endl;
+							cout << setw(60) << " " << ">> Nhập mã khách hàng: "; 
+							cin >> id; Sleep(500);
+							Node<Customer>* fcus = customerManage.find(id);
+			                if(fcus != nullptr){
+			                	system("cls");
+			                    fcus->data.Show();
+			                    cout << endl << "  LỊCH SỦ MUA HÀNG: " << endl << endl;
+			                    if(invoiceManage.find(fcus->data) == nullptr){
+									textcolor(228);
+									cout << setw(60) << " " << "+---------------------------+\n";
+									cout << setw(60) << " " << "| Không có lịch sử mua hàng |\n"; 
+									cout << setw(60) << " " << "+---------------------------+\n";
+									textcolor(224);
+								}
+			                    else
+									invoiceManage.find(fcus->data)->display();
+			                }
+			                else{
+			                    cout << endl;
+			                    textcolor(228);
+								cout << setw(60) << " " << "+------------------------------------+\n";
+								cout << setw(60) << " " << "|  Không tìm thấy mã khách hàng này  |\n";
+								cout << setw(60) << " " << "+------------------------------------+\n";
+			                    textcolor(224);
+			                }
+			                system("pause");
 							break;
 						}
 	                	case 3:
@@ -586,8 +508,167 @@ void MenuManage(){
 	                		break;
 					}
 				}while(over);
+				
 				break;
 			}
+//			case 3:{
+//				int option;
+//				bool over = true;
+//				do{
+//					do{
+//	                    system("cls");
+//	                    cout << setw(60) << " " << "+-------------------------------------------+" << endl;
+//	                    cout << setw(60) << " " << "|\t\t1. Danh sách khách hàng         |" << endl;
+//					    cout << setw(60) << " " << "|\t\t2. Tìm lịch sử mua hàng         |" << endl;
+//					    cout << setw(60) << " " << "|\t\t3. Quay lại                     |" << endl;
+//					    cout << setw(60) << " " << "+-------------------------------------------+\n" << endl;
+//					    cout << setw(60) << " " << "+------------------------+----+\n";
+//				    	cout << setw(60) << " " << "| Mời bạn nhập chức năng |    |\n"; 
+//				    	cout << setw(60) << " " << "+------------------------+----+\n";
+//				    	gotoxy(88,8);
+//				    	cin >> option;
+//	                    if(option < 1 || option > 3){
+//				    		cout << endl;
+//				    		textcolor(228);
+//				    		cout << setw(60) << " " << "+----------------------------------------------------------+\n";
+//					    	cout << setw(60) << " " << "| Vui lòng nhập lại chức năng !! Chức năng chỉ từ 1 đến 3. |\n"; 
+//					    	cout << setw(60) << " " << "+----------------------------------------------------------+\n";
+//					    	textcolor(224);
+//					    	
+//					    	cout << setw(60) << " " << "+---------------------------------+\n";
+//					    	cout << setw(60) << " " << "| Nhấn phím bất kỳ để quay lại !! |\n"; 
+//					    	cout << setw(60) << " " << "+---------------------------------+\n";
+//					    	gotoxy(97,14);
+//					    	getch();
+//						}
+//	                }while(option < 1 || option > 3);
+//	                switch (option){
+//	                    case 1:
+//	                    	system("cls");
+//	                    	cout << endl;
+//	                    	cout << "                                                                       THÔNG TIN KHÁCH HÀNG\n";
+//			    			cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+\n";
+//			    			cout << "  |  Mã khách hàng  |  Họ và tên                   |  Số điện thoại       |   Giới tính    |  Email                       |  Địa chỉ                        |\n"; 
+//							cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+";
+//	                        cout << endl;
+//							customerManage.display(); 
+//	                        system("pause");
+//	                        break;
+//	                    case 2:{
+//	                    	int option;
+//	                        do {
+//	                        	bool over = true;
+//	                        	do{
+//	                        		system("cls");
+//	                        		cout << setw(60) << " " << "+-------------------------------------------+" << endl;
+//				                    cout << setw(60) << " " << "|\t  1. Tìm theo mã khách hàng             |" << endl;
+//								    cout << setw(60) << " " << "|\t  2. Tìm theo tên và số điện thoại      |" << endl;
+//								    cout << setw(60) << " " << "|\t  3. Quay lại                           |" << endl;
+//								    cout << setw(60) << " " << "+-------------------------------------------+\n" << endl;
+//								    cout << setw(60) << " " << "+------------------------+----+\n";
+//							    	cout << setw(60) << " " << "| Mời bạn nhập chức năng |    |\n"; 
+//							    	cout << setw(60) << " " << "+------------------------+----+\n";
+//							    	gotoxy(88,8);
+//							    	cin >> option;
+//							    	if (option == 1) {
+//			                            system("cls");
+//			                            int id;
+//			                            cout << endl;
+////			                            customerManage.display(); 
+//			                            cout << setw(60) << " " << "+------------------------+--------+\n";
+//								    	cout << setw(60) << " " << "|   Nhập mã khách hàng   |        |\n"; 
+//								    	cout << setw(60) << " " << "+------------------------+--------+\n";
+//								    	gotoxy(88,2);
+//								    	cin >> id;
+//			                            Node<Customer>* fcus = customerManage.find(id);
+//			                            if(fcus!= nullptr){
+//			                                fcus->data.Show();
+//			                                cout << endl << "  LỊCH SỦ MUA HÀNG: " << endl << endl;
+//			                                if(invoiceManage.find(fcus->data) == nullptr){
+//									    		textcolor(228);
+//									    		cout << setw(60) << " " << "+---------------------------+\n";
+//										    	cout << setw(60) << " " << "| Không có lịch sử mua hàng |\n"; 
+//										    	cout << setw(60) << " " << "+---------------------------+\n";
+//										    	textcolor(224);
+//											}
+//	//		                                else
+//	//											invoiceManage.find(fcus->data)->display();
+//			                            }
+//			                            else{
+//			                            	cout << endl;
+//			                            	textcolor(228);
+//									    	cout << setw(60) << " " << "+------------------------------------+\n";
+//									    	cout << setw(60) << " " << "|  Không tìm thấy mã khách hàng này  |\n";
+//									    	cout << setw(60) << " " << "+------------------------------------+\n";
+//			                            	textcolor(224);
+//			                            }
+//			                            system("pause");
+//			                        }
+//			                        else if (option == 2){
+//			                            system("cls");
+//			                            cout << endl;
+////			                            customerManage.display(); 
+//			                            string name, phone;
+//			                            cin.ignore();
+//			                            cout << setw(60) << " " << "+--------------------------+--------------------------------+\n";
+//								    	cout << setw(60) << " " << "|    Nhập tên khách hàng   |                                |\n"; 
+//								    	cout << setw(60) << " " << "+--------------------------+--------------------------------+\n";
+//								    	gotoxy(90,2);
+//										getline(cin, name);
+//										cout << endl;
+//										cout << setw(60) << " " << "+--------------------------+-------------+\n";
+//								    	cout << setw(60) << " " << "|    Nhập số điện thoại    |             |\n"; 
+//								    	cout << setw(60) << " " << "+--------------------------+-------------+\n";
+//								    	gotoxy(90,5);
+//										cin >> phone;
+//			                            Node<Customer>* fcus = customerManage.find(name, phone);
+//			                            if(fcus!= nullptr){
+//			                            	system("cls");
+//			                                fcus->data.Show();
+//			                                cout << endl << "  LỊCH SỬ MUA HÀNG: " << endl ;
+//			                                if(invoiceManage.find(fcus->data) == nullptr){
+//			                                	textcolor(228);
+//									    		cout << setw(60) << " " << "+---------------------------+\n";
+//										    	cout << setw(60) << " " << "| Không có lịch sử mua hàng |\n"; 
+//										    	cout << setw(60) << " " << "+---------------------------+\n";
+//										    	textcolor(224);
+//											}
+//			                                else
+//												invoiceManage.find(fcus->data)->display();
+//			                            }
+//			                            else{
+//			                                cout << endl << endl;
+//			                                textcolor(228);
+//			                            	cout << setw(60) << " " << "+---------------------------------+\n";
+//									    	cout << setw(60) << " " << "|  Không tìm thấy khách hàng này! |\n"; 
+//									    	cout << setw(60) << " " << "+---------------------------------+\n";
+//									    	textcolor(224);
+//			                            }
+//			                            system("pause");
+//			                        }else if(option == 3){
+//			                        	over = false;
+//			                        	break;
+//									}
+//		                            if(option < 1 || option > 3){
+//							    		cout << endl;
+//							    		textcolor(228);
+//							    		cout << setw(60) << " " << "+----------------------------------------------------------+\n";
+//								    	cout << setw(60) << " " << "| Vui lòng nhập lại chức năng !! Chức năng chỉ từ 1 đến 3. |\n"; 
+//								    	cout << setw(60) << " " << "+----------------------------------------------------------+\n";
+//								    	textcolor(224);
+//								    	system("pause");
+//									}
+//								}while(over);
+//	                        } while (option < 1 || option > 3);
+//							break;
+//						}
+//	                	case 3:
+//	                		over = false;
+//	                		break;
+//					}
+//				}while(over);
+//				break;
+//			}
 			case 4:{
 				int option;
                 do{
@@ -600,7 +681,7 @@ void MenuManage(){
 			    	cout << setw(60) << " " << "| Mời bạn nhập chức năng |    |\n"; 
 			    	cout << setw(60) << " " << "+------------------------+----+\n";
 			    	gotoxy(88,7);
-			    	cin >> option;
+			    	cin >> option; Sleep(500);
                     if(option < 1 || option > 3){
 			    		cout << endl;
 			    		textcolor(228);
@@ -636,7 +717,7 @@ void MenuManage(){
 				    	cout << setw(60) << " " << "| Mời bạn nhập chức năng |     |\n"; 
 				    	cout << setw(60) << " " << "+------------------------+-----+\n";
 				    	gotoxy(88,10);
-				    	cin >> option;
+				    	cin >> option; Sleep(500);
 	                    if(option < 1 || option > 5){
 				    		cout << endl;
 				    		textcolor(228);
@@ -659,7 +740,7 @@ void MenuManage(){
 					    	cout << setw(60) << " " << "|    Nhập mã hóa đơn     |         |\n"; 
 					    	cout << setw(60) << " " << "+------------------------+---------+\n";
 					    	gotoxy(88,13);
-					    	cin >> id; cout << endl;
+					    	cin >> id; cout << endl; Sleep(500);
 	                        invoiceManage.findtoShow(id);
 	                        system("pause");
 							break;
@@ -671,7 +752,7 @@ void MenuManage(){
 					    	cout << setw(60) << " " << "|    Nhập năm cần tìm kiếm    |       |\n"; 
 					    	cout << setw(60) << " " << "+-----------------------------+-------+\n";
 					    	gotoxy(93,13);
-					    	cin >> y; cout << endl;
+					    	cin >> y; cout << endl; Sleep(500);
 					    	if(invoiceManage.find(y) == nullptr){
 						    	textcolor(228);
 					    		cout << setw(60) << " " << "+---------------------------------------------------+\n";
@@ -690,7 +771,7 @@ void MenuManage(){
 					    	cout << setw(60) << " " << "| Nhập lần lượt tháng, năm  |    |      |\n"; 
 					    	cout << setw(60) << " " << "+---------------------------+----+------+\n" << endl;
 					    	gotoxy(91,13); cin >> m;
-							gotoxy(96,13); cin >> y; cout << endl;
+							gotoxy(96,13); cin >> y; cout << endl; Sleep(500);
 							if(invoiceManage.find(m, y) == nullptr){
 						    	textcolor(228);
 					    		cout << setw(60) << " " << "+---------------------------------------------------+\n";
@@ -710,7 +791,7 @@ void MenuManage(){
 					    	cout << setw(60) << " " << "+---------------------------------+----+----+------+\n" << endl;
 					    	gotoxy(97,13); cin >> d;
 							gotoxy(102,13); cin >> m; 
-							gotoxy(107,13); cin >> y; cout << endl;
+							gotoxy(107,13); cin >> y; cout << endl; Sleep(500);
 							if(invoiceManage.find(d,m,y) == nullptr){
 						    	textcolor(228);
 					    		cout << setw(60) << " " << "+---------------------------------------------------+\n";
@@ -740,7 +821,7 @@ void MenuManage(){
 		    	cout << setw(60) << " " << "+-----------------------+----+\n";
 		    	gotoxy(87,27);
 		    	do{
-		    		cin >> Close;
+		    		cin >> Close; Sleep(500);
 		    		if(Close != 1 && Close != 2){
 			    		textcolor(228);
 			    		cout << endl << endl;
@@ -756,6 +837,7 @@ void MenuManage(){
 			    	cout << setw(60) << " " << "+--------------------------------------------+\n";
 			    	textcolor(224);
 		    		over = true;
+//		    		system("pause");
 				}
 				break;
 			}

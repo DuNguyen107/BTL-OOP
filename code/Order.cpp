@@ -1,12 +1,17 @@
 #include"Order.h"
 order::order(){
 	this->total = 0;
+	this->quantity = 0;
+    this->productID = "0";
+    this->name = "";
+    this->price = 0;  
 }
 order::order(const string& ID, const string& name, double price, double total){
 	this->productID = ID;
 	this->name = name;
 	this->price = price;
 	this->total = total;
+    this->quantity = 0;
 }
 order::order(const order& p){
 	*this = p;

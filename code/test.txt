@@ -20,6 +20,5 @@
 113|Le Quoc Bao|0981234321|quocbao@gmail.com|Nam|Hue|
 114|Tran Thi Cam Tu|0978234556|camtutran@gmail.com|Nu|Quang Tri|
 115|Nguyen Van Khoa|0923344556|khoanguyen@gmail.com|Nam|Da Lat|
-116|Pham Thi Thanh Ha|0945656565|thanhha@gmail.com|Nu|Phu Yen|
 
 -

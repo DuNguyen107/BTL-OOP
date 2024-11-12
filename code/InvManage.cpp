@@ -93,9 +93,9 @@ Node<Invoice>* InvManage::findID(int& ID){ // mỗi ID là duy nhất
 }
 void InvManage::statistic(List<Invoice>* list){ // thống kê dựa trên danh sách hóa đơn
 	if(list == nullptr) return;
-	int revenue = 0; //doanh thu
-    int profit = 0; //loi nhuan
-    int sales = 0; //so luong san pham ban duoc 
+	double revenue = 0; //doanh thu
+    double profit = 0; //loi nhuan
+    double sales = 0; //so luong san pham ban duoc 
 	Node<Invoice>* tempNode;
     tempNode = list->getHead();
     while (tempNode != nullptr){
@@ -105,11 +105,11 @@ void InvManage::statistic(List<Invoice>* list){ // thống kê dựa trên danh 
         tempNode = tempNode->next;
     }
 	cout << setw(50) << " " << string(60, '=') << endl;
-    cout << left << setw(60) << " " << "Doanh thu: " << revenue << " VND" <<endl;
+    cout << left << setw(60) << " " << "Doanh thu: " << fixed << setprecision(0) << revenue << " VND" <<endl;
     cout << setw(50) << " " << string(60, '=') << endl;
-    cout << left << setw(60) << " " << "Lợi nhuận: " << profit << " VND" << endl;
+    cout << left << setw(60) << " " << "Lợi nhuận: " << fixed << setprecision(0) << profit << " VND" << endl;
     cout << setw(50) << " " << string(60, '=') << endl;
-    cout << left << setw(60) << " " << "Sản phẩm bán được: " << sales << endl;
+    cout << left << setw(60) << " " << "Sản phẩm bán được: " << fixed << setprecision(0) << sales << endl;
     cout << setw(50) << " " << string(60, '=') << endl;
     delete tempNode;
 }
@@ -326,15 +326,15 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM){
 					}
                 }while (newQuantity > Nprod->data.getQuantity() || newQuantity <= 0);
                 for (int i = 1; i <= newQuantity ; i++){
-                    cout << endl;
-					cout << setw(60) << " " << "Nhập serial sản phẩm thứ " << i << ": ";
-                    //kiem tra serial co ton tai trong database khong?
                     do{
+	                    cout << endl;
+						cout << setw(60) << " " << "Nhập serial sản phẩm thứ " << i << ": ";
+                    //kiem tra serial co ton tai trong database khong?
                         cin >> newSerial;
                         isSerial = Nprod->data.isSerial(newSerial);
                         if(!isSerial){
+                        	cout << endl;
                         	cout << setw(60) << " "  << "Không tồn tại serial này !! " << endl;
-							cout << setw(60) << " " << "Nhập lại serial sản phẩm thứ " << i << ": ";
 						}
                     }while(!isSerial);
                     //dua serial tu san pham ra gio hang
@@ -565,7 +565,7 @@ void InvManage::writeFile(string file, string detail_file){
             outputInvoice << currentInv.getInvID() << "|";
             outputInvoice << currentInv.getCusID() << "|";
             outputInvoice << currentInv.getDate() << "|";
-            outputInvoice << currentInv.getTotal() << "|";
+            outputInvoice << fixed << setprecision(0) << currentInv.getTotal() << "|";
             outputInvoice << currentInv.getPayment() << "|";
             outputInvoice << endl;
             for (Node<order>* Norder = currentInv.getOrder().getHead(); Norder != nullptr; Norder = Norder->next)
@@ -574,8 +574,8 @@ void InvManage::writeFile(string file, string detail_file){
                outputOrderDetail << currentInv.getInvID() << "|";
                outputOrderDetail << currentOrder.getID() << "|";
                outputOrderDetail << currentOrder.getName() << "|";
-               outputOrderDetail << currentOrder.getPrice() << "|";
-               outputOrderDetail << currentOrder.getTotal() << "|";
+               outputOrderDetail << fixed << setprecision(0) << currentOrder.getPrice() << "|";
+               outputOrderDetail << fixed << setprecision(0) << currentOrder.getTotal() << "|";
                outputOrderDetail << currentOrder.getQuantity() << "|";
                Node<string>* serial = currentOrder.getSerial().getHead();
                while(serial != nullptr)
