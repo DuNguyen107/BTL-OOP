@@ -18,7 +18,7 @@ void InvManage::update(Invoice& inv){
 void InvManage::display(){
 	this->Inv.display();
 }
-List<Invoice>* InvManage::find(int& day, int month, int year){
+List<Invoice>* InvManage::find(int& day, int& month, int& year){
 	List<Invoice>* tempList = new List<Invoice>();
     Node<Invoice>* tempNode;
     tempNode = this->Inv.getHead();
@@ -263,7 +263,7 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM){
 	        cout << setw(60) << " " << "|\t\t1. Thêm sản phẩm           	 |" << endl;
 			cout << setw(60) << " " << "|\t\t2. Xóa sản phẩm            	 |" << endl;
 			cout << setw(60) << " " << "|\t\t3. Thanh toán, xuất hóa đơn	 |" << endl;
-			cout << setw(60) << " " << "|\t\t4. Hủy                     	 |" << endl;
+			cout << setw(60) << " " << "|\t\t4. Quay lại                   	 |" << endl;
 	        cout << setw(60) << " " << "+--------------------------------------------+\n" << endl;
 			cout << setw(60) << " " << ">> Nhập chức năng cho giỏ hảng << ";
 			cin >> option;	
@@ -458,27 +458,59 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM){
             }
     } while(!over);
 }
-void InvManage::sell(CusManage& cusM, ProdManage& prodM){
+void InvManage::sell(CusManage& cusM, ProdManage& prodM,int& option){
 	Invoice newInvoice;
     int cusID;
     int id = this->getNewID();
     newInvoice.setInvID(id);
     //lay thong tin khach hang
     Customer newcus;
-
-    newcus = Customer(); //lam moi gia tri cua newcus
-    newcus.setID(cusM.getNewID());
-    cusM.add(newcus);
-    cusID = newcus.getID();
-    cusM.update(newcus);
-    newcus = cusM.find(cusID)->data;
-    if(newcus.getName() == "" || newcus.getPhone() == ""){
-        cusM.remove(newcus);
-    }
-    newInvoice.setCusID(cusID);
-    newInvoice.updateDate(); //cap nhat thoi gian cho hoa don
-        //Tuong tac voi gio hang
-    this->updateCart(newInvoice,prodM,cusM);
+	char t;
+//	CusManage& customerManage = myDatabase.getCusManage();
+	if(option == 1){
+		newcus = Customer(); //lam moi gia tri cua newcus
+	    newcus.setID(cusM.getNewID());
+	    cusM.add(newcus);
+	    cusID = newcus.getID();
+	    cusM.update(newcus);
+	}else{
+		do{
+			system("cls");
+			cout << endl;
+			cout << "                                                                       THÔNG TIN KHÁCH HÀNG\n";
+			cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+\n";
+			cout << "  |  Mã khách hàng  |  Họ và tên                   |  Số điện thoại       |   Giới tính    |  Email                       |  Địa chỉ                        |\n"; 
+			cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+\n";
+			cusM.display(); 
+			cout << endl;
+			cout << setw(30) << " " << "- Nhấn ESC để quay lại\n" << endl;
+			cout << setw(30) << " " << "- Nhấn Enter để nhập\n" << endl;
+			t = getch();
+			if(t == 27){
+				option = 0;
+				break;
+			}else if (t == 13){
+				cout << setw(60) << " " << ">> Nhập mã khách hàng: ";
+				cin >> cusID;
+				if(cin.fail()){
+					cin.clear(); 
+        			cin.ignore(1000, '\n');
+				}
+			}
+			if(cusM.find(cusID) == nullptr){
+                cout << endl << setw(60) << " " << "Không có thông tin khách hàng này !! " << endl;
+                system("pause");
+            }else{
+            	break;
+			}
+		}while(1);
+	}
+	if(t != 27){
+		newInvoice.setCusID(cusID);
+		newInvoice.updateDate(); //cap nhat thoi gian cho hoa don
+		    //Tuong tac voi gio hang
+		this->updateCart(newInvoice,prodM,cusM);
+	}
 }
 void InvManage::readFile(string file, string detail_file){
 	ifstream inputFile(file);

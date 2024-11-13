@@ -241,6 +241,12 @@ void ProdManage::display(bool type){  // true: tang dan, false: giam dan
 	sort.display();
 } 
 void ProdManage::displayOption(int option){
+	cout << setw(50) << " " << string(60, '=') << endl << endl;
+	cout << setw(70) << " " << "DANH SÁCH SẢN PHẨM" << endl << endl;
+	cout << setw(50) << " " << string(60, '=') << endl;
+	cout << "  +-------------+-------------------------------------+-------------+---------+-------+--------------------------------------+----------+----------------+----------+\n";
+	cout << "  | Mã sản phẩm |  Tên sản phẩm                       | Thương hiệu | Giá bán |  RAM  |      Màn hình                        |  Ổ cứng  |  Hệ điều hành  | Số lượng |\n"; 
+	cout << "  +-------------+-------------------------------------+-------------+---------+-------+--------------------------------------+----------+----------------+----------+\n";;
     switch (option){
         case 1: 
             this->display();

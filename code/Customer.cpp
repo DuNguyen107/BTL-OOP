@@ -5,7 +5,7 @@ Customer::Customer(string name, string phone, string email, string address, int 
 	this->email = email;
 	this->address = address;
 	this->id = id;
-	this->gender = gender;
+	this->gender = gender;     
 }
 Customer::~Customer(){}
 void Customer::Show(){

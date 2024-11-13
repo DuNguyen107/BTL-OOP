@@ -16,7 +16,7 @@ class InvManage: public Manage<Invoice>{
 		void remove(Invoice& inv);
 		void update(Invoice& inv);
 		void display();
-		List<Invoice>* find(int& day, int month, int year);
+		List<Invoice>* find(int& day, int& month, int& year);
 		List<Invoice>* find(int& month, int& year);
 		List<Invoice>* find(int& year);
 		List<Invoice>* find(Customer& cus); // tim theo khach hang
@@ -27,7 +27,7 @@ class InvManage: public Manage<Invoice>{
 		void findtoShow(int& ID); // tìm ID va in thông tin của ID
 		int getNewID();
 		void updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM);
-		void sell(CusManage& cusM, ProdManage& prodM);
+		void sell(CusManage& cusM, ProdManage& prodM, int& option);
 		void readFile(string file, string detail_file);
 		void writeFile(string file, string detail_file);
 };

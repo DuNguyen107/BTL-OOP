@@ -14,6 +14,7 @@ class CusManage: public Manage<Customer>{
 		void add(const Customer& cus);
 		void remove(Customer& cus);
 		void update(Customer& cus);
+		void edit(Customer& cus);
 		void display();
 		Node<Customer>* find(int& ID);
 		Node<Customer>* find(string& name, string& phone);
