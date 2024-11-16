@@ -251,6 +251,7 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM){
     int option;
     bool over = false;
     List<order> cart = newInv.getOrder();
+    ProdManage temp;
     do 
     {
         do{
@@ -289,18 +290,19 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM){
         string newSerial;
         switch (option){
             case 1:
-                cout << setw(60) << " " << "Nhập mã sản phẩm cần bán: ";
+            	prodM.displayOption(1);
+                cout << endl << setw(60) << " " << ">> Nhập mã sản phẩm cần bán: ";
                 cin >> prodID;
                 Nprod = prodM.find(prodID);
                 if(Nprod == nullptr){
                     cout << endl;
-					cout << setw(60) << " " << "Không tìm thấy sản phẩm. Vui lòng nhập đúng mã sản phẩm !! " << endl;
+					cout << setw(60) << " " << "!! Không tìm thấy sản phẩm !! " << endl;
                     system("pause");
                     break;
                 }
                 if(Nprod->data.getQuantity() < 1){
                     cout << endl;
-					cout << setw(60) << " " << "Sản phẩm này đã hết hàng. Vui lòng chọn sản phẩm khác !! "<< endl;
+					cout << setw(60) << " " << "!! Sản phẩm này đã hết hàng !! "<< endl;
                     system("pause");
                     break;
                 } 
@@ -355,46 +357,46 @@ void InvManage::updateCart(Invoice& newInv, ProdManage& prodM, CusManage& cusM){
                 system("pause");
                 break;
             case 2:
-                cout << setw(60) << " " << "Nhập mã sản phẩm cần xóa: ";
-                cin >> prodID;
-                Norder = newInv.findOrder(prodID);
-                if(Norder == nullptr){
-                    cout << endl ;
+				cout << setw(60) << " " << "Nhập mã sản phẩm cần xóa: ";
+	            cin >> prodID;
+	            Norder = newInv.findOrder(prodID);
+	            if(Norder == nullptr){
+		            cout << endl ;
 					cout << setw(60) << " " << "Không có sản phẩm này trong giỏ hàng\n";
-                    system("pause");
-                    break;
-                }
-                Nprod = prodM.find(prodID);
-                cout << endl ;
+		            system("pause");
+		            break;
+	            }
+	            Nprod = prodM.find(prodID);
+	            cout << endl ;
 				cout << setw(60) << " " << "Nhập 0 để xóa tất cả sản phẩm " << Norder->data.getName() << endl;
-                cout << setw(60) << " " << "Hoặc nhập vào số serial của sản phẩm cần xóa: ";
-                cin >> newSerial;
-                if (newSerial == "0"){   
-                    Nstring = Norder->data.getSerial().getHead();
-                    while (Nstring != nullptr) {
-                        Nprod->data.addSerial(Nstring->data);
-                        Nstring = Nstring->next;
-                    }
-                    newInv.getOrder().remove(Norder->data);
-                    cout << endl;
-                    cout << setw(60) << " " << "XÓA THÀNH CÔNG" << endl;
-                    system("pause");
-                }    
-                else{
-                    if(Norder->data.isSerial(newSerial)){
-                        Norder->data.removeSerial(newSerial);
-                        cout << setw(60) << " " << "XÓA THÀNH CÔNG" << endl;
-                        // thêm lại seri vừa xóa vào sản phẩm
-                        Nprod->data.addSerial(newSerial);
-                    }
-                    else{
-                        cout << endl ;
+	            cout << setw(60) << " " << "Hoặc nhập vào số serial của sản phẩm cần xóa: ";
+	            cin >> newSerial;
+	            if (newSerial == "0"){   
+	                Nstring = Norder->data.getSerial().getHead();
+	                while (Nstring != nullptr) {
+	                    Nprod->data.addSerial(Nstring->data);
+	                    Nstring = Nstring->next;
+	                }
+	                newInv.getOrder().remove(Norder->data);
+	                cout << endl;
+	                cout << setw(60) << " " << "XÓA THÀNH CÔNG" << endl;
+	                system("pause");
+	            }    
+	            else{
+	                if(Norder->data.isSerial(newSerial)){
+	                    Norder->data.removeSerial(newSerial);
+	                    cout << setw(60) << " " << "XÓA THÀNH CÔNG" << endl;
+	                        // thêm lại seri vừa xóa vào sản phẩm
+	                    Nprod->data.addSerial(newSerial);
+	                }
+	                else{
+	                    cout << endl ;
 						cout << setw(60) << " " << "Không có sản phẩm mang số serial " << newSerial << " trong giỏ hảng !!\n";
-                        system("pause");
-                    }  
+	                    system("pause");
+	                }  
 				}
 				// xoa hoa don vua tao khi xoa het san pham 
-                if(Norder->data.getQuantity() == 0) newInv.getOrder().remove(Norder->data);
+	            if(Norder->data.getQuantity() == 0) newInv.getOrder().remove(Norder->data);
                 break;
             case 3:{
             	int option;
@@ -477,10 +479,6 @@ void InvManage::sell(CusManage& cusM, ProdManage& prodM,int& option){
 		do{
 			system("cls");
 			cout << endl;
-			cout << "                                                                       THÔNG TIN KHÁCH HÀNG\n";
-			cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+\n";
-			cout << "  |  Mã khách hàng  |  Họ và tên                   |  Số điện thoại       |   Giới tính    |  Email                       |  Địa chỉ                        |\n"; 
-			cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+\n";
 			cusM.display(); 
 			cout << endl;
 			cout << setw(30) << " " << "- Nhấn ESC để quay lại\n" << endl;

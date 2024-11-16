@@ -296,7 +296,7 @@ void MenuManage(){
 	                    	string id;
 	                    	do{
 	                    		system("cls");
-								productManage.displayOption(option);
+								productManage.displayOption(1);
 								cout << endl;
 								cout << setw(30) << " " << "- Nhấn ESC để quay lại\n" << endl;
 								cout << setw(30) << " " << "- Nhấn Enter để nhập\n" << endl;
@@ -330,14 +330,16 @@ void MenuManage(){
 	                        break;
 	                    case 4:{
 	                    	string id;
+	                    	system("cls");
 	                    	cout << endl;
 	                    	cout << setw(60) << " " << "+-------------------------------+-----------+\n";
 					    	cout << setw(60) << " " << "| Nhập ID sản phẩm cần cập nhật |           |\n"; 
 					    	cout << setw(60) << " " << "+-------------------------------+-----------+\n" << endl;
-					    	gotoxy(95,15);
+	                        productManage.displayOption(1); cout << endl;
+					    	gotoxy(95,3);
 	                        cin >> id;  
 	                        if(productManage.find(id) == nullptr) {
-	                        	cout << endl;
+	                        	system("cls"); cout << endl;
 	                        	textcolor(228);
 	                        	cout << setw(60) << " " << "+------------------------------+\n";
 						    	cout << setw(60) << " " << "|  Không tìm thấy sản phẩm !!  |\n"; 
@@ -358,45 +360,54 @@ void MenuManage(){
 							break;
 						}
 	                    case 5:{
-	                    	string id;
-	                    	cout << endl;
-	                    	cout << setw(60) << " " << "+-------------------------------+-----------+\n";
-					    	cout << setw(60) << " " << "|    Nhập ID sản phẩm cần xóa   |           |\n"; 
-					    	cout << setw(60) << " " << "+-------------------------------+-----------+\n" << endl;
-					    	gotoxy(95,15);
-	                        cin >> id;  
-	                        if(productManage.find(id) == nullptr) {
-	                        	cout << endl;
-	                        	textcolor(228);
-	                        	cout << setw(60) << " " << "+------------------------------+\n";
-						    	cout << setw(60) << " " << "|  Không tìm thấy sản phẩm !!  |\n"; 
-						    	cout << setw(60) << " " << "+------------------------------+\n" << endl;
-						    	textcolor(224);
+	                    	string id; char t;
+	                    	do{
+	                    		system("cls"); cout << endl;
+		                    	cout << setw(60) << " " << "+-------------------------------+-----------+\n";
+						    	cout << setw(60) << " " << "|    Nhập ID sản phẩm cần xóa   |           |\n"; 
+						    	cout << setw(60) << " " << "+-------------------------------+-----------+\n" << endl;
+		                        productManage.displayOption(1); cout << endl;
+						    	gotoxy(95,3);
+		                        cin >> id;  
+		                        if(productManage.find(id) == nullptr) {
+		                        	system("cls"); cout << endl; 
+		                        	textcolor(228);
+		                        	cout << setw(60) << " " << "+------------------------------+\n";
+							    	cout << setw(60) << " " << "|  Không tìm thấy sản phẩm !!  |\n"; 
+							    	cout << setw(60) << " " << "+------------------------------+\n" << endl;
+							    	textcolor(224);
+							    	cout << setw(60) << " " << "- Nhấn phím bất bỳ để tiếp tục\n\n"; cout << setw(60) << " " << "- Nhấn ESC để quay lại\n" << endl;
+	                        		t = getch();
+									if(t == 27){
+										break;
+									}
+							    	system("pause");
+								}
+							}while(productManage.find(id) == nullptr);
+	                        if(t != 27 || productManage.find(id) != nullptr){
+	                        	productManage.remove(productManage.find(id)->data);	
+		                        textcolor(226);
+		                        cout << setw(60) << " " << "+------------------------------+\n";
+							    cout << setw(60) << " " << "|   XÓA THÀNH CÔNG SẢN PHẨM    |\n"; 
+							    cout << setw(60) << " " << "+------------------------------+\n" << endl;
+							    textcolor(224);
+		                        system("pause");
 							}
-							else{
-	                        	productManage.remove(productManage.find(id)->data);
-	                        	cout << endl;
-	                        	textcolor(226);
-	                        	cout << setw(60) << " " << "+------------------------------+\n";
-						    	cout << setw(60) << " " << "|   XÓA THÀNH CÔNG SẢN PHẨM    |\n"; 
-						    	cout << setw(60) << " " << "+------------------------------+\n" << endl;
-						    	textcolor(224);
-							}
-	                        system("pause");
 							break;
 						}
 	                    case 6:{
 	                    	string id, seri;
 	                        int count;
-	                        cout << endl;
+	                        system("cls"); cout << endl;
 	                    	cout << setw(60) << " " << "+-------------------------------+-----------+\n";
 					    	cout << setw(60) << " " << "|    Nhập mã sản phẩm cần thêm  |           |\n"; 
 					    	cout << setw(60) << " " << "+-------------------------------+-----------+\n" << endl;
-	                        gotoxy(95,15);
+	                        productManage.displayOption(1); cout << endl;
+	                        gotoxy(95,3);
 	                        cin >> id;  
 	                        Node<Product>* prod = productManage.find(id);
 	                        if (prod == nullptr){
-	                        	cout << endl;
+	                        	system("cls"); cout << endl;
 	                        	textcolor(228);
 	                        	cout << setw(60) << " " << "+------------------------------------+\n";
 						    	cout << setw(60) << " " << "|      Mã sản phẩm không tồn tại     |\n"; 
@@ -405,29 +416,40 @@ void MenuManage(){
 	                        }
 	                        else
 	                        {
+	                        	char t;
 	                        	do{
 	                        		system("cls");
 		                        	cout << setw(60) << " " << "+-------------------------------+------+\n";
 						    		cout << setw(60) << " " << "|    Nhập số lượng cần thêm     |      |\n"; 
 						    		cout << setw(60) << " " << "+-------------------------------+------+\n" << endl;
 		                            gotoxy(95,2); cin >> count;
-		                            textcolor(228);
-		                            cout << setw(60) << " " << "+----------------------------------+\n";
-						    		cout << setw(60) << " " << "|    Số lượng không phù hợp !!     |\n"; 
-						    		cout << setw(60) << " " << "+----------------------------------+\n" << endl;
-						    		textcolor(224);
-								}while(count > 0);
-	                            for (int i = 0; i < count; i++){
-	                            	cout << endl << setw(60) << " " << string(40, '-') << endl;
-	                                cout << setw(60) << " " << "  Nhập seri thứ " << i+1 << ": "; cin >> seri;
-	                                prod->data.addSerial(seri);
-	                            }
-	                            cout << setw(60) << " " << string(40, '-') << endl;
-	                            textcolor(226);
-	                            cout << setw(60) << " " << "+------------------------------------+\n";
-							    cout << setw(60) << " " << "|     Thêm số lượng thành công       |\n"; 
-							    cout << setw(60) << " " << "+------------------------------------+\n" << endl;
-							    textcolor(224);
+		                            if(count <= 0){
+		                            	textcolor(228);
+			                            cout << endl<< setw(60) << " " << "+----------------------------------+\n";
+							    		cout 		<< setw(60) << " " << "|    Số lượng không phù hợp !!     |\n"; 
+							    		cout 		<< setw(60) << " " << "+----------------------------------+\n" << endl;
+							    		textcolor(224);
+	                        			cout << setw(60) << " " << "- Nhấn phím bất bỳ để tiếp tục\n\n"; cout << setw(60) << " " << "- Nhấn ESC để hủy nhập số lượng\n" << endl;
+	                        			t = getch();
+										if(t == 27){
+											break;
+										}
+									}
+								}while(count <= 0);
+	                            if(t != 27 || count > 0){
+	                            	for (int i = 0; i < count; i++){
+		                            	cout << endl << setw(60) << " " << string(40, '-') << endl;
+		                                cout << setw(60) << " " << "  Nhập seri thứ " << i+1 << ": "; cin >> seri;
+		                                prod->data.addSerial(seri);
+		                            }
+		                            cout << setw(60) << " " << string(40, '-') << endl;
+		                            textcolor(226);
+		                            cout << setw(60) << " " << "+------------------------------------+\n";
+								    cout << setw(60) << " " << "|     Thêm số lượng thành công       |\n"; 
+								    cout << setw(60) << " " << "+------------------------------------+\n" << endl;
+								    textcolor(224);
+								    system("pause");
+								}
 	                        }
 	                        cout << endl;
 	                        system("pause");
@@ -445,12 +467,6 @@ void MenuManage(){
 				bool over = true;
 				do{
 					system("cls");
-		            cout << endl;
-		            cout << "                                                                       THÔNG TIN KHÁCH HÀNG\n";
-				    cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+\n";
-				    cout << "  |  Mã khách hàng  |  Họ và tên                   |  Số điện thoại       |   Giới tính    |  Email                       |  Địa chỉ                        |\n"; 
-					cout << "  +-----------------+------------------------------+----------------------+----------------+------------------------------+---------------------------------+";
-		            cout << endl;
 					customerManage.display(); 
 					do{
 						cout << endl;

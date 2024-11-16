@@ -92,47 +92,14 @@ void Product::show(){
     cout << setw(50) << " " << string(60, '=') << endl;
 }
 ostream& operator<<(ostream& os,const Product& p){
-//    os << setw(50) << " " << string(60, '=') << endl;
-//	os << setw(50) << " " << "Thông tin chung:" << endl;
-//    os << left
-//	<< setw(50) << " " << setw(25) << "  Mã sản phẩm: " << p.productID << endl
-//    << setw(50) << " " << setw(25) << "  Tên sản phẩm: " << p.name << endl
-//    << setw(50) << " " << setw(24) << "  Thương hiệu: " << p.brand << endl
-//    << setw(50) << " " << setw(22) << "  Giá bán: " << fixed << setprecision(0) <<  p.price << " VND" << endl;
-//    os << setw(50) << " " << "Thông số kỹ thuật:" << endl;
-//    os << left
-//    << setw(50) << " " << setw(20) << "  CPU: " << p.CPU << endl
-//    << setw(50) << " " << setw(20) << "  RAM: " << p.RAM << "GB" << endl
-//    << setw(50) << " " << setw(22) << "  Màn hình: " << p.screen << endl
-//    << setw(50) << " " << setw(24) << "  Ổ cứng: " << p.hardDisk << "GB" << endl
-//    << setw(50) << " " << setw(20) << "  GPU: " << p.GPU << endl
-//    << setw(50) << " " << setw(26) << "  Hệ điều hành: " << p.OS << endl;
-//    os << setw(50) << " " << setw(25) << "  Số lượng: " << p.quantity << " máy" << endl;
-//    os << setw(50) << " " << setw(22) << "  Số serial: ";
-//    Node<string>* currentNode = p.serial.getHead();
-//    int count = 0;
-//    while (currentNode != nullptr) 
-//    {
-//        count++; 
-//        if(count % 4 == 0){
-//        	cout << endl;
-//        	os << setw(70) << " ";
-//		}
-//		os << currentNode->data;
-//        currentNode = currentNode->next;
-//        if (currentNode != nullptr) {
-//            os << ", ";
-//        }
-//    }
-//    cout << endl;
-//    cout << setw(50) << " " << string(60, '=') << endl;
 	int n1 = 12 - (p.productID.size());
 	os << "  |  " << p.productID << setw(n1) << "|";
 	n1 = 38 - (p.name.size());
 	os << p.name << setw(n1) << "|" ;
 	n1 = 12 - (p.brand.size());
 	os << "  " << p.brand << setw(n1) << "|" ;
-	os << fixed << setprecision(0) << p.price << " |" ;
+	n1 = 17 - to_string(p.price).size();
+	os << fixed << setprecision(0) << p.price << setw(n1) << "|" ;
 	n1 = 4 - to_string(p.RAM).size();
 	os << " " << p.RAM << " GB" << setw(n1) << "|" ;
 	n1 = 39 - p.screen.size();
