@@ -5,4 +5,4 @@
 304|Laptop Asus ZenBook UX425EA|Asus|14990000|14000000|Intel i5 1135G7|8|14" Full HD (1920 x 1080)|256|Intel Iris Xe|Windows 11 Home|1|P301,
 303|Laptop MSI Modern 14 B11MOU|MSI|18990000|17500000|Intel i5 1135G7|8|14" Full HD (1920 x 1080)|512|Intel Iris Xe|Windows 10 Home|1|Q301,
 302|Laptop HP Pavilion x360|HP|15990000|15000000|Intel i5 1135G7|8|14" Full HD (1920 x 1080) Touch|512|Intel Iris Xe|Windows 11 Home|3|J301,J302,J303,
-301|Laptop Lenovo ThinkPad E14 Gen 3|Lenovo|16490000|14890000|yzen 7 4700U|16|14" Full HD (1920 x 1080)|512|Radeon Vega 7|Windows 10 Pro|1|K301,K302,
+301|Laptop Lenovo ThinkPad E14 Gen 3|Lenovo|16490000|14890000|yzen 7 4700U|16|14" Full HD (1920 x 1080)|512|Radeon Vega 7|Windows 10 Pro|1|K301,

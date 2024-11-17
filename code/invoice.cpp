@@ -80,11 +80,13 @@ double Invoice::getTotal(){
 	this->updateTotal();
 	return this->total;
 }
-double Invoice::getProfit(){
+double Invoice::getProfit(ProdManage& prodM){
 	double res = 0;
 	Node<order>* p = this->listOfOrder.getHead();
 	while(p != nullptr){
-		res += p->data.Profit();
+		string id = p->data.getID();
+		res +=  prodM.find(id)->data.Profit() * p->data.getQuantity();
+//		res += p->data.getImportPrice();
 		p = p->next;
 	}
 	return res;

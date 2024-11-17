@@ -284,20 +284,6 @@ Node<Customer>* CusManage::find(int& ID)
     tempCus.setID(ID);
     return this->Cus.find(tempCus);
 }
-Node<Customer>* CusManage::find(string& name, string& phone)
-{
-    Node<Customer>* Found = nullptr;
-    if( name == "x" && phone == "x" ) return Found;
-    Node<Customer>* tempNode;
-    tempNode = this->Cus.getHead();
-    while (tempNode != nullptr) 
-    {
-        if ( ( tempNode->data.getName() == name || name == "x" ) && ( tempNode->data.getPhone() == phone || phone == "x" ) ) 
-            Found = tempNode;
-        tempNode = tempNode->next;
-    }
-    return Found;
-}
 
 int CusManage::getNewID()
 {

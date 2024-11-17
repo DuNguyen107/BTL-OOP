@@ -1,6 +1,7 @@
 #include"Date.h"
 #include"List.h"
 #include"Order.h"
+#include"ProdManage.h"
 #pragma once
 
 class Invoice{
@@ -27,7 +28,7 @@ class Invoice{
 		int getCusID();
 		int getInvID();
 		double getTotal();
-		double getProfit();
+		double getProfit(ProdManage& prodM);
 		double productSales();
 		Date getDate();
 		string getPayment();

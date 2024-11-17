@@ -17,6 +17,5 @@ class CusManage: public Manage<Customer>{
 		void edit(Customer& cus);
 		void display();
 		Node<Customer>* find(int& ID);
-		Node<Customer>* find(string& name, string& phone);
 		int getNewID();
 };

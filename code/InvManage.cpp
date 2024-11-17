@@ -91,7 +91,7 @@ Node<Invoice>* InvManage::findID(int& ID){ // mỗi ID là duy nhất
     tempInv.setInvID(ID);
     return this->Inv.find(tempInv);
 }
-void InvManage::statistic(List<Invoice>* list){ // thống kê dựa trên danh sách hóa đơn
+void InvManage::statistic(List<Invoice>* list, ProdManage& prodM){ // thống kê dựa trên danh sách hóa đơn
 	if(list == nullptr) return;
 	double revenue = 0; //doanh thu
     double profit = 0; //loi nhuan
@@ -100,7 +100,7 @@ void InvManage::statistic(List<Invoice>* list){ // thống kê dựa trên danh 
     tempNode = list->getHead();
     while (tempNode != nullptr){
         revenue += tempNode->data.getTotal();
-        profit += tempNode->data.getProfit();
+        profit += tempNode->data.getProfit(prodM);
         sales += tempNode->data.productSales();
         tempNode = tempNode->next;
     }
@@ -233,7 +233,7 @@ void InvManage::findtoShow(int& ID){ // tìm ID va in thông tin của ID
     filePath += "invoice_" + to_string(ID) + ".txt";
     ifstream inFile(filePath);
     if (!inFile.is_open()) {
-        cerr << "Không tìm thấy hóa đơn !!" << endl;
+        cerr << setw(60) << " " << " (!) Không tìm thấy hóa đơn (!)" << endl;
         return;
     }
     string line;

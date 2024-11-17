@@ -37,7 +37,7 @@ void ProdManage::readFile(string file){
 		}
 		inputFile.close();
 	}else
-		cerr << "Khong the mo file" << file << endl;
+		cerr << "Không thể mở file" << file << endl;
 }
 void ProdManage::writeFile(string file){
 	ofstream outputFile(file, ios::out | ios::trunc);

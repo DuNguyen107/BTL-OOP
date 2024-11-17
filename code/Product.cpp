@@ -50,8 +50,7 @@ Product::~Product()
 { }
 
 
-Product& Product::operator=(const Product& other)
-{
+Product& Product::operator=(const Product& other){
     if (this != &other) {
         this->productID = other.productID;
         this->name = other.name;
@@ -89,6 +88,15 @@ void Product::show(){
     << setw(50) << " " << setw(20) << "  GPU: " << GPU << endl
     << setw(50) << " " << setw(26) << "  Hệ điều hành: " << OS << endl;
     cout << setw(50) << " " << setw(25) << "  Số lượng: " << quantity << " máy" << endl;
+    cout << setw(52) << " " << setw(20) << "Số serial: ";
+    Node<string>* currentNode = this->serial.getHead();
+    while (currentNode != nullptr) 
+    {
+        cout << currentNode->data;
+        currentNode = currentNode->next;
+        if(currentNode != nullptr) cout << ", ";
+        else cout << endl;
+    }
     cout << setw(50) << " " << string(60, '=') << endl;
 }
 ostream& operator<<(ostream& os,const Product& p){
@@ -134,7 +142,7 @@ double Product::getImportPrice(){
     return this->importPrice;
 }
 double Product::Profit(){
-    return (this->price - this->importPrice); 
+    return this->price - this->importPrice; 
 }
 string Product::getCPU(){
     return this->CPU;
